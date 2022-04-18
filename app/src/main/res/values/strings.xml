@@ -1,3 +1,64 @@
 <resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Login-->
     <string name="app_name">EasyWork</string>
+    <string name="continuar_con">Continuar con</string>
+    <string name="registrate">Crea una nueva cuenta</string>
+    <string name="cuenta_existente">¿Ya tienes una cuenta?</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+
+    <!--Verificar número de teléfono-->
+    <string name="verifica_num_telf">Verifica tu número de teléfono</string>
+    <string name="num_telf">Número de teléfono</string>
+    <string name="envio_cod_verificacion">Se enviará un código de verificación</string>
+    <string name="recepcion_cod_wapp">Recibir código por</string>
+    <string name="recepcion_cod_sms">Recibir código por SMS</string>
+    <string name="acepto_recibir_cod">Acepto recibir el código de verificación por SMS o WhatsApp.</string>
+
+    <!--Correo electrónico-->
+    <string name="correo">Correo electrónico</string>
+    <string name="continuar">Continuar</string>
+
+    <!--Código de verificación de correo electrónico-->
+    <string name="verifica_correo">Verifica tu correo</string>
+    <string name="cod_ver_correo">Ingresa el código de verificación enviado a tu correo.</string>
+    <string name="cod_ver_celular">Ingresa el código de verificación enviado a tu celular.</string>
+    <string name="cod_verificacion">Código de verificación</string>
+    <string name="volver_enviar_cod_ver">Volver a enviar código de verificación</string>
+    <string name="enviar">Enviar</string>
+
+    <!--Crear contraseña-->
+    <string name="crear_contraseña">Crea una contraseña</string>
+    <string name="crear_nueva_contra">Crea una nueva contraseña</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="confirma_contraseña">Confirma tu contraseña</string>
+    <string name="contra_contener">La contraseña debe contener:</string>
+    <string name="min_digitos">• Mínimo 8 dígitos.</string>
+    <string name="min_numeros">• Mínimo 2 números.</string>
+    <string name="min_minuscula">• Mínimo 1 letra mayúscula.</string>
+    <string name="min_mayuscula">• Mínimo 1 letra minúscula.</string>
+
+    <!--Creación de usuario exitoso-->
+    <string name="creacion_exitosa_cuenta">¡Tu cuenta fue creada con éxito!</string>
+    <string name="ingresa_cuenta">Ingresa a tu cuenta</string>
+    <string name="olvidaste_contraseña">¿Olvidaste tu contraseña?</string>
+
+    <!--Recuperar cuenta - correo-->
+    <string name="recuperar_cuenta">Recupera tu cuenta</string>
+    <string name="recuperar_cuenta_correo">Ingresa tu correo electrónico para enviar el código de verificación y restablecer tu contraseña.</string>
+
+    <!--Restablece contraseña-->
+    <string name="restablece_contraseña">Restablece tu contraseña</string>
+    <string name="ingresa_cod_restab_contra">Ingresa el código de verificación enviado para restablecer tu contraseña.</string>
+    <string name="restablecer_contra_exitosa">¡Tu contraseña fue restablecida con éxito!</string>
+    <string name="completa_datos">Completa tus datos</string>
+    <string name="primer_nombre">Primer nombre</string>
+    <string name="segundo_nombre">Segundo nombre</string>
+    <string name="apellido_paterno">Apellido paterno</string>
+    <string name="apellido_materno">Apellido materno</string>
+    <string name="tipo_doc">Ingresa tu número de documento</string>
+    <string name="numero_doc">Número de documento</string>
+
 </resources>
