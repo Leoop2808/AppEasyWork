@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_login"
+    app:startDestination="@id/loginFragment">
+
+     <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.proy.easywork.presentation.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_create_account_loginFragment_to_loginCodePhoneFragment"
+            app:destination="@id/loginCodePhoneFragment"/>
+        <action
+            android:id="@+id/action_log_in_loginFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_loginCodePhoneFbGoogleFragment"
+            app:destination="@id/loginCodePhoneFbGoogleFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_loginCodePhoneFbGoogleFragment2"
+            app:destination="@id/loginCodePhoneFbGoogleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginCodePhoneFragment"
+        android:name="com.proy.easywork.presentation.LoginCodePhoneFragment"
+        android:label="fragment_login_code_phone"
+        tools:layout="@layout/fragment_login_code_phone" >
+        <action
+            android:id="@+id/action_loginCodePhoneFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+        <action
+            android:id="@+id/action_btnWhatsApp_loginCodePhoneFragment_to_loginEmailFragment"
+            app:destination="@id/phoneVerificationCodeFragment" />
+        <action
+            android:id="@+id/action_btnSMS_loginCodePhoneFragment_to_loginEmailFragment2"
+            app:destination="@id/phoneVerificationCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginEmailFragment"
+        android:name="com.proy.easywork.presentation.LoginEmailFragment"
+        android:label="fragment_login_email"
+        tools:layout="@layout/fragment_login_email" >
+        <action
+            android:id="@+id/action_loginEmailFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+        <action
+            android:id="@+id/action_loginEmailFragment_to_loginValidationCodeFragment"
+            app:destination="@id/loginValidationCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginValidationCodeFragment"
+        android:name="com.proy.easywork.presentation.LoginValidationCodeFragment"
+        android:label="fragment_login_validation_code"
+        tools:layout="@layout/fragment_login_validation_code" >
+        <action
+            android:id="@+id/action_loginValidationCodeFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+        <action
+            android:id="@+id/action_loginValidationCodeFragment_to_createPasswordFragment"
+            app:destination="@id/createPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPasswordFragment"
+        android:name="com.proy.easywork.presentation.CreatePasswordFragment"
+        android:label="fragment_create_password"
+        tools:layout="@layout/fragment_create_password" >
+        <action
+            android:id="@+id/action_createPasswordFragment_to_successfulUserCreationFragment"
+            app:destination="@id/successfulUserCreationFragment" />
+        <action
+            android:id="@+id/action_createPasswordFragment_to_logInEmailPasswordFragment2"
+            app:destination="@id/logInEmailPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successfulUserCreationFragment"
+        android:name="com.proy.easywork.presentation.SuccessfulUserCreationFragment"
+        android:label="fragment_successful_user_creation"
+        tools:layout="@layout/fragment_successful_user_creation" >
+        <action
+            android:id="@+id/action_successfulUserCreationFragment_to_completeProfileFragment"
+            app:destination="@id/completeProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInEmailPasswordFragment"
+        android:name="com.proy.easywork.presentation.LogInEmailPasswordFragment"
+        android:label="fragment_log_in_email_password"
+        tools:layout="@layout/fragment_log_in_email_password" >
+        <action
+            android:id="@+id/action_logInEmailPasswordFragment_to_loginCodePhoneFragment"
+            app:destination="@id/loginCodePhoneFragment" />
+        <action
+            android:id="@+id/action_logInEmailPasswordFragment_to_passwordRecoveryEmailFragment"
+            app:destination="@id/passwordRecoveryEmailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRecoveryEmailFragment"
+        android:name="com.proy.easywork.presentation.PasswordRecoveryEmailFragment"
+        android:label="fragment_password_recovery_email"
+        tools:layout="@layout/fragment_password_recovery_email" >
+        <action
+            android:id="@+id/action_passwordRecoveryEmailFragment_to_loginCodePhoneFragment"
+            app:destination="@id/loginCodePhoneFragment" />
+        <action
+            android:id="@+id/action_passwordRecoveryEmailFragment_to_passwordRecoveryFragment"
+            app:destination="@id/passwordRecoveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRecoveryFragment"
+        android:name="com.proy.easywork.presentation.PasswordRecoveryFragment"
+        android:label="fragment_password_recovery"
+        tools:layout="@layout/fragment_password_recovery" >
+        <action
+            android:id="@+id/action_passwordRecoveryFragment_to_loginNewPasswordRecoveryFragment2"
+            app:destination="@id/loginNewPasswordRecoveryFragment" />
+        <action
+            android:id="@+id/action_passwordRecoveryFragment_to_loginCodePhoneFragment2"
+            app:destination="@id/loginCodePhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginNewPasswordRecoveryFragment"
+        android:name="com.proy.easywork.presentation.LoginNewPasswordRecoveryFragment"
+        android:label="fragment_login_new_password_recovery"
+        tools:layout="@layout/fragment_login_new_password_recovery" >
+        <action
+            android:id="@+id/action_loginNewPasswordRecoveryFragment_to_successfulPasswordRecoveryFragment"
+            app:destination="@id/successfulPasswordRecoveryFragment" />
+        <action
+            android:id="@+id/action_loginNewPasswordRecoveryFragment_to_loginCodePhoneFragment"
+            app:destination="@id/loginCodePhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successfulPasswordRecoveryFragment"
+        android:name="com.proy.easywork.presentation.SuccessfulPasswordRecoveryFragment"
+        android:label="fragment_successful_password_recovery"
+        tools:layout="@layout/fragment_successful_password_recovery" />
+    <fragment
+        android:id="@+id/phoneVerificationCodeFragment"
+        android:name="com.proy.easywork.presentation.PhoneVerificationCodeFragment"
+        android:label="fragment_phone_verification_code"
+        tools:layout="@layout/fragment_phone_verification_code" >
+        <action
+            android:id="@+id/action_phoneVerificationCodeFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+        <action
+            android:id="@+id/action_phoneVerificationCodeFragment_to_loginEmailFragment"
+            app:destination="@id/loginEmailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginCodePhoneFbGoogleFragment"
+        android:name="com.proy.easywork.presentation.LoginCodePhoneFbGoogleFragment"
+        android:label="fragment_login_code_phone_fb_google"
+        tools:layout="@layout/fragment_login_code_phone_fb_google" >
+        <action
+            android:id="@+id/action_loginCodePhoneFbGoogleFragment_to_phoneVerificationCodeFbGoogleFragment"
+            app:destination="@id/phoneVerificationCodeFbGoogleFragment" />
+        <action
+            android:id="@+id/action_loginCodePhoneFbGoogleFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+        <action
+            android:id="@+id/action_loginCodePhoneFbGoogleFragment_to_phoneVerificationCodeFbGoogleFragment2"
+            app:destination="@id/phoneVerificationCodeFbGoogleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneVerificationCodeFbGoogleFragment"
+        android:name="com.proy.easywork.presentation.PhoneVerificationCodeFbGoogleFragment"
+        android:label="fragment_phone_verification_code_fb_google"
+        tools:layout="@layout/fragment_phone_verification_code_fb_google" >
+        <action
+            android:id="@+id/action_phoneVerificationCodeFbGoogleFragment_to_createPasswordFragment"
+            app:destination="@id/createPasswordFragment" />
+        <action
+            android:id="@+id/action_phoneVerificationCodeFbGoogleFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completeProfileFragment"
+        android:name="com.proy.easywork.presentation.CompleteProfileFragment"
+        android:label="fragment_complete_profile"
+        tools:layout="@layout/fragment_complete_profile" />
+</navigation>
