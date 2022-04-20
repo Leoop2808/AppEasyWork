@@ -2,7 +2,9 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
-
+def PropertiesFile = rootProject.file("../AppEasyWork/EasyWork.properties")
+def easyWorkProperties = new Properties()
+easyWorkProperties.load(new FileInputStream(PropertiesFile))
 android {
     compileSdk 32
 
@@ -14,6 +16,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField("String", "ServerUrl", "${easyWorkProperties['ServerUrlDesarrollo']}")
+            resValue "string", "app_name", "EasyWork Debug"
+        }
     }
 
     buildTypes {
@@ -46,4 +56,22 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'androidx.biometric:biometric:1.1.0'
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation platform('com.google.firebase:firebase-bom:28.3.1')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+
+
 }
+
+/*apply plugin: 'com.google.gms.google-services'*/
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
