@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Login-->
-    <string name="app_name">EasyWork</string>
+    <!--<string name="app_name">EasyWork</string>-->
     <string name="continuar_con">Continuar con</string>
     <string name="registrate">Crea una nueva cuenta</string>
     <string name="cuenta_existente">¿Ya tienes una cuenta?</string>
