@@ -19,7 +19,7 @@ class LogInEmailPasswordFragment : Fragment() {
     private lateinit var binding: FragmentLogInEmailPasswordBinding
 
     private val viewModel by viewModels<LoginViewModel> {
-        LoginViewModel.LoginModelFactory(LoginRepository())
+        LoginViewModel.LoginModelFactory(LoginRepository(activity?.application!!))
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

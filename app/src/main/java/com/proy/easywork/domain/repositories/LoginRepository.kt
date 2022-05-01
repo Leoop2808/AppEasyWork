@@ -1,8 +1,10 @@
 package com.proy.easywork.domain.repositories
 
 
+import android.app.Application
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
+import com.proy.easywork.data.db.entity.CategoriaServicio
 import com.proy.easywork.data.exception.DefaultException
 import com.proy.easywork.data.model.VMAuthentication
 import com.proy.easywork.data.model.response.RSMaestros
@@ -10,15 +12,23 @@ import com.proy.easywork.domain.BaseRepository
 import com.proy.easywork.domain.MADataResult
 import java.net.HttpURLConnection
 
-class LoginRepository: BaseRepository() {
+class LoginRepository(aplication: Application): BaseRepository() {
     val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
-
+    val database = db.getDatabase(aplication)
     suspend fun listarMaestros(): MADataResult<RSMaestros?> {
 
         return try {
             val result= mRemoteClient?.obtenerListaMaestros(sp.getToken())
             when (result?.code()) {
-                HttpURLConnection.HTTP_OK -> MADataResult.Success(result.body())
+                HttpURLConnection.HTTP_OK ->{
+                    database.masterDao().deleteCategoria()
+                    val categorias = result.body()?.listaCategoriaServicio
+                    categorias?.forEach {
+                        database.masterDao().addCategoriaServicio(CategoriaServicio(0,it.codCategoriaServicio, it.siglaCategoriaServicio))
+                    }
+
+                    MADataResult.Success(result.body())
+                }
 
                 HttpURLConnection.HTTP_BAD_REQUEST ->MADataResult.UnAuthorized(Exception(DefaultException.UNAUTHORIZED_ERROR))
                 HttpURLConnection.HTTP_INTERNAL_ERROR ->MADataResult.ServerFailure(Exception(DEFAULT_ERROR_MESSAGE))

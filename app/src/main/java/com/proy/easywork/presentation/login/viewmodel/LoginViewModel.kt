@@ -12,6 +12,9 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
     private val _login = MutableLiveData<Boolean?>()
     val login : LiveData<Boolean?> = _login
 
+    
+
+
     fun login(correo: String, password: String){
         _isViewLoading.value=true
         viewModelScope.launch {
