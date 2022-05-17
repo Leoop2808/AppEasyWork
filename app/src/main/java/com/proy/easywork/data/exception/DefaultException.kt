@@ -4,6 +4,7 @@ class DefaultException (override var message: String?= DEFAULT_MESSAGE) : Except
 
     companion object {
         const val DEFAULT_MESSAGE="Servidor no disponible"
+        const val MESSAGE_NO_CONTENT = "No se encontraron datos"//204
         const val UNAUTHORIZED_ERROR = "Su sesión ha expirado"
         const val ACCOUNT_AUTHENTICATE_GENERIC_ERROR = "No se ha podido autenticar"
         const val ACCOUNT_BAD_REQUEST_ERROR = "Usuario y/o contraseña incorrectos"

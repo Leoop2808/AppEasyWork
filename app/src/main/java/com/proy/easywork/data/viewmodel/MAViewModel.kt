@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 
 open class MAViewModel : ViewModel() {
 
+    protected val _onMessageSuccesful= MutableLiveData<String>()
+    val onMessageSuccesful: LiveData<String> = _onMessageSuccesful
+
     protected val _onMessageError= MutableLiveData<String>()
     val onMessageError: LiveData<String> = _onMessageError
 

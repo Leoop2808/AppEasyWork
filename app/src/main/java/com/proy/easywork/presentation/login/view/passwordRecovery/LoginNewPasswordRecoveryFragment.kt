@@ -1,80 +1,61 @@
-package com.proy.easywork.presentation
+package com.proy.easywork.presentation.login.view.passwordRecovery
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
-import com.proy.easywork.data.model.request.RQVerificarCodigo
-import com.proy.easywork.databinding.FragmentPasswordRecoveryBinding
-import com.proy.easywork.databinding.FragmentPasswordRecoveryEmailBinding
+import com.proy.easywork.data.model.request.RQClave
+import com.proy.easywork.databinding.FragmentLoginNewPasswordRecoveryBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
 
-class PasswordRecoveryFragment : Fragment() {
+class LoginNewPasswordRecoveryFragment : Fragment() {
 
-    private lateinit var binding: FragmentPasswordRecoveryBinding
+    private lateinit var binding: FragmentLoginNewPasswordRecoveryBinding
+
     private val viewModel by viewModels<LoginViewModel> {
         LoginViewModel.LoginModelFactory(LoginRepository(activity?.application!!))
     }
-     override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View {
 
-         binding = FragmentPasswordRecoveryBinding.inflate(inflater, container, false)
-         return binding.root
-     }
+        binding = FragmentLoginNewPasswordRecoveryBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpUI()
-        setUpEvents()
-
-
-    }
-
-    private fun setUpEvents() {
         binding.imgBackArrow.setOnClickListener {
-            Navigation.findNavController(it).popBackStack()
+            Navigation.findNavController(view).popBackStack()
         }
 
         binding.btnRegistrate.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_passwordRecoveryFragment_to_loginCodePhoneFragment2)
+            Navigation.findNavController(view).navigate(R.id.action_loginNewPasswordRecoveryFragment_to_loginCodePhoneFragment)
         }
 
         binding.btnContinuar.setOnClickListener {
-            if(binding.etCodigo.text.isNullOrEmpty()){
-                showMessage("Ingresar código")
-            }else{
-                viewModel.verificarCodigoCorreo(RQVerificarCodigo(binding.etCodigo.text.toString().trim(),
-                    arguments?.getString("correo")?:""
-                ))
+
+            if(validateFileds()){
+                viewModel.actualizarClave(RQClave(arguments?.getString("codigo")?:"",arguments?.getString("correo")?:"", binding.etContrasena.text.toString().trim() ))
             }
-
         }
-    }
-
-    private fun setUpUI() {
 
         viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
-            view?.let {
-                val bundle = bundleOf(Pair("correo", arguments?.getString("correo")?:""), Pair("codigo",binding.etCodigo.text.toString().trim() ))
-                Navigation.findNavController(it).navigate(R.id.action_passwordRecoveryFragment_to_loginNewPasswordRecoveryFragment2, bundle)
-            }
+            Navigation.findNavController(view).navigate(R.id.action_loginNewPasswordRecoveryFragment_to_successfulPasswordRecoveryFragment)
         }
 
 
         viewModel.onMessageError.observe(viewLifecycleOwner){
-            it?.let {
-                showMessage(it)
-            }
+            it?.let { showMessage(it) }
         }
+
         viewModel.isViewLoading.observe(viewLifecycleOwner) {
             it.let {
                 if (it) {
@@ -84,6 +65,26 @@ class PasswordRecoveryFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun validateFileds(): Boolean{
+        if(binding.etContrasena.text.isNullOrEmpty()){
+            showMessage("Ingrese contraseña")
+            return false
+        }
+
+        if(binding.etContrasena2.text.isNullOrEmpty()){
+            showMessage("Ingrese la confirmación contraseña")
+            return false
+        }
+
+        if(binding.etContrasena.text.toString().trim()!=binding.etContrasena2.text.toString().trim()){
+            showMessage("Las contraseñas no coinciden")
+            return false
+        }
+
+
+        return true
     }
 
     private fun showMessage(message: String) {

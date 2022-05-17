@@ -2,8 +2,7 @@ package com.proy.easywork.presentation.login.viewmodel
 
 import androidx.lifecycle.*
 import com.proy.easywork.data.exception.DefaultException
-import com.proy.easywork.data.model.request.RQAuthenticationFacebook
-import com.proy.easywork.data.model.request.RQAuthenticationGoogle
+import com.proy.easywork.data.model.request.*
 import com.proy.easywork.data.viewmodel.MAViewModel
 import com.proy.easywork.domain.MADataResult
 import com.proy.easywork.domain.repositories.LoginRepository
@@ -13,8 +12,15 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
 
     private val _login = MutableLiveData<Boolean?>()
     val login : LiveData<Boolean?> = _login
-    private val _registerCompleted= MutableLiveData<Boolean>()
 
+    private val _cargaMaestros = MutableLiveData<Boolean?>()
+    val cargaMaestros : LiveData<Boolean?> = _cargaMaestros
+
+    private val _registerCompletedFacebook= MutableLiveData<Boolean>()
+    val registerCompletedFacebook : LiveData<Boolean> = _registerCompletedFacebook
+
+    private val _registerCompletedGoogle= MutableLiveData<Boolean>()
+    val registerCompletedGoogle : LiveData<Boolean> = _registerCompletedGoogle
     fun login(correo: String, password: String){
         _isViewLoading.value=true
         viewModelScope.launch {
@@ -46,7 +52,7 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
                         "true" -> {
-                            _registerCompleted.value = true
+                            _registerCompletedGoogle.value = true
                         }
                         "false" ->{
                             _login.value = true
@@ -76,8 +82,8 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
             when (val result = repository.authenticateFacebook(request)) {
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
-                        "true" -> {
-                            _registerCompleted.value = true
+                        "true"-> {
+                            _registerCompletedGoogle.value = true
                         }
                         "false" ->{
                             _login.value = true
@@ -98,6 +104,155 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                 }
             }
             _isViewLoading.value = false
+        }
+    }
+
+
+    fun enviarCodigoCelular(request : RQCodigoCelular){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.enviarCodigoCelular(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value= result.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun enviarCodigoCorreo(request : RQCodigoCorreo){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.enviarCodigoCorreo(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value= result.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun verificarCodigoCorreo(request : RQVerificarCodigo){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.verificarCodigoCorreo(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value= result.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun actualizarClave(request : RQClave){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.actualizarClave(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value= result.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun registrarDispositivo(request : RQDispositivo){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.registrarDispositivo(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value= result.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun listarMaestros(){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.listarMaestros()) {
+                is MADataResult.Success -> {
+                    _isViewLoading.value = false
+                    _cargaMaestros.value= true
+                }
+                is MADataResult.Failure -> {
+                    _isViewLoading.value = false
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _isViewLoading.value = false
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _isViewLoading.value = false
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _isViewLoading.value = false
+                    _serverFailure.value = true
+                }
+            }
         }
     }
 
