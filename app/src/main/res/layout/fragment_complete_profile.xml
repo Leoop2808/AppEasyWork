@@ -7,7 +7,6 @@
     tools:context=".presentation.CompleteProfileFragment"
     android:background="#E6E7E8">
 
-
     <TextView
         android:id="@+id/textView23"
         android:layout_width="271dp"
@@ -106,40 +105,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout22" />
 
-    <EditText
-        android:id="@+id/editTextNumber8"
-        android:layout_width="235dp"
+    <LinearLayout
+        android:id="@+id/linearLayout23"
+        android:layout_width="337dp"
         android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="@string/numero_doc"
-        android:inputType="number"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
-    <androidx.cardview.widget.CardView
-        android:id="@+id/pb"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#B2FFFFFF"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="gone"
-        app:cardBackgroundColor="#B2FFFFFF"
-        app:cardElevation="10dp">
+        app:layout_constraintTop_toBottomOf="@+id/textView27">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <Spinner
+            android:id="@+id/spinnerTipDoc"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="15dp" />
 
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:indeterminate="true" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+        <EditText
+            android:id="@+id/editTextNumber8"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/numero_doc"
+            android:inputType="number"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnContinuar"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_rounded"
+        android:gravity="center"
+        android:text="@string/continuar"
+        android:textColor="@color/tipografia_boton_login"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout23" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
