@@ -34,6 +34,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.proy.easywork.BuildConfig.GoogleTokenId
 import com.proy.easywork.R
 import com.proy.easywork.data.model.request.RQAuthenticationFacebook
 import com.proy.easywork.data.model.request.RQAuthenticationGoogle
@@ -100,7 +101,7 @@ class LoginFragment : Fragment() {
     private fun setUpUI() {
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            //.requestIdToken(BuildConfig.GoogleTokenId)
+            .requestIdToken(GoogleTokenId)
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
