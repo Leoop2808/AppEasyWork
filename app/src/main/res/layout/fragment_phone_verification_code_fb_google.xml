@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.PhoneVerificationCodeFbGoogleFragment"
-    android:background="#E6E7E8">
+    android:background="#E6E7E8"
+    tools:context=".presentation.PhoneVerificationCodeFbGoogleFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout19"
@@ -96,7 +97,7 @@
             android:src="@drawable/done_icon" />
 
         <EditText
-            android:id="@+id/editTextNumber5"
+            android:id="@+id/etCodigoGF"
             android:layout_width="235dp"
             android:layout_height="57dp"
             android:layout_weight="1"
@@ -113,12 +114,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_rounded"
         android:gravity="center"
+        android:text="@string/continuar"
         android:textColor="@color/tipografia_boton_login"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:text="@string/continuar"
-        android:background="@drawable/bg_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout20" />
@@ -132,8 +133,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/pb"

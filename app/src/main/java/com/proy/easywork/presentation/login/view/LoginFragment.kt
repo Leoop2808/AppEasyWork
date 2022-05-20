@@ -124,7 +124,31 @@ class LoginFragment : Fragment() {
 
         viewModel.registerCompletedGoogle.observe(viewLifecycleOwner){
             view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_fragmentSelectCategories)
+            }
+        }
+
+        viewModel.validatePhoneGoogle.observe(viewLifecycleOwner){
+            view?.let {
                 Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_loginCodePhoneFbGoogleFragment2)
+            }
+        }
+
+        viewModel.completePerfilGoogle.observe(viewLifecycleOwner){
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_completeProfileFragment)
+            }
+        }
+
+        viewModel.verifyPhoneGF.observe(viewLifecycleOwner){
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_loginCodePhoneFbGoogleFragment_to_phoneVerificationCodeFbGoogleFragment2)
+            }
+        }
+
+        viewModel.completeVerifyPhoneGF.observe(viewLifecycleOwner){
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeFbGoogleFragment_to_fragmentSelectCategories)
             }
         }
 
@@ -224,9 +248,7 @@ class LoginFragment : Fragment() {
             val idToken: String = account!!.idToken.toString()
 
             Log.e(":)","idToken-> $idToken")
-            actualLocation?.let {
-                viewModel.loginGoogle(RQAuthenticationGoogle(idToken, it.latitude, it.longitude))
-            }
+            viewModel.loginGoogle(RQAuthenticationGoogle(idToken, 0.0,0.0))
 
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.

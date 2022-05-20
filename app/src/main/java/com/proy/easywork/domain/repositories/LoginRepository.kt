@@ -2,6 +2,7 @@ package com.proy.easywork.domain.repositories
 
 
 import android.app.Application
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
@@ -337,12 +338,12 @@ class LoginRepository(aplication: Application): BaseRepository() {
         }
     }
 
-    suspend fun verificarCodigoCelular(request : RQVerificarCodigo): MADataResult<String> {
+    suspend fun verificarCodigoCelular(request : RQVerificarCodigoCelular): MADataResult<String> {
         return try {
 
             val gson = Gson()
             val type = object : TypeToken<RSErrorMessage>() {}.type
-            val result = mRemoteClient?.verificarCodigoCorreo(basicAuthentication, request)
+            val result = mRemoteClient?.verificarCodigoCelular(basicAuthentication, request)
             when (result?.code()) {
                 HttpURLConnection.HTTP_OK ->{
                     MADataResult.Success(result.body()?.Message)

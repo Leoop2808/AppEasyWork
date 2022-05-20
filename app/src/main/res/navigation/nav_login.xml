@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
-    app:startDestination="@id/successfulUserCreationFragment">
+    app:startDestination="@id/loginFragment">
 
      <fragment
         android:id="@+id/loginFragment"
@@ -22,7 +22,13 @@
         <action
             android:id="@+id/action_loginFragment_to_loginCodePhoneFbGoogleFragment2"
             app:destination="@id/loginCodePhoneFbGoogleFragment" />
-    </fragment>
+         <action
+             android:id="@+id/action_loginFragment_to_fragmentSelectCategories"
+             app:destination="@id/fragmentSelectCategories" />
+         <action
+             android:id="@+id/action_loginFragment_to_completeProfileFragment"
+             app:destination="@id/completeProfileFragment" />
+     </fragment>
     <fragment
         android:id="@+id/loginCodePhoneFragment"
         android:name="com.proy.easywork.presentation.LoginCodePhoneFragment"
@@ -174,6 +180,9 @@
         <action
             android:id="@+id/action_phoneVerificationCodeFbGoogleFragment_to_logInEmailPasswordFragment"
             app:destination="@id/logInEmailPasswordFragment" />
+        <action
+            android:id="@+id/action_phoneVerificationCodeFbGoogleFragment_to_fragmentSelectCategories"
+            app:destination="@id/fragmentSelectCategories" />
     </fragment>
     <fragment
         android:id="@+id/completeProfileFragment"
