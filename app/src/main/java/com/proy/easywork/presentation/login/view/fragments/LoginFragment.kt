@@ -4,12 +4,14 @@ import android.Manifest
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.util.Base64
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +22,8 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.facebook.*
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -37,12 +41,15 @@ import com.proy.easywork.BuildConfig.GoogleTokenId
 import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
+import com.proy.easywork.data.model.request.RQAuthenticationFacebook
 import com.proy.easywork.data.model.request.RQAuthenticationGoogle
 import com.proy.easywork.data.model.request.RQDispositivo
 import com.proy.easywork.databinding.FragmentLoginBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
 import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 class LoginFragment : Fragment() {
     private val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
@@ -92,7 +99,6 @@ class LoginFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setUpUI()
         setUpEvents()
         auth = Firebase.auth
@@ -172,7 +178,7 @@ class LoginFragment : Fragment() {
 
         binding.btnFb.setOnClickListener {
 
-            /*LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
             LoginManager.getInstance().registerCallback(callbackManager, object  :
                 FacebookCallback<LoginResult> {
                 override fun onCancel() {
@@ -185,8 +191,6 @@ class LoginFragment : Fragment() {
 
                 override fun onSuccess(result: LoginResult) {
                     result?.let{
-
-
                         // App code
                         Log.e(":)", "loginResult ${it.toString()}")
                         val accessToken = AccessToken.getCurrentAccessToken()
@@ -200,7 +204,7 @@ class LoginFragment : Fragment() {
                     }
                 }
 
-            })*/
+            })
             //Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_loginCodePhoneFbGoogleFragment)
         }
 

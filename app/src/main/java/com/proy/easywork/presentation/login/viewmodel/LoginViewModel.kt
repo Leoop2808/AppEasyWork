@@ -1,6 +1,5 @@
 package com.proy.easywork.presentation.login.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.proy.easywork.data.exception.DefaultException
 import com.proy.easywork.data.model.request.*
@@ -21,42 +20,19 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
     val registerCompletedFacebook : LiveData<Boolean> = _registerCompletedFacebook
 
     private val _validatePhone =  MutableLiveData<Boolean>()
-    private val _registerCompleted = MutableLiveData<Boolean>()
     private val _completeProfile = MutableLiveData<Boolean>()
 
     private val _verifyPhone = MutableLiveData<Boolean>()
-    private val _completeVerifyPhone = MutableLiveData<Boolean>()
-    private val _phoneRegisterCompleted = MutableLiveData<Boolean>()
-    private val _phoneCompleteProfile = MutableLiveData<Boolean>()
-
-    val registerCompleted : LiveData<Boolean> = _registerCompleted
     val validatePhone : LiveData<Boolean> = _validatePhone
     val completeProfile : LiveData<Boolean> = _completeProfile
-    val phoneRegisterCompleted : LiveData<Boolean> = _phoneRegisterCompleted
-    val phoneCompleteProfile : LiveData<Boolean> = _phoneCompleteProfile
 
     val verifyPhone : LiveData<Boolean> = _verifyPhone
-    val completeVerifyPhone : LiveData<Boolean> = _completeVerifyPhone
     fun login(correo: String, password: String){
         _isViewLoading.value=true
         viewModelScope.launch {
             when (val result = repository.authenticate(correo, password)) {
                 is MADataResult.Success -> {
-                    when (result.data?.flgMostrarRegistroUsuario) {
-                        "true" -> {
-                            _completeProfile.value = true
-                        }
-                        "false" ->{
-                            when (result.data?.flgCelularValidado){
-                                "true" -> {
-                                    _login.value=true
-                                }
-                                "false" -> {
-                                    _validatePhone.value = true
-                                }
-                            }
-                        }
-                    }
+                    _login.value = true
                 }
                 is MADataResult.Failure -> {
                     _onMessageError.value = result.e.message.toString()
@@ -123,10 +99,9 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                             _completeProfile.value = true
                         }
                         "false" ->{
-                            _login.value = true
                             when (result.data?.flgCelularValidado){
                                 "true" -> {
-                                    _registerCompleted.value = true
+                                    _login.value = true
                                 }
                                 "false" -> {
                                     _validatePhone.value = true
@@ -275,24 +250,23 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
     fun registrarDispositivo(request : RQDispositivo){
         _isViewLoading.value = true
         viewModelScope.launch {
-//            when (val result = repository.registrarDispositivo(request)) {
-//                is MADataResult.Success -> {
-//                    _onMessageSuccesful.value= result.data
-//                }
-//                is MADataResult.Failure -> {
-//                    _onMessageError.value = result.e.message.toString()
-//                }
-//                is MADataResult.AccountFailure->{
-//                    _accountFailure.value = true
-//                }
-//                is MADataResult.AuthentificateFailure->{
-//                    _authFailure.value = true
-//                }
-//                is MADataResult.ServerFailure->{
-//                    _serverFailure.value = true
-//                }
-//            }
-            _onMessageSuccesful.value= "sonsera"
+            when (val result = repository.registrarDispositivo(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value= result.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
             _isViewLoading.value = false
         }
     }
