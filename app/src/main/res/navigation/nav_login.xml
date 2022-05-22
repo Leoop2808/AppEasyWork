@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
-    app:startDestination="@id/successfulUserCreationFragment">
+    app:startDestination="@id/loginFragment">
 
      <fragment
         android:id="@+id/loginFragment"
@@ -94,6 +94,9 @@
         <action
             android:id="@+id/action_logInEmailPasswordFragment_to_passwordRecoveryEmailFragment"
             app:destination="@id/passwordRecoveryEmailFragment" />
+        <action
+            android:id="@+id/action_logInEmailPasswordFragment_to_fragmentSelectCategories"
+            app:destination="@id/fragmentSelectCategories" />
     </fragment>
     <fragment
         android:id="@+id/passwordRecoveryEmailFragment"
