@@ -76,7 +76,8 @@ class LoginCodePhoneFragment : Fragment() {
     private fun setUpUI() {
         viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
             view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_btnWhatsApp_loginCodePhoneFragment_to_loginEmailFragment)
+                val bundle = bundleOf(Pair("celular", binding.etNum.text.toString().trim()))
+                Navigation.findNavController(it).navigate(R.id.action_loginCodePhoneFragment_to_phoneVerificationCodeFragment,bundle)
             }
         }
 

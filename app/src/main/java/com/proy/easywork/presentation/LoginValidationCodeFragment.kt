@@ -39,7 +39,7 @@ class LoginValidationCodeFragment : Fragment() {
                 showMessage("Ingrese el código")
             }else{
                 val bundle = bundleOf(Pair("codigo", binding.etCodigo.text.toString().trim()), Pair("usuario", arguments?.getString("usuario")))
-                Navigation.findNavController(view).navigate(R.id.action_loginValidationCodeFragment_to_createPasswordFragment,bundle)
+                Navigation.findNavController(view).navigate(R.id.action_loginValidationCodeFragment_to_completeProfileFragment,bundle)
             }
 
         }

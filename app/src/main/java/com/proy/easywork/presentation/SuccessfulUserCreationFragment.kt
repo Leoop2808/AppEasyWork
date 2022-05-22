@@ -27,7 +27,7 @@ class SuccessfulUserCreationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnContinuar.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_successfulUserCreationFragment_to_completeProfileFragment)
+            Navigation.findNavController(view).navigate(R.id.action_successfulUserCreationFragment_to_fragmentSelectCategories)
         }
 
     }

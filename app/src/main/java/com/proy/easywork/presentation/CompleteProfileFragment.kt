@@ -66,7 +66,7 @@ class CompleteProfileFragment : Fragment() {
 
         binding.btnContinuar.setOnClickListener {
             Navigation.findNavController(view)
-                .navigate(R.id.action_completeProfileFragment_to_fragmentSelectCategories)
+                .navigate(R.id.action_completeProfileFragment_to_createPasswordFragment)
         }
     }
 }

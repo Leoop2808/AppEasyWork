@@ -5,21 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
-import com.proy.easywork.data.model.request.RQVerificarCodigo
+import com.proy.easywork.data.model.request.RQAuthenticationPhone
 import com.proy.easywork.data.model.request.RQVerificarCodigoCelular
+import com.proy.easywork.databinding.FragmentPhoneVerificationCodeAuthBinding
 import com.proy.easywork.databinding.FragmentPhoneVerificationCodeBinding
-import com.proy.easywork.databinding.FragmentPhoneVerificationCodeFbGoogleBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
 
-class PhoneVerificationCodeFbGoogleFragment : Fragment() {
+class PhoneVerificationCodeAuthFragment : Fragment() {
 
-    private lateinit var binding: FragmentPhoneVerificationCodeFbGoogleBinding
+    private lateinit var binding: FragmentPhoneVerificationCodeAuthBinding
     private val viewModel by viewModels<LoginViewModel> {
         LoginViewModel.LoginModelFactory(LoginRepository(activity?.application!!))
     }
@@ -27,49 +26,37 @@ class PhoneVerificationCodeFbGoogleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
-        binding = FragmentPhoneVerificationCodeFbGoogleBinding.inflate(inflater, container, false)
+        binding = FragmentPhoneVerificationCodeAuthBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpUI()
+        setUpEvents()
+    }
+    private fun setUpEvents() {
+
         binding.imgBackArrow.setOnClickListener {
-            Navigation.findNavController(view).popBackStack()
+            Navigation.findNavController(it).popBackStack()
         }
 
-//        binding.btnIniciarSesion.setOnClickListener {
-//            Navigation.findNavController(view).navigate(R.id.action_phoneVerificationCodeFbGoogleFragment_to_logInEmailPasswordFragment)
-//        }
+        binding.btnIniciarSesion.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeFragment_to_logInEmailPasswordFragment)
+        }
 
-        binding.btnContinuar.setOnClickListener {
-            if(binding.etCodigoGF.text.isNullOrEmpty()){
+        binding.btnContinuarAuth.setOnClickListener {
+            if(binding.etCodigoCelularAuth.text.isNullOrEmpty()){
                 showMessage("Ingresar código")
             }else{
-                viewModel.verificarCodigoCelular(
-                    RQVerificarCodigoCelular(binding.etCodigoGF.text.toString().trim(),arguments?.getString("celular")?:"")
+                viewModel.loginPhone(
+                    RQAuthenticationPhone(arguments?.getString("celular")?:"", binding.etCodigoCelularAuth.text.toString().trim(), 0.0, 0.0)
                 )
             }
         }
-
-    }
-    private fun showMessage(message: String) {
-        mShowMessageSnackBar(message, binding.clContainer)
-    }
-
-    private fun mShowMessageSnackBar(error: String, snackContainer: View) {
-        Snackbar.make(snackContainer, error, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun setUpUI() {
-
-        viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
-            view?.let {
-                val bundle = bundleOf(Pair("celular", arguments?.getString("celular")?:""), Pair("codigo",binding.etCodigoGF.text.toString().trim() ))
-                Navigation.findNavController(it).navigate(R.id.action_passwordRecoveryFragment_to_loginNewPasswordRecoveryFragment2, bundle)
-            }
-        }
-
 
         viewModel.onMessageError.observe(viewLifecycleOwner){
             it?.let {
@@ -85,5 +72,12 @@ class PhoneVerificationCodeFbGoogleFragment : Fragment() {
                 }
             }
         }
+    }
+    private fun showMessage(message: String) {
+        mShowMessageSnackBar(message, binding.clContainer)
+    }
+
+    private fun mShowMessageSnackBar(error: String, snackContainer: View) {
+        Snackbar.make(snackContainer, error, Snackbar.LENGTH_SHORT).show()
     }
 }

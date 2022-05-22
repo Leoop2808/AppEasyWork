@@ -453,4 +453,124 @@ class LoginRepository(aplication: Application): BaseRepository() {
             MADataResult.ServerFailure(Exception(DEFAULT_ERROR_MESSAGE))
         }
     }
+
+    suspend fun enviarCodigoAutenticacionCelular(request : RQCodigoCelular): MADataResult<String> {
+        return try {
+
+            val gson = Gson()
+            val type = object : TypeToken<RSErrorMessage>() {}.type
+            val result = mRemoteClient?.enviarCodigoAutenticacionCelular(basicAuthentication, request)
+            when (result?.code()) {
+                HttpURLConnection.HTTP_OK ->{
+                    MADataResult.Success(result.body()?.Message)
+                }
+                HttpURLConnection.HTTP_NO_CONTENT -> MADataResult.Failure(
+                    Exception(DefaultException.MESSAGE_NO_CONTENT)
+                )
+                HttpURLConnection.HTTP_BAD_REQUEST -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_UNAUTHORIZED -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.UnAuthorized(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DefaultException.UNAUTHORIZED_ERROR else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_NOT_FOUND -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty())DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_INTERNAL_ERROR -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                else -> MADataResult.Failure(
+                    Exception(DefaultException.DEFAULT_MESSAGE)
+                )
+            }
+        } catch (e: Exception) {
+            MADataResult.ServerFailure(Exception(DEFAULT_ERROR_MESSAGE))
+        }
+    }
+
+    suspend fun authenticatePhone(request : RQAuthenticationPhone): MADataResult<VMAuthentication> {
+        return try {
+
+            val gson = Gson()
+            val type = object : TypeToken<RSErrorMessage>() {}.type
+            val result = mRemoteClient?.authenticationPhone(basicAuthentication,request)
+            when (result?.code()) {
+                HttpURLConnection.HTTP_OK ->{
+                    result.body()?.let {
+                        val authentication = it.toAuthentication()
+                        preferences.clearSession()
+                        preferences.saveToken(authentication.getAuthenticationToken())
+                        preferences.saveSession(authentication.toUser())
+                    }
+                    MADataResult.Success(result.body()?.toAuthentication())
+                }
+                HttpURLConnection.HTTP_NO_CONTENT -> MADataResult.Failure(
+                    Exception(DefaultException.MESSAGE_NO_CONTENT)
+                )
+                HttpURLConnection.HTTP_BAD_REQUEST -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_UNAUTHORIZED -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.UnAuthorized(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DefaultException.UNAUTHORIZED_ERROR else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_NOT_FOUND -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty())DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_INTERNAL_ERROR -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                else -> MADataResult.Failure(
+                    Exception(DefaultException.DEFAULT_MESSAGE)
+                )
+            }
+        } catch (e: Exception) {
+            MADataResult.ServerFailure(Exception(DEFAULT_ERROR_MESSAGE))
+        }
+    }
+
+    suspend fun registrarUsuarioCliente(request : RQRegistrarUsuarioCliente): MADataResult<String> {
+        return try {
+
+            val gson = Gson()
+            val type = object : TypeToken<RSErrorMessage>() {}.type
+            val result = mRemoteClient?.registrarUsuarioCliente(basicAuthentication, request)
+            when (result?.code()) {
+                HttpURLConnection.HTTP_OK ->{
+                    MADataResult.Success(result.body()?.Message)
+                }
+                HttpURLConnection.HTTP_NO_CONTENT -> MADataResult.Failure(
+                    Exception(DefaultException.MESSAGE_NO_CONTENT)
+                )
+                HttpURLConnection.HTTP_BAD_REQUEST -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_UNAUTHORIZED -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.UnAuthorized(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DefaultException.UNAUTHORIZED_ERROR else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_NOT_FOUND -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty())DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_INTERNAL_ERROR -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                else -> MADataResult.Failure(
+                    Exception(DefaultException.DEFAULT_MESSAGE)
+                )
+            }
+        } catch (e: Exception) {
+            MADataResult.ServerFailure(Exception(DEFAULT_ERROR_MESSAGE))
+        }
+    }
 }

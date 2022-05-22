@@ -20,25 +20,43 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
     private val _registerCompletedFacebook= MutableLiveData<Boolean>()
     val registerCompletedFacebook : LiveData<Boolean> = _registerCompletedFacebook
 
-    private val _validatePhoneGoogle =  MutableLiveData<Boolean>()
-    private val _registerCompletedGoogle = MutableLiveData<Boolean>()
-    private val _completePerfilGoogle = MutableLiveData<Boolean>()
+    private val _validatePhone =  MutableLiveData<Boolean>()
+    private val _registerCompleted = MutableLiveData<Boolean>()
+    private val _completeProfile = MutableLiveData<Boolean>()
 
-    private val _verifyPhoneGF = MutableLiveData<Boolean>()
-    private val _completeVerifyPhoneGF = MutableLiveData<Boolean>()
+    private val _verifyPhone = MutableLiveData<Boolean>()
+    private val _completeVerifyPhone = MutableLiveData<Boolean>()
+    private val _phoneRegisterCompleted = MutableLiveData<Boolean>()
+    private val _phoneCompleteProfile = MutableLiveData<Boolean>()
 
-    val registerCompletedGoogle : LiveData<Boolean> = _registerCompletedGoogle
-    val validatePhoneGoogle : LiveData<Boolean> = _validatePhoneGoogle
-    val completePerfilGoogle : LiveData<Boolean> = _completePerfilGoogle
+    val registerCompleted : LiveData<Boolean> = _registerCompleted
+    val validatePhone : LiveData<Boolean> = _validatePhone
+    val completeProfile : LiveData<Boolean> = _completeProfile
+    val phoneRegisterCompleted : LiveData<Boolean> = _phoneRegisterCompleted
+    val phoneCompleteProfile : LiveData<Boolean> = _phoneCompleteProfile
 
-    val verifyPhoneGF : LiveData<Boolean> = _verifyPhoneGF
-    val completeVerifyPhoneGF : LiveData<Boolean> = _completeVerifyPhoneGF
+    val verifyPhone : LiveData<Boolean> = _verifyPhone
+    val completeVerifyPhone : LiveData<Boolean> = _completeVerifyPhone
     fun login(correo: String, password: String){
         _isViewLoading.value=true
         viewModelScope.launch {
             when (val result = repository.authenticate(correo, password)) {
                 is MADataResult.Success -> {
-                    _login.value=true
+                    when (result.data?.flgMostrarRegistroUsuario) {
+                        "true" -> {
+                            _completeProfile.value = true
+                        }
+                        "false" ->{
+                            when (result.data?.flgCelularValidado){
+                                "true" -> {
+                                    _login.value=true
+                                }
+                                "false" -> {
+                                    _validatePhone.value = true
+                                }
+                            }
+                        }
+                    }
                 }
                 is MADataResult.Failure -> {
                     _onMessageError.value = result.e.message.toString()
@@ -64,16 +82,16 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
                         "true" -> {
-                            _completePerfilGoogle.value = true
+                            _completeProfile.value = true
                         }
                         "false" ->{
                             _login.value = true
                             when (result.data?.flgCelularValidado){
                                 "true" -> {
-                                    _registerCompletedGoogle.value = true
+                                    _registerCompleted.value = true
                                 }
                                 "false" -> {
-                                    _validatePhoneGoogle.value = true
+                                    _validatePhone.value = true
                                 }
                             }
                         }
@@ -102,11 +120,19 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
             when (val result = repository.authenticateFacebook(request)) {
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
-                        "true"-> {
-                            _registerCompletedGoogle.value = true
+                        "true" -> {
+                            _completeProfile.value = true
                         }
                         "false" ->{
                             _login.value = true
+                            when (result.data?.flgCelularValidado){
+                                "true" -> {
+                                    _registerCompleted.value = true
+                                }
+                                "false" -> {
+                                    _validatePhone.value = true
+                                }
+                            }
                         }
                     }
                 }
@@ -126,7 +152,6 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
             _isViewLoading.value = false
         }
     }
-
 
     fun enviarCodigoCelular(request : RQCodigoCelular){
         _isViewLoading.value = true
@@ -205,10 +230,10 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
         viewModelScope.launch {
             when (val result = repository.verificarCodigoCelular(request)) {
                 is MADataResult.Success -> {
-                    _completeVerifyPhoneGF.value = true
+                    _onMessageSuccesful.value= result.data
                 }
                 is MADataResult.Failure -> {
-                    _onMessageError.value = result.e.message.toString()
+                    _onMessageError.value = "Código invalido"
                 }
                 is MADataResult.AccountFailure->{
                     _accountFailure.value = true
@@ -300,6 +325,68 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
         }
     }
 
+    fun enviarCodigoAutenticacionCelular(request : RQCodigoCelular){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.enviarCodigoAutenticacionCelular(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value = result.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun loginPhone(request : RQAuthenticationPhone){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.authenticatePhone(request)) {
+                is MADataResult.Success -> {
+                    when (result.data?.flgMostrarRegistroUsuario) {
+                        "true" -> {
+                            _phoneCompleteProfile.value = true
+                        }
+                        "false" ->{
+                            _login.value = true
+                            when (result.data?.flgCelularValidado){
+                                "true" -> {
+                                    _phoneRegisterCompleted.value = true
+                                }
+                                "false" -> {
+                                    _phoneRegisterCompleted.value = true
+                                }
+                            }
+                        }
+                    }
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
     class LoginModelFactory(private val repository: LoginRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {

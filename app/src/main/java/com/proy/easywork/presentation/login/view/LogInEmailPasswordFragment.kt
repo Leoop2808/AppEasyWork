@@ -10,6 +10,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,8 +99,6 @@ class LogInEmailPasswordFragment : Fragment() {
                 Navigation.findNavController(it).navigate(R.id.action_logInEmailPasswordFragment_to_passwordRecoveryEmailFragment)
             }
         }
-
-
     }
 
     private fun setUpUI() {
@@ -117,9 +116,10 @@ class LogInEmailPasswordFragment : Fragment() {
         }
 
         viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
-
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_logInEmailPasswordFragment_to_fragmentSelectCategories)
+            }
         }
-
 
         viewModel.isViewLoading.observe(viewLifecycleOwner) {
             it.let {

@@ -12,7 +12,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
 import com.proy.easywork.data.model.request.RQVerificarCodigo
 import com.proy.easywork.databinding.FragmentPasswordRecoveryBinding
-import com.proy.easywork.databinding.FragmentPasswordRecoveryEmailBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
 

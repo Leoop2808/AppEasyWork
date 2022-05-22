@@ -17,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.facebook.*
@@ -118,37 +119,50 @@ class LoginFragment : Fragment() {
 
         viewModel.registerCompletedFacebook.observe(viewLifecycleOwner){
             view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_loginCodePhoneFbGoogleFragment)
+                Navigation.findNavController(it).navigate(R.id.action_create_account_loginFragment_to_loginCodePhoneFragment)
             }
         }
 
-        viewModel.registerCompletedGoogle.observe(viewLifecycleOwner){
+        viewModel.registerCompleted.observe(viewLifecycleOwner){
             view?.let {
                 Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_fragmentSelectCategories)
             }
         }
 
-        viewModel.validatePhoneGoogle.observe(viewLifecycleOwner){
+        viewModel.validatePhone.observe(viewLifecycleOwner){
             view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_loginCodePhoneFbGoogleFragment2)
+                Navigation.findNavController(it).navigate(R.id.action_create_account_loginFragment_to_loginCodePhoneFragment)
             }
         }
 
-        viewModel.completePerfilGoogle.observe(viewLifecycleOwner){
+        viewModel.completeProfile.observe(viewLifecycleOwner){
             view?.let {
                 Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_completeProfileFragment)
             }
         }
 
-        viewModel.verifyPhoneGF.observe(viewLifecycleOwner){
+        viewModel.phoneRegisterCompleted.observe(viewLifecycleOwner){
             view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_loginCodePhoneFbGoogleFragment_to_phoneVerificationCodeFbGoogleFragment2)
+                Log.e(":)","deberia redireccionar aqui")
+                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeAuthFragment_to_fragmentSelectCategories)
             }
         }
 
-        viewModel.completeVerifyPhoneGF.observe(viewLifecycleOwner){
+        viewModel.phoneCompleteProfile.observe(viewLifecycleOwner){
             view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeFbGoogleFragment_to_fragmentSelectCategories)
+                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeAuthFragment_to_fragmentSelectCategories)
+            }
+        }
+
+        viewModel.verifyPhone.observe(viewLifecycleOwner){
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_loginCodePhoneFragment_to_phoneVerificationCodeFragment)
+            }
+        }
+
+        viewModel.completeVerifyPhone.observe(viewLifecycleOwner){
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeFragment_to_fragmentSelectCategories)
             }
         }
 
@@ -165,7 +179,7 @@ class LoginFragment : Fragment() {
 
     private fun setUpEvents() {
         binding.btnTelefono.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_create_account_loginFragment_to_loginCodePhoneFragment)
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_loginCodePhoneAuthFragment)
         }
 
         binding.btnLogIn.setOnClickListener {

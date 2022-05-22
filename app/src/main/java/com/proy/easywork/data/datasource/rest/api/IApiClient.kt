@@ -70,4 +70,20 @@ interface IApiClient {
         @Body request: RQDispositivo
     ): Response<RSMessage>
 
+    @POST("api/usuario/registro-usuario-cliente")
+    suspend fun registrarUsuarioCliente(
+        @Header("Authorization") token: String,
+        @Body request: RQRegistrarUsuarioCliente
+    ): Response<RSMessage>
+
+    @POST("api/usuario/autenticacion/envio-autenticacion-celular")
+    suspend fun enviarCodigoAutenticacionCelular(
+        @Header("Authorization") token: String,
+        @Body request: RQCodigoCelular
+    ): Response<RSMessage>
+
+    @POST("api/usuario/autenticacion/celular")
+    suspend fun authenticationPhone(@Header("Authorization") auth:String,
+                                    @Body registro: RQAuthenticationPhone):  Response<VMAuthenticationDTO>
+
 }

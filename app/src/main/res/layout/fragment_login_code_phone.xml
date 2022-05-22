@@ -86,6 +86,7 @@
             android:layout_weight="1"
             android:ems="9"
             android:hint="@string/num_telf"
+            android:maxLength="9"
             android:inputType="phone" />
     </LinearLayout>
 
