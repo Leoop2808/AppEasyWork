@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class CategoriaServicio(@PrimaryKey(autoGenerate = true)
                             val id: Int,
                             val codCategoriaServicio:String,
-                            val siglaCategoriaServicio:String)
+                            val siglaCategoriaServicio:String,
+                             val nombreImgCategoriaServicio:String)

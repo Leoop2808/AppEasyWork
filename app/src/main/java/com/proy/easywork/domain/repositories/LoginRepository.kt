@@ -2,7 +2,6 @@ package com.proy.easywork.domain.repositories
 
 
 import android.app.Application
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
@@ -30,7 +29,7 @@ class LoginRepository(aplication: Application): BaseRepository() {
                     database.masterDao().deleteCategoria()
                     val categorias = result.body()?.listaCategoriaServicio
                     categorias?.forEach {
-                        database.masterDao().addCategoriaServicio(CategoriaServicio(0,it.codCategoriaServicio, it.siglaCategoriaServicio))
+                        database.masterDao().addCategoriaServicio(CategoriaServicio(0,it.codCategoriaServicio, it.siglaCategoriaServicio, it.nombreImgCategoriaServicio))
                     }
 
                     database.masterDao().deleteDistrito()
