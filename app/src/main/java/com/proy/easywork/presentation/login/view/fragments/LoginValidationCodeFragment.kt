@@ -1,4 +1,4 @@
-package com.proy.easywork.presentation
+package com.proy.easywork.presentation.login.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
-import com.proy.easywork.databinding.FragmentLoginEmailBinding
 import com.proy.easywork.databinding.FragmentLoginValidationCodeBinding
 
 class LoginValidationCodeFragment : Fragment() {

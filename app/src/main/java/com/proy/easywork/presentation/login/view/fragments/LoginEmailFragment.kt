@@ -1,4 +1,4 @@
-package com.proy.easywork.presentation
+package com.proy.easywork.presentation.login.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.proy.easywork.R
-import com.proy.easywork.databinding.FragmentCreatePasswordBinding
-import com.proy.easywork.databinding.FragmentLoginValidationCodeBinding
+import com.proy.easywork.databinding.FragmentLoginCodePhoneBinding
+import com.proy.easywork.databinding.FragmentLoginEmailBinding
 
-class CreatePasswordFragment : Fragment() {
+class LoginEmailFragment : Fragment() {
 
-    private lateinit var binding: FragmentCreatePasswordBinding
+    private lateinit var binding: FragmentLoginEmailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
-        binding = FragmentCreatePasswordBinding.inflate(inflater, container, false)
+        binding = FragmentLoginEmailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -30,12 +30,13 @@ class CreatePasswordFragment : Fragment() {
         }
 
         binding.btnIniciarSesion.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_createPasswordFragment_to_logInEmailPasswordFragment2)
+            Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_logInEmailPasswordFragment)
         }
 
         binding.btnContinuar.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_createPasswordFragment_to_successfulUserCreationFragment)
+            Navigation.findNavController(view).navigate(R.id.action_loginEmailFragment_to_loginValidationCodeFragment)
         }
 
     }
+
 }

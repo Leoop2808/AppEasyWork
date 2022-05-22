@@ -1,4 +1,4 @@
-package com.proy.easywork.presentation
+package com.proy.easywork.presentation.login.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import com.proy.easywork.R
 import com.proy.easywork.databinding.FragmentLoginBinding
 import com.proy.easywork.databinding.FragmentSuccessfulUserCreationBinding
+import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
 
 class SuccessfulUserCreationFragment : Fragment() {
 
@@ -27,7 +28,7 @@ class SuccessfulUserCreationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnContinuar.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_successfulUserCreationFragment_to_fragmentSelectCategories)
+            context?.let { it1 -> startActivity(PrincipalActivity().newIntent(it1)) }
         }
 
     }

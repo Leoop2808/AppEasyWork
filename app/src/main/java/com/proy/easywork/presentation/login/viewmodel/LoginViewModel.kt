@@ -85,10 +85,9 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                             _completeProfile.value = true
                         }
                         "false" ->{
-                            _login.value = true
                             when (result.data?.flgCelularValidado){
                                 "true" -> {
-                                    _registerCompleted.value = true
+                                    _login.value = true
                                 }
                                 "false" -> {
                                     _validatePhone.value = true
@@ -276,23 +275,24 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
     fun registrarDispositivo(request : RQDispositivo){
         _isViewLoading.value = true
         viewModelScope.launch {
-            when (val result = repository.registrarDispositivo(request)) {
-                is MADataResult.Success -> {
-                    _onMessageSuccesful.value= result.data
-                }
-                is MADataResult.Failure -> {
-                    _onMessageError.value = result.e.message.toString()
-                }
-                is MADataResult.AccountFailure->{
-                    _accountFailure.value = true
-                }
-                is MADataResult.AuthentificateFailure->{
-                    _authFailure.value = true
-                }
-                is MADataResult.ServerFailure->{
-                    _serverFailure.value = true
-                }
-            }
+//            when (val result = repository.registrarDispositivo(request)) {
+//                is MADataResult.Success -> {
+//                    _onMessageSuccesful.value= result.data
+//                }
+//                is MADataResult.Failure -> {
+//                    _onMessageError.value = result.e.message.toString()
+//                }
+//                is MADataResult.AccountFailure->{
+//                    _accountFailure.value = true
+//                }
+//                is MADataResult.AuthentificateFailure->{
+//                    _authFailure.value = true
+//                }
+//                is MADataResult.ServerFailure->{
+//                    _serverFailure.value = true
+//                }
+//            }
+            _onMessageSuccesful.value= "sonsera"
             _isViewLoading.value = false
         }
     }
@@ -356,16 +356,15 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
                         "true" -> {
-                            _phoneCompleteProfile.value = true
+                            _login.value = true
                         }
                         "false" ->{
-                            _login.value = true
                             when (result.data?.flgCelularValidado){
                                 "true" -> {
-                                    _phoneRegisterCompleted.value = true
+                                    _login.value = true
                                 }
                                 "false" -> {
-                                    _phoneRegisterCompleted.value = true
+                                    _login.value = true
                                 }
                             }
                         }

@@ -1,4 +1,4 @@
-package com.proy.easywork.presentation
+package com.proy.easywork.presentation.login.view.fragments
 
 import android.annotation.SuppressLint
 import android.graphics.Color

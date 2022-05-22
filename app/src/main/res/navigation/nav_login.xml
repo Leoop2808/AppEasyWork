@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.proy.easywork.presentation.login.view.LoginFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,10 +16,7 @@
         <action
             android:id="@+id/action_log_in_loginFragment_to_logInEmailPasswordFragment"
             app:destination="@id/logInEmailPasswordFragment" />
-         <action
-             android:id="@+id/action_loginFragment_to_fragmentSelectCategories"
-             app:destination="@id/fragmentSelectCategories" />
-         <action
+        <action
              android:id="@+id/action_loginFragment_to_completeProfileFragment"
              app:destination="@id/completeProfileFragment" />
          <action
@@ -28,7 +25,7 @@
      </fragment>
     <fragment
         android:id="@+id/loginCodePhoneFragment"
-        android:name="com.proy.easywork.presentation.LoginCodePhoneFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.LoginCodePhoneFragment"
         android:label="fragment_login_code_phone"
         tools:layout="@layout/fragment_login_code_phone" >
         <action
@@ -43,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginCodePhoneAuthFragment"
-        android:name="com.proy.easywork.presentation.LoginCodePhoneAuthFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.LoginCodePhoneAuthFragment"
         android:label="fragment_login_code_phone_auth"
         tools:layout="@layout/fragment_login_code_phone_auth" >
         <action
@@ -52,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginEmailFragment"
-        android:name="com.proy.easywork.presentation.LoginEmailFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.LoginEmailFragment"
         android:label="fragment_login_email"
         tools:layout="@layout/fragment_login_email" >
         <action
@@ -64,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginValidationCodeFragment"
-        android:name="com.proy.easywork.presentation.LoginValidationCodeFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.LoginValidationCodeFragment"
         android:label="fragment_login_validation_code"
         tools:layout="@layout/fragment_login_validation_code" >
         <action
@@ -76,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/createPasswordFragment"
-        android:name="com.proy.easywork.presentation.CreatePasswordFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.CreatePasswordFragment"
         android:label="fragment_create_password"
         tools:layout="@layout/fragment_create_password" >
         <action
@@ -88,16 +85,12 @@
     </fragment>
     <fragment
         android:id="@+id/successfulUserCreationFragment"
-        android:name="com.proy.easywork.presentation.SuccessfulUserCreationFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.SuccessfulUserCreationFragment"
         android:label="fragment_successful_user_creation"
-        tools:layout="@layout/fragment_successful_user_creation" >
-        <action
-            android:id="@+id/action_successfulUserCreationFragment_to_fragmentSelectCategories"
-            app:destination="@id/fragmentSelectCategories" />
-    </fragment>
+        tools:layout="@layout/fragment_successful_user_creation" />
     <fragment
         android:id="@+id/logInEmailPasswordFragment"
-        android:name="com.proy.easywork.presentation.login.view.LogInEmailPasswordFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.LogInEmailPasswordFragment"
         android:label="fragment_log_in_email_password"
         tools:layout="@layout/fragment_log_in_email_password" >
         <action
@@ -106,9 +99,6 @@
         <action
             android:id="@+id/action_logInEmailPasswordFragment_to_passwordRecoveryEmailFragment"
             app:destination="@id/passwordRecoveryEmailFragment" />
-        <action
-            android:id="@+id/action_logInEmailPasswordFragment_to_fragmentSelectCategories"
-            app:destination="@id/fragmentSelectCategories" />
     </fragment>
     <fragment
         android:id="@+id/passwordRecoveryEmailFragment"
@@ -124,7 +114,7 @@
     </fragment>
     <fragment
         android:id="@+id/passwordRecoveryFragment"
-        android:name="com.proy.easywork.presentation.PasswordRecoveryFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.PasswordRecoveryFragment"
         android:label="fragment_password_recovery"
         tools:layout="@layout/fragment_password_recovery" >
         <action
@@ -153,7 +143,7 @@
         tools:layout="@layout/fragment_successful_password_recovery" />
     <fragment
         android:id="@+id/phoneVerificationCodeFragment"
-        android:name="com.proy.easywork.presentation.PhoneVerificationCodeFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.PhoneVerificationCodeFragment"
         android:label="fragment_phone_verification_code"
         tools:layout="@layout/fragment_phone_verification_code" >
         <action
@@ -163,33 +153,21 @@
             android:id="@+id/action_phoneVerificationCodeFragment_to_loginEmailFragment"
             app:destination="@id/loginEmailFragment" />
         <action
-            android:id="@+id/action_phoneVerificationCodeFragment_to_fragmentSelectCategories"
-            app:destination="@id/fragmentSelectCategories" />
-        <action
             android:id="@+id/action_phoneVerificationCodeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/phoneVerificationCodeAuthFragment"
-        android:name="com.proy.easywork.presentation.PhoneVerificationCodeAuthFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.PhoneVerificationCodeAuthFragment"
         android:label="fragment_phone_verification_code_auth"
-        tools:layout="@layout/fragment_phone_verification_code_auth" >
-        <action
-            android:id="@+id/action_phoneVerificationCodeAuthFragment_to_fragmentSelectCategories"
-            app:destination="@id/fragmentSelectCategories" />
-    </fragment>
+        tools:layout="@layout/fragment_phone_verification_code_auth" />
     <fragment
         android:id="@+id/completeProfileFragment"
-        android:name="com.proy.easywork.presentation.CompleteProfileFragment"
+        android:name="com.proy.easywork.presentation.login.view.fragments.CompleteProfileFragment"
         android:label="fragment_complete_profile"
         tools:layout="@layout/fragment_complete_profile" >
         <action
             android:id="@+id/action_completeProfileFragment_to_createPasswordFragment"
             app:destination="@id/createPasswordFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/fragmentSelectCategories"
-        android:name="com.proy.easywork.presentation.FragmentSelectCategories"
-        android:label="fragment_select_categories"
-        tools:layout="@layout/fragment_select_categories" />
 </navigation>

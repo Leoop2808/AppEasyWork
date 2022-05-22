@@ -1,4 +1,4 @@
-package com.proy.easywork.presentation.login.view
+package com.proy.easywork.presentation.login.view.fragments
 
 import android.Manifest
 import android.content.Context
@@ -17,13 +17,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.facebook.*
-import com.facebook.appevents.AppEventsLogger
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -35,16 +31,21 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.proy.easywork.BuildConfig
 import com.proy.easywork.BuildConfig.GoogleTokenId
 import com.proy.easywork.R
-import com.proy.easywork.data.model.request.RQAuthenticationFacebook
+import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
+import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.data.model.request.RQAuthenticationGoogle
+import com.proy.easywork.data.model.request.RQDispositivo
 import com.proy.easywork.databinding.FragmentLoginBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
+import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
 
 class LoginFragment : Fragment() {
-
+    private val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
     private lateinit var binding: FragmentLoginBinding
 
     companion object{
@@ -113,19 +114,21 @@ class LoginFragment : Fragment() {
             }
         }
 
-        viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
+        viewModel.login.observe(viewLifecycleOwner){
+            viewModel.listarMaestros()
+        }
 
+        viewModel.cargaMaestros.observe(viewLifecycleOwner){
+            registrarDispositivo()
+        }
+
+        viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
+            context?.let { it1 -> startActivity(PrincipalActivity().newIntent(it1)) }
         }
 
         viewModel.registerCompletedFacebook.observe(viewLifecycleOwner){
             view?.let {
                 Navigation.findNavController(it).navigate(R.id.action_create_account_loginFragment_to_loginCodePhoneFragment)
-            }
-        }
-
-        viewModel.registerCompleted.observe(viewLifecycleOwner){
-            view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_fragmentSelectCategories)
             }
         }
 
@@ -141,28 +144,9 @@ class LoginFragment : Fragment() {
             }
         }
 
-        viewModel.phoneRegisterCompleted.observe(viewLifecycleOwner){
-            view?.let {
-                Log.e(":)","deberia redireccionar aqui")
-                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeAuthFragment_to_fragmentSelectCategories)
-            }
-        }
-
-        viewModel.phoneCompleteProfile.observe(viewLifecycleOwner){
-            view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeAuthFragment_to_fragmentSelectCategories)
-            }
-        }
-
         viewModel.verifyPhone.observe(viewLifecycleOwner){
             view?.let {
                 Navigation.findNavController(it).navigate(R.id.action_loginCodePhoneFragment_to_phoneVerificationCodeFragment)
-            }
-        }
-
-        viewModel.completeVerifyPhone.observe(viewLifecycleOwner){
-            view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_phoneVerificationCodeFragment_to_fragmentSelectCategories)
             }
         }
 
@@ -262,7 +246,14 @@ class LoginFragment : Fragment() {
             val idToken: String = account!!.idToken.toString()
 
             Log.e(":)","idToken-> $idToken")
-            viewModel.loginGoogle(RQAuthenticationGoogle(idToken, 0.0,0.0))
+
+            if(actualLocation!=null){
+                actualLocation?.let {
+                    viewModel.loginGoogle(RQAuthenticationGoogle(idToken,it.latitude,it.latitude))
+                }
+            }else{
+                checkLocation()
+            }
 
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
@@ -366,6 +357,30 @@ class LoginFragment : Fragment() {
                 Looper.myLooper()
             )
         }
+    }
+
+    private fun registrarDispositivo() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    return@addOnCompleteListener
+                }
+                val tokenFCM: String = task.result
+                sp.saveTokenFCM(tokenFCM)
+                if(actualLocation!=null){
+                    actualLocation?.let {
+                        viewModel.registrarDispositivo(
+                            RQDispositivo(tokenFCM,
+                                BuildConfig.VERSION_CODE.toString() ,
+                                BuildConfig.VERSION_NAME,it.latitude,it.latitude)
+                        )
+                    }
+
+                }else{
+                    checkLocation()
+                }
+
+            }
     }
 
     private fun showMessage(message: String) {

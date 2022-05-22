@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.FragmentSelectCategories"
-    android:background="#E6E7E8">
+    android:background="#E6E7E8"
+    tools:context=".presentation.principal.view.fragments.SelectCategoriesFragment">
 
 
     <LinearLayout
@@ -40,8 +41,8 @@
         android:layout_width="271dp"
         android:layout_height="66dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
         android:lineSpacingMultiplier="1.5"
         android:text="@string/txt_sel_categoria"
@@ -57,8 +58,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -231,5 +232,26 @@
 
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B2FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:cardBackgroundColor="#B2FFFFFF"
+        app:cardElevation="10dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

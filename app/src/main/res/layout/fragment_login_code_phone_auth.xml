@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#E6E7E8"
     android:id="@+id/clContainer"
-    tools:context=".presentation.LoginCodePhoneAuthFragment">
+    tools:context=".presentation.login.view.fragments.LoginCodePhoneAuthFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout2"

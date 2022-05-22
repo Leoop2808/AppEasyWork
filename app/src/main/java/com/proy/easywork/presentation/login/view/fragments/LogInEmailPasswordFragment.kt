@@ -1,4 +1,4 @@
-package com.proy.easywork.presentation.login.view
+package com.proy.easywork.presentation.login.view.fragments
 
 import android.Manifest
 import android.content.Context
@@ -10,7 +10,6 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +29,7 @@ import com.proy.easywork.data.model.request.RQDispositivo
 import com.proy.easywork.databinding.FragmentLogInEmailPasswordBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
+import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
 
 class LogInEmailPasswordFragment : Fragment() {
     private val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
@@ -116,9 +116,7 @@ class LogInEmailPasswordFragment : Fragment() {
         }
 
         viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
-            view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_logInEmailPasswordFragment_to_fragmentSelectCategories)
-            }
+            context?.let { it1 -> startActivity(PrincipalActivity().newIntent(it1)) }
         }
 
         viewModel.isViewLoading.observe(viewLifecycleOwner) {

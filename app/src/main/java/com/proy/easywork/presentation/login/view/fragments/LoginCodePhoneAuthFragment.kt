@@ -1,4 +1,4 @@
-package com.proy.easywork.presentation
+package com.proy.easywork.presentation.login.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +11,12 @@ import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
 import com.proy.easywork.data.model.request.RQCodigoCelular
-import com.proy.easywork.databinding.FragmentLoginCodePhoneBinding
+import com.proy.easywork.databinding.FragmentLoginCodePhoneAuthBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
 
-class LoginCodePhoneFragment : Fragment() {
-
-    private lateinit var binding: FragmentLoginCodePhoneBinding
+class LoginCodePhoneAuthFragment : Fragment() {
+    private lateinit var binding: FragmentLoginCodePhoneAuthBinding
 
     private val viewModel by viewModels<LoginViewModel> {
         LoginViewModel.LoginModelFactory(LoginRepository(activity?.application!!))
@@ -26,7 +25,7 @@ class LoginCodePhoneFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
 
-        binding = FragmentLoginCodePhoneBinding.inflate(inflater, container, false)
+        binding = FragmentLoginCodePhoneAuthBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -48,13 +47,13 @@ class LoginCodePhoneFragment : Fragment() {
 
         binding.btnCodWhatsApp.setOnClickListener {
             if(validate()){
-                viewModel.enviarCodigoCelular(RQCodigoCelular(binding.etNum.text.toString().trim(),"WHATSAPP"))
+                viewModel.enviarCodigoAutenticacionCelular(RQCodigoCelular(binding.etNum.text.toString().trim(),"WHATSAPP"))
             }
         }
 
         binding.btnCodSMS.setOnClickListener {
             if(validate()){
-                viewModel.enviarCodigoCelular(RQCodigoCelular(binding.etNum.text.toString().trim(),"SMS"))
+                viewModel.enviarCodigoAutenticacionCelular(RQCodigoCelular(binding.etNum.text.toString().trim(),"SMS"))
             }
         }
     }
@@ -77,7 +76,7 @@ class LoginCodePhoneFragment : Fragment() {
         viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
             view?.let {
                 val bundle = bundleOf(Pair("celular", binding.etNum.text.toString().trim()))
-                Navigation.findNavController(it).navigate(R.id.action_loginCodePhoneFragment_to_phoneVerificationCodeFragment,bundle)
+                Navigation.findNavController(it).navigate(R.id.action_loginCodePhoneAuthFragment_to_phoneVerificationCodeAuthFragment,bundle)
             }
         }
 
