@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
     app:startDestination="@id/loginFragment">
-
-    <fragment
+<fragment
         android:id="@+id/loginFragment"
         android:name="com.proy.easywork.presentation.login.view.fragments.LoginFragment"
         android:label="fragment_login"
@@ -120,9 +119,6 @@
         <action
             android:id="@+id/action_passwordRecoveryFragment_to_loginNewPasswordRecoveryFragment2"
             app:destination="@id/loginNewPasswordRecoveryFragment" />
-        <action
-            android:id="@+id/action_passwordRecoveryFragment_to_loginCodePhoneFragment2"
-            app:destination="@id/loginCodePhoneFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginNewPasswordRecoveryFragment"
@@ -132,15 +128,16 @@
         <action
             android:id="@+id/action_loginNewPasswordRecoveryFragment_to_successfulPasswordRecoveryFragment"
             app:destination="@id/successfulPasswordRecoveryFragment" />
-        <action
-            android:id="@+id/action_loginNewPasswordRecoveryFragment_to_loginCodePhoneFragment"
-            app:destination="@id/loginCodePhoneFragment" />
     </fragment>
     <fragment
         android:id="@+id/successfulPasswordRecoveryFragment"
         android:name="com.proy.easywork.presentation.login.view.passwordRecovery.SuccessfulPasswordRecoveryFragment"
         android:label="fragment_successful_password_recovery"
-        tools:layout="@layout/fragment_successful_password_recovery" />
+        tools:layout="@layout/fragment_successful_password_recovery" >
+        <action
+            android:id="@+id/action_successfulPasswordRecoveryFragment_to_logInEmailPasswordFragment"
+            app:destination="@id/logInEmailPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/phoneVerificationCodeFragment"
         android:name="com.proy.easywork.presentation.login.view.fragments.PhoneVerificationCodeFragment"

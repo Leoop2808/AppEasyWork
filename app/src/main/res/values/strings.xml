@@ -61,7 +61,7 @@
     <string name="segundo_nombre">Segundo nombre</string>
     <string name="apellido_paterno">Apellido paterno</string>
     <string name="apellido_materno">Apellido materno</string>
-    <string name="tipo_doc">Ingresa tu número de documento</string>
+    <string name="tipo_doc">Número de documento</string>
     <string name="numero_doc">Número de documento</string>
 
     <string name="txt_electricidad">Electricidad</string>
@@ -71,5 +71,13 @@
     <string name="txt_gasfiteria">Gasfitería</string>
     <string name="txt_limpieza">Limpieza</string>
     <string name="txt_sel_categoria">Selecciona una categoría</string>
+    <string name="numero_telefono">Número de teléfono</string>
+    <string name="genero">Género</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
+    <string name="distrito">Distrito</string>
+    <string name="continuar_como">Continuar como:</string>
+    <string name="cliente">Cliente</string>
+    <string name="tecnico">Técnico</string>
 
 </resources>
