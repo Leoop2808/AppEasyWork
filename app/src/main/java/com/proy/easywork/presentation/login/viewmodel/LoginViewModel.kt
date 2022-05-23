@@ -26,6 +26,9 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
     val validatePhone : LiveData<Boolean> = _validatePhone
     val completeProfile : LiveData<Boolean> = _completeProfile
 
+    private val _successRecoveryPassword = MutableLiveData<Boolean>()
+    val successRecoveryPassword : LiveData<Boolean> = _successRecoveryPassword
+
     val verifyPhone : LiveData<Boolean> = _verifyPhone
     fun login(correo: String, password: String){
         _isViewLoading.value=true
@@ -228,7 +231,7 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
         viewModelScope.launch {
             when (val result = repository.actualizarClave(request)) {
                 is MADataResult.Success -> {
-                    _onMessageSuccesful.value= result.data
+                    _successRecoveryPassword.value= true
                 }
                 is MADataResult.Failure -> {
                     _onMessageError.value = result.e.message.toString()

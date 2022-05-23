@@ -10,9 +10,11 @@ import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
 import com.proy.easywork.data.model.request.RQClave
+import com.proy.easywork.data.model.request.RQVerificarCodigoCelular
 import com.proy.easywork.databinding.FragmentLoginNewPasswordRecoveryBinding
 import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
+import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
 
 class LoginNewPasswordRecoveryFragment : Fragment() {
 
@@ -31,13 +33,14 @@ class LoginNewPasswordRecoveryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpUI()
+        setUpEvents()
+
+    }
+    private fun setUpEvents() {
 
         binding.imgBackArrow.setOnClickListener {
-            Navigation.findNavController(view).popBackStack()
-        }
-
-        binding.btnRegistrate.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_loginNewPasswordRecoveryFragment_to_loginCodePhoneFragment)
+            Navigation.findNavController(it).popBackStack()
         }
 
         binding.btnContinuar.setOnClickListener {
@@ -47,13 +50,21 @@ class LoginNewPasswordRecoveryFragment : Fragment() {
             }
         }
 
-        viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
-            Navigation.findNavController(view).navigate(R.id.action_loginNewPasswordRecoveryFragment_to_successfulPasswordRecoveryFragment)
+
+    }
+
+    private fun setUpUI() {
+
+        viewModel.successRecoveryPassword.observe(viewLifecycleOwner){
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_loginNewPasswordRecoveryFragment_to_successfulPasswordRecoveryFragment)
+            }
         }
 
-
         viewModel.onMessageError.observe(viewLifecycleOwner){
-            it?.let { showMessage(it) }
+            it?.let {
+                showMessage(it)
+            }
         }
 
         viewModel.isViewLoading.observe(viewLifecycleOwner) {
@@ -66,7 +77,6 @@ class LoginNewPasswordRecoveryFragment : Fragment() {
             }
         }
     }
-
     private fun validateFileds(): Boolean{
         if(binding.etContrasena.text.isNullOrEmpty()){
             showMessage("Ingrese contraseña")

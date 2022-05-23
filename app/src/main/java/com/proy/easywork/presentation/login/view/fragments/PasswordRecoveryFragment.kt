@@ -43,10 +43,6 @@ class PasswordRecoveryFragment : Fragment() {
             Navigation.findNavController(it).popBackStack()
         }
 
-        binding.btnRegistrate.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_passwordRecoveryFragment_to_loginCodePhoneFragment2)
-        }
-
         binding.btnContinuar.setOnClickListener {
             if(binding.etCodigo.text.isNullOrEmpty()){
                 showMessage("Ingresar código")
@@ -55,7 +51,6 @@ class PasswordRecoveryFragment : Fragment() {
                     arguments?.getString("correo")?:""
                 ))
             }
-
         }
     }
 

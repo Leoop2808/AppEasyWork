@@ -6,25 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import com.proy.easywork.BuildConfig
-import com.proy.easywork.R
-import com.proy.easywork.databinding.FragmentLoginBinding
+import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
+import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.databinding.FragmentSelectCategoriesBinding
-import com.proy.easywork.domain.repositories.LoginRepository
 import com.proy.easywork.domain.repositories.PrincipalRepository
-import com.proy.easywork.presentation.login.view.fragments.LoginFragment
-import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
-import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
 import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
+import com.proy.easywork.presentation.splash.SplashActivity
 
 class SelectCategoriesFragment : Fragment() {
     private lateinit var binding: FragmentSelectCategoriesBinding
+    val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
     private val viewModel by viewModels<PrincipalViewModel> {
         PrincipalViewModel.PrincipalModelFactory(PrincipalRepository(activity?.application!!))
     }
@@ -34,7 +26,7 @@ class SelectCategoriesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSelectCategoriesBinding.inflate(inflater, container, false)
-        return inflater.inflate(R.layout.fragment_select_categories, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,6 +57,11 @@ class SelectCategoriesFragment : Fragment() {
                 }
             }
         }
+        binding.imgCerrarSesion.setOnClickListener {
+            sp.clearSession()
+            startActivity(SplashActivity().newIntent(requireContext()))
+        }
+
     }
 
     private fun setUpEvents() {
