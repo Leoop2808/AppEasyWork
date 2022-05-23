@@ -7,10 +7,9 @@
     android:background="#E6E7E8"
     tools:context=".presentation.FragmentSelectCategories">
 
-
     <LinearLayout
         android:id="@+id/linearLayout24"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="#373b4d"
         android:orientation="horizontal"
@@ -33,6 +32,14 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:src="@drawable/logo_cabecera" />
+
+        <ImageView
+            android:id="@+id/imageView27"
+            android:layout_width="10dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/cerrar_sesion" />
     </LinearLayout>
 
     <TextView

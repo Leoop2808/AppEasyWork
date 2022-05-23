@@ -73,5 +73,8 @@
     <string name="masculino">Masculino</string>
     <string name="femenino">Femenino</string>
     <string name="distrito">Distrito</string>
+    <string name="continuar_como">Continuar como:</string>
+    <string name="cliente">Cliente</string>
+    <string name="tecnico">Técnico</string>
 
 </resources>
