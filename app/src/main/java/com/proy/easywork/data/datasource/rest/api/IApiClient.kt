@@ -2,8 +2,10 @@ package com.proy.easywork.data.datasource.rest.api
 
 import com.proy.easywork.data.model.VMAuthenticationDTO
 import com.proy.easywork.data.model.request.*
+import com.proy.easywork.data.model.response.RSBusquedaTecnico
 import com.proy.easywork.data.model.response.RSMaestros
 import com.proy.easywork.data.model.response.RSMessage
+import com.proy.easywork.data.model.response.RSPerfil
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -85,5 +87,14 @@ interface IApiClient {
     @POST("api/usuario/autenticacion/celular")
     suspend fun authenticationPhone(@Header("Authorization") auth:String,
                                     @Body registro: RQAuthenticationPhone):  Response<VMAuthenticationDTO>
+
+
+    @GET("api/cliente/busqueda-tecnicos")
+    suspend fun buscarTecnicos(@Header("Authorization") auth:String,
+                               @Body registro: RQBusqueda): Response<RSBusquedaTecnico>
+
+    @GET("api/cliente/perfil-tecnico")
+    suspend fun getPerfil(@Header("Authorization") auth:String,
+                          @Body registro: RQPerfil): Response<RSPerfil>
 
 }

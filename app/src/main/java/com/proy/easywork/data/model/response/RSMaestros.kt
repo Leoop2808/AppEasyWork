@@ -7,8 +7,8 @@ import com.proy.easywork.data.model.VMMedioPago
 import com.proy.easywork.data.model.VMTipoTransporte
 import com.proy.easywork.data.model.VMTipoBusqueda
 import java.io.Serializable
-
-class RSMaestros (val listaCategoriaServicio : MutableList<VMCategoriaServicio> = mutableListOf(),
+class RSMaestros(val Message: String, val data: VMMaestros): Serializable
+class VMMaestros (val listaCategoriaServicio : MutableList<VMCategoriaServicio> = mutableListOf(),
                   val listaTipoDocumento : MutableList<VMTipoDocumento> = mutableListOf(),
                   val listaDistrito : MutableList<VMDistrito> = mutableListOf(),
                   val listaMedioPago : MutableList<VMMedioPago> = mutableListOf(),

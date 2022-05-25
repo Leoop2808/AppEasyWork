@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.databinding.FragmentSelectCategoriesBinding
 import com.proy.easywork.domain.repositories.PrincipalRepository
+import com.proy.easywork.presentation.principal.view.adapter.CategoriaAdapter
 import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
 import com.proy.easywork.presentation.splash.SplashActivity
 
@@ -45,6 +47,13 @@ class SelectCategoriesFragment : Fragment() {
 
         viewModel.listarCategorias()
         viewModel.listaCategoria.observe(viewLifecycleOwner){
+            it?.let {
+                binding.rcvCateg.layoutManager=GridLayoutManager(context, 2)
+                binding.rcvCateg.adapter = CategoriaAdapter(it){
+
+                }
+                binding.rcvCateg.isNestedScrollingEnabled=false
+            }
 
         }
 

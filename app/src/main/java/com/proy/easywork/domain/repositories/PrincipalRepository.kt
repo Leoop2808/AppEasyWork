@@ -10,7 +10,7 @@ import com.proy.easywork.domain.MADataResult
 class PrincipalRepository(aplication: Application) : BaseRepository(){
     val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
     val database = db.getDatabase(aplication)
-    suspend fun getCategorias(): MADataResult<List<CategoriaServicio?>?>{
+    suspend fun getCategorias(): MADataResult<List<CategoriaServicio>?>{
         return MADataResult.Success(database.masterDao().listCategoria())
     }
 }

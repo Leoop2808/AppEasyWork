@@ -13,8 +13,8 @@ interface masterDao {
     fun addCategoriaServicio(categoriaServicio: CategoriaServicio): Long
     @Query("DELETE FROM categoria_servicio_table")
     fun deleteCategoria()
-    @Query("SELECT * FROM categoria_servicio_table")
-    fun listCategoria(): List<CategoriaServicio?>?
+    @Query("SELECT * FROM categoria_servicio_table order by codCategoriaServicio")
+    fun listCategoria(): List<CategoriaServicio>?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addDistrito(distrito: Distrito): Long

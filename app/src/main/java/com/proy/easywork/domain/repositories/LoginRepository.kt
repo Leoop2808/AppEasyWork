@@ -2,6 +2,7 @@ package com.proy.easywork.domain.repositories
 
 
 import android.app.Application
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
@@ -27,37 +28,39 @@ class LoginRepository(aplication: Application): BaseRepository() {
             when (result?.code()) {
                 HttpURLConnection.HTTP_OK ->{
                     database.masterDao().deleteCategoria()
-                    val categorias = result.body()?.listaCategoriaServicio
+                    val categorias = result.body()?.data?.listaCategoriaServicio
+                    Log.e("Maestros", categorias?.size.toString())
                     categorias?.forEach {
+                        Log.e("Maestros", it.nombreImgCategoriaServicio)
                         database.masterDao().addCategoriaServicio(CategoriaServicio(0,it.codCategoriaServicio, it.siglaCategoriaServicio, it.nombreImgCategoriaServicio))
                     }
 
                     database.masterDao().deleteDistrito()
-                    val distritos = result.body()?.listaDistrito
+                    val distritos = result.body()?.data?.listaDistrito
                     distritos?.forEach {
                         database.masterDao().addDistrito(Distrito(0, it.codDistrito, it.siglaDistrito))
                     }
 
                     database.masterDao().deleteMedioPago()
-                    val medios = result.body()?.listaMedioPago
+                    val medios = result.body()?.data?.listaMedioPago
                     medios?.forEach {
                         database.masterDao().addMedioPago(MedioPago(0, it.codMedioPago, it.siglaMedioPago))
                     }
 
                     database.masterDao().deleteTipoBusqueda()
-                    val tiposBusq = result.body()?.listaTipoBusqueda
+                    val tiposBusq = result.body()?.data?.listaTipoBusqueda
                     tiposBusq?.forEach {
                         database.masterDao().addTipoBusqueda(TipoBusqueda(0, it.codTipoBusqueda, it.siglaTipoBusqueda))
                     }
 
                     database.masterDao().deleteTipoDocumento()
-                    val tiposDoc = result.body()?.listaTipoDocumento
+                    val tiposDoc = result.body()?.data?.listaTipoDocumento
                     tiposDoc?.forEach {
                         database.masterDao().addTipoDocumento(TipoDocumento(0,it.codTipoDocumento, it.siglaTipoDocumento))
                     }
 
                     database.masterDao().deleteTipoTransporte()
-                    val tiposTrans = result.body()?.listaTipoTransporte
+                    val tiposTrans = result.body()?.data?.listaTipoTransporte
                     tiposTrans?.forEach {
                         database.masterDao().addTipoTransporte(TipoTransporte(0,it.codTipoTransporte, it.siglaTipoTransporte))
                     }

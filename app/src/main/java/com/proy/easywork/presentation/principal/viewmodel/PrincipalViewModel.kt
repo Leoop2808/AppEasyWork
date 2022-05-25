@@ -11,8 +11,8 @@ import com.proy.easywork.presentation.login.viewmodel.LoginViewModel
 import kotlinx.coroutines.launch
 
 class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
-    private val _listaCategoria = MutableLiveData<List<CategoriaServicio?>??>()
-    val listaCategoria : LiveData<List<CategoriaServicio?>??> = _listaCategoria
+    private val _listaCategoria = MutableLiveData<List<CategoriaServicio>?>()
+    val listaCategoria : LiveData<List<CategoriaServicio>?> = _listaCategoria
 
     fun listarCategorias(){
         _isViewLoading.value = true

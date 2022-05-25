@@ -42,202 +42,53 @@
             android:src="@drawable/cerrar_sesion" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView39"
-        android:layout_width="271dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:lineSpacingMultiplier="1.5"
-        android:text="@string/txt_sel_categoria"
-        android:textColor="@color/tipografia"
-        android:textSize="20sp"
-        android:textStyle="bold"
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout24" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout24">
 
-    <LinearLayout
-        android:id="@+id/linearLayout25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView39">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingRight="5dp">
-
-            <ImageView
-                android:id="@+id/imageView25"
-                android:layout_width="120dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/electricidad" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/txt_electricidad"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
-
-            <ImageView
-                android:id="@+id/imageView32"
-                android:layout_width="120dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/carpinteria" />
-
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/txt_carpinteria"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout25">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingRight="5dp">
-
-            <ImageView
-                android:id="@+id/imageView33"
-                android:layout_width="120dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/pintura" />
-
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/txt_pintura"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">>
-
-            <ImageView
-                android:id="@+id/imageView34"
-                android:layout_width="129dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/alba_ileria" />
-
-            <TextView
-                android:id="@+id/textView31"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/txt_albanileria"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout26">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingRight="5dp">
-
-            <ImageView
-                android:id="@+id/imageView35"
-                android:layout_width="120dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/gasfiteria" />
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView34"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/textView39"
+                android:layout_width="271dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:gravity="center"
-                android:text="@string/txt_gasfiteria"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:lineSpacingMultiplier="1.5"
+                android:text="@string/txt_sel_categoria"
+                android:textColor="@color/tipografia"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="5dp">
-
-            <ImageView
-                android:id="@+id/imageView36"
-                android:layout_width="120dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:src="@drawable/limpieza" />
-
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="150dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvCateg"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/txt_limpieza"
-                android:textSize="17dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView39"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/pb"
@@ -261,4 +112,5 @@
                 android:indeterminate="true" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
