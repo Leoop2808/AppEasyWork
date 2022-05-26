@@ -79,5 +79,7 @@
     <string name="continuar_como">Continuar como:</string>
     <string name="cliente">Cliente</string>
     <string name="tecnico">Técnico</string>
+    <string name="d_nde_nos_necesitas">¿Dónde nos necesitas?</string>
+    <string name="buscar">Buscar</string>
 
 </resources>

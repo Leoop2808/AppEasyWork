@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.databinding.FragmentSelectCategoriesBinding
@@ -50,7 +52,7 @@ class SelectCategoriesFragment : Fragment() {
             it?.let {
                 binding.rcvCateg.layoutManager=GridLayoutManager(context, 2)
                 binding.rcvCateg.adapter = CategoriaAdapter(it){
-
+                    Navigation.findNavController(requireView()).navigate(R.id.action_fragmentSelectCategories2_to_mapsFragment)
                 }
                 binding.rcvCateg.isNestedScrollingEnabled=false
             }

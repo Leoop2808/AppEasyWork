@@ -9,5 +9,14 @@
         android:id="@+id/fragmentSelectCategories2"
         android:name="com.proy.easywork.presentation.principal.view.fragments.SelectCategoriesFragment"
         android:label="fragment_select_categories"
-        tools:layout="@layout/fragment_select_categories" />
+        tools:layout="@layout/fragment_select_categories" >
+        <action
+            android:id="@+id/action_fragmentSelectCategories2_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.proy.easywork.presentation.principal.view.fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
