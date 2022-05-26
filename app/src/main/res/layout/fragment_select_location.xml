@@ -19,15 +19,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView37"
+            android:id="@+id/imgFlechaAtras"
             android:layout_width="10dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/menu" />
+            android:src="@drawable/icon_back_white" />
 
         <ImageView
-            android:id="@+id/imageView38"
+            android:id="@+id/imgLogoEasyWork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,7 +35,7 @@
             android:src="@drawable/logo_cabecera" />
 
         <ImageView
-            android:id="@+id/imageView39"
+            android:id="@+id/imgCerrarSesion"
             android:layout_width="10dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
