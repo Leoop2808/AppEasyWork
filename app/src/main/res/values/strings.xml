@@ -78,5 +78,10 @@
     <string name="tecnico">Técnico</string>
     <string name="formulario">Formulario</string>
     <string name="categoria">Categoría</string>
-
+    <string name="direccion">Dirección</string>
+    <string name="descProblema">Descríbenos tu problema</string>
+    <string name="preferencia_pago">Preferencia de pago</string>
+    <string name="yape">Yape</string>
+    <string name="plin">Plin</string>
+    <string name="efectivo">Efectivo</string>
 </resources>

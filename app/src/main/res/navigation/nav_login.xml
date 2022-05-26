@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
-    app:startDestination="@id/selectLocationFragment">
+    app:startDestination="@id/formularioFragment">
 
      <fragment
         android:id="@+id/loginFragment"
@@ -197,4 +197,9 @@
         android:name="com.proy.easywork.presentation.SelectLocationFragment"
         android:label="fragment_select_location"
         tools:layout="@layout/fragment_select_location" />
+    <fragment
+        android:id="@+id/formularioFragment"
+        android:name="com.proy.easywork.presentation.FormularioFragment"
+        android:label="fragment_formulario"
+        tools:layout="@layout/fragment_formulario" />
 </navigation>
