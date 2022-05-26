@@ -76,5 +76,7 @@
     <string name="continuar_como">Continuar como:</string>
     <string name="cliente">Cliente</string>
     <string name="tecnico">Técnico</string>
+    <string name="formulario">Formulario</string>
+    <string name="categoria">Categoría</string>
 
 </resources>

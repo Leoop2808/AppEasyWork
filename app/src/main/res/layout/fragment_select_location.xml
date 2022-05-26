@@ -8,8 +8,8 @@
     android:background="#E6E7E8"
     tools:context=".presentation.SelectLocationFragment">
 
-
     <LinearLayout
+        android:id="@+id/linearLayout32"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="#373b4d"
@@ -42,4 +42,18 @@
             android:layout_weight="1"
             android:src="@drawable/cerrar_sesion" />
     </LinearLayout>
+
+    <fragment
+        android:id="@+id/fragmentMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout32"
+        tools:context=".MainActivity"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
