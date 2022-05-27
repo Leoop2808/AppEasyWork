@@ -10,6 +10,8 @@ class MDefaultSharedPref(context: Context): MSharedPreferences {
         private var appId = "easywork_preferences"
         private var appSettings = "easywork_preferences_settings"
         const val SESSION = ".session.easywork.user"
+
+        const val TOK = ".session.easywork.tok"
         const val TOKEN = ".session.easywork.token"
         const val TOKEN_FCM = ".session.easywork.token.fcm"
         const val ROL = ".session.easywork.rol"
@@ -72,6 +74,17 @@ class MDefaultSharedPref(context: Context): MSharedPreferences {
         return preferences.getString(keyToken(), "") ?: ""
     }
 
+    private fun keyTok():String{
+        return appId+ TOK
+    }
+    override fun saveTok(tok: String) {
+        editor.putString(keyTok(), tok).apply()
+    }
+
+    override fun getTok(): String {
+        return preferences.getString(keyTok(), "") ?: ""
+    }
+
     private fun keyTokenFCM():String{
         return appId+ TOKEN_FCM
     }
@@ -84,11 +97,11 @@ class MDefaultSharedPref(context: Context): MSharedPreferences {
         return preferences.getString(keyTokenFCM(), "") ?: ""
     }
 
-    override fun saveRol(rol: String) {
-        editor.putString(keyRol(), rol).apply()
+    override fun saveRol(rol: Int) {
+        editor.putInt(keyRol(), rol).apply()
     }
 
-    override fun getRol(): String {
-        return preferences.getString(keyRol(), "") ?: ""
+    override fun getRol(): Int {
+        return preferences.getInt(keyRol(), 0)
     }
 }

@@ -10,10 +10,12 @@ interface MSharedPreferences {
     fun clearSession()
     fun saveToken(token: String)
     fun getToken():String
+    fun saveTok(tok: String)
+    fun getTok():String
     fun saveTokenFCM(tokenFCM: String)
     fun getTokenFCM():String
 
-    fun saveRol(rol: String)
-    fun getRol():String
+    fun saveRol(rol: Int)
+    fun getRol():Int
 
 }

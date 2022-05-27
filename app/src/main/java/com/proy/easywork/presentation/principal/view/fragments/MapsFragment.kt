@@ -1,6 +1,7 @@
 package com.proy.easywork.presentation.principal.view.fragments
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
 
@@ -8,7 +9,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.proy.easywork.R
 import com.proy.easywork.databinding.FragmentMapsBinding
 
-class MapsFragment : Fragment() {
+class MapsFragment : Fragment(), GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
     private lateinit var binding: FragmentMapsBinding
     private val RQ_PERMISSIONS_REQUEST = 25
     private val callback = OnMapReadyCallback { googleMap ->
@@ -54,6 +57,7 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setLocation()
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
@@ -61,5 +65,32 @@ class MapsFragment : Fragment() {
         binding.tvAtras.setOnClickListener {
             Navigation.findNavController(it).popBackStack()
         }
+    }
+
+    override fun onMapClick(p0: LatLng) {
+        Toast.makeText(context, " "+p0.latitude.toString(), Toast.LENGTH_LONG).show()
+    }
+
+    override fun onMapLongClick(p0: LatLng) {
+        TODO("Not yet implemented")
+    }
+
+    private fun setLocation(){
+        val mediaPermissions =
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        if (!checkPermissions(requireContext(), mediaPermissions)) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                mediaPermissions,
+                RQ_PERMISSIONS_REQUEST
+            )
+        }
+    }
+
+    fun checkPermissions(context: Context, permissions: Array<String>): Boolean {
+        return permissions.none { ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED }
     }
 }

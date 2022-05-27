@@ -28,12 +28,12 @@ class RoleSelectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnCliente.setOnClickListener {
-            sp.saveRol("1")
+            sp.saveTok("1")
             Navigation.findNavController(it).navigate(R.id.action_roleSelectionFragment_to_loginFragment)
         }
 
         binding.btnTecnico.setOnClickListener {
-            sp.saveRol("2")
+            sp.saveTok("2")
             val intent = Intent(activity, TecnicoActivity::class.java)
             startActivity(intent)
             activity?.finish()

@@ -7,7 +7,7 @@ data class VMAuthentication(val access_token:String, val token_type:String,val e
                             val flgCelularValidado:String,val flgCorreoValidado:String):
     Serializable {
     constructor() : this("", "", -1, "","","","","","")
-    fun toUser() = VMUser(nombres,apellidos,correo,flgMostrarRegistroUsuario, flgCelularValidado, flgCorreoValidado)
+    fun toUser() = VMUser(nombres,apellidos,correo,flgMostrarRegistroUsuario, flgCelularValidado, flgCorreoValidado, "1")
     fun getAuthenticationToken():String{
         return  if (token_type.isNotEmpty()){
             "$token_type $access_token"

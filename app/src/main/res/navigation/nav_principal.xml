@@ -18,5 +18,14 @@
         android:id="@+id/mapsFragment"
         android:name="com.proy.easywork.presentation.principal.view.fragments.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_formularioFragment"
+            app:destination="@id/formularioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formularioFragment"
+        android:name="com.proy.easywork.presentation.principal.view.fragments.FormularioFragment"
+        android:label="fragment_formulario"
+        tools:layout="@layout/fragment_formulario" />
 </navigation>
