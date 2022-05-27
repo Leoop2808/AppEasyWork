@@ -144,7 +144,7 @@ class LogInEmailPasswordFragment : Fragment() {
                     }
 
                 }else{
-                    checkLocation()
+                    viewModel.registrarDispositivo(RQDispositivo(tokenFCM,BuildConfig.VERSION_CODE.toString() ,BuildConfig.VERSION_NAME,0.0,0.0))
                 }
 
             }

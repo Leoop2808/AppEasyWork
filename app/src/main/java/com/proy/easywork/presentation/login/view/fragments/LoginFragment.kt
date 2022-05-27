@@ -194,9 +194,15 @@ class LoginFragment : Fragment() {
                         // App code
                         Log.e(":)", "loginResult ${it.toString()}")
                         val accessToken = AccessToken.getCurrentAccessToken()
-                        actualLocation?.let {
-                            viewModel.loginFacebook(RQAuthenticationFacebook(accessToken!!.token, it.latitude, it.longitude))
+
+                        if(actualLocation!=null){
+                            actualLocation?.let {
+                                viewModel.loginFacebook(RQAuthenticationFacebook(accessToken!!.token, it.latitude, it.longitude))
+                            }
+                        }else{
+                            viewModel.loginFacebook(RQAuthenticationFacebook(accessToken!!.token,0.0,0.0))
                         }
+
                         val isLoggedIn = accessToken != null && !accessToken.isExpired
                         Log.e(":)", "isLoggedIn $isLoggedIn")
                         Log.e(":)", "accessToken ${accessToken?.token}")
@@ -256,7 +262,7 @@ class LoginFragment : Fragment() {
                     viewModel.loginGoogle(RQAuthenticationGoogle(idToken,it.latitude,it.latitude))
                 }
             }else{
-                checkLocation()
+                viewModel.loginGoogle(RQAuthenticationGoogle(idToken,0.0,0.0))
             }
 
         } catch (e: ApiException) {
@@ -381,7 +387,11 @@ class LoginFragment : Fragment() {
                     }
 
                 }else{
-                    checkLocation()
+                    viewModel.registrarDispositivo(
+                        RQDispositivo(tokenFCM,
+                            BuildConfig.VERSION_CODE.toString() ,
+                            BuildConfig.VERSION_NAME,0.0,0.0)
+                    )
                 }
 
             }
