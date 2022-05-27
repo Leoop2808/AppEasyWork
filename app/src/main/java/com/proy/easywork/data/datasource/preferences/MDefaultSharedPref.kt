@@ -12,6 +12,7 @@ class MDefaultSharedPref(context: Context): MSharedPreferences {
         const val SESSION = ".session.easywork.user"
         const val TOKEN = ".session.easywork.token"
         const val TOKEN_FCM = ".session.easywork.token.fcm"
+        const val ROL = ".session.easywork.rol"
     }
 
     private val preferences by lazy {
@@ -59,6 +60,10 @@ class MDefaultSharedPref(context: Context): MSharedPreferences {
         return appId+ TOKEN
     }
 
+    private fun keyRol():String{
+        return appId+ ROL
+    }
+
     override fun saveToken(token: String) {
         editor.putString(keyToken(), token).apply()
     }
@@ -77,5 +82,13 @@ class MDefaultSharedPref(context: Context): MSharedPreferences {
 
     override fun getTokenFCM(): String {
         return preferences.getString(keyTokenFCM(), "") ?: ""
+    }
+
+    override fun saveRol(rol: String) {
+        editor.putString(keyRol(), rol).apply()
+    }
+
+    override fun getRol(): String {
+        return preferences.getString(keyRol(), "") ?: ""
     }
 }

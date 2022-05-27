@@ -9,6 +9,7 @@ import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
+import com.proy.easywork.presentation.principal.view.activities.TecnicoActivity
 
 class SplashActivity : AppCompatActivity() {
     private val mMDefaultSharedPref: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
@@ -32,9 +33,16 @@ class SplashActivity : AppCompatActivity() {
 
     private fun signin() {
         if (mMDefaultSharedPref.isSession()) {
-            val intent = Intent(this, PrincipalActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(mMDefaultSharedPref.getRol()=="1"){
+                val intent = Intent(this, PrincipalActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                val intent = Intent(this, TecnicoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
         }else{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
