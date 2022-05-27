@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
-    app:startDestination="@id/formularioFragment">
+    app:startDestination="@id/principalTecnicoFragment">
 
      <fragment
         android:id="@+id/loginFragment"
@@ -202,4 +202,9 @@
         android:name="com.proy.easywork.presentation.FormularioFragment"
         android:label="fragment_formulario"
         tools:layout="@layout/fragment_formulario" />
+    <fragment
+        android:id="@+id/principalTecnicoFragment"
+        android:name="com.proy.easywork.presentation.PrincipalTecnicoFragment"
+        android:label="fragment_principal_tecnico"
+        tools:layout="@layout/fragment_principal_tecnico" />
 </navigation>

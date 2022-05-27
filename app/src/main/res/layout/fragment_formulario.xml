@@ -116,6 +116,23 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"/>
+
+        <TextView
+            android:id="@+id/txtDistrito"
+            android:layout_width="337dp"
+            android:layout_height="wrap_content"
+            android:text="@string/distrito"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerDistrito"
+            android:layout_width="337dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="15dp"/>
+
     </LinearLayout>
 
     <LinearLayout

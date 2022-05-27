@@ -84,4 +84,12 @@
     <string name="yape">Yape</string>
     <string name="plin">Plin</string>
     <string name="efectivo">Efectivo</string>
+
+    <string name="solicitudesDirectas">Solicitudes Directas</string>
+    <string name="numSolicitudesDirectas">0</string>
+    <string name="responderSolicitudesDirectas">Responder</string>
+    <string name="solicitudesGenerales">Solicitudes Generales</string>
+    <string name="numSolicitudesGenerales">0</string>
+    <string name="responderSolicitudesGenerales">Responder</string>
+
 </resources>
