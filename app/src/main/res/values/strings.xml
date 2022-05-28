@@ -98,4 +98,9 @@
     <string name="yape">Yape</string>
     <string name="plin">Plin</string>
     <string name="efectivo">Efectivo</string>
+    <string name="elige_a_tu_t_cnico">Elige a tu técnico</string>
+    <string name="ver_perfil">Ver perfil</string>
+    <string name="solicitar_servicio">Solicitar servicio</string>
+    <string name="rese_as_del_t_cnico">Reseñas del técnico</string>
+    <string name="_1">1</string>
 </resources>

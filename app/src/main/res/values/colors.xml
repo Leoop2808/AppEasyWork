@@ -11,4 +11,6 @@
     <color name="tipografia">#4D4D4D</color>
     <color name="tipografia_boton_login">#FFFFFF</color>
     <color name="azul_btn">#373b4d</color>
+    <color name="azul">#2E3BB7</color>
+    <color name="verde">#6ac668</color>
 </resources>

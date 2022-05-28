@@ -28,4 +28,18 @@
         android:name="com.proy.easywork.presentation.principal.view.fragments.FormularioFragment"
         android:label="fragment_formulario"
         tools:layout="@layout/fragment_formulario" />
+    <fragment
+        android:id="@+id/perfilTecnicoFragment"
+        android:name="com.proy.easywork.presentation.principal.view.fragments.PerfilTecnicoFragment"
+        android:label="fragment_perfil_tecnico"
+        tools:layout="@layout/fragment_perfil_tecnico" />
+    <fragment
+        android:id="@+id/elegirTecnicoFragment"
+        android:name="com.proy.easywork.presentation.principal.view.fragments.ElegirTecnicoFragment"
+        android:label="fragment_elegir_tecnico"
+        tools:layout="@layout/fragment_elegir_tecnico" >
+        <action
+            android:id="@+id/action_elegirTecnicoFragment_to_perfilTecnicoFragment"
+            app:destination="@id/perfilTecnicoFragment" />
+    </fragment>
 </navigation>
