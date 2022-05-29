@@ -107,4 +107,3 @@ dependencies {
 
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'

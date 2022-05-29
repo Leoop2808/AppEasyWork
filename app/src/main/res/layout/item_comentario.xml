@@ -34,7 +34,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/tvServicio"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

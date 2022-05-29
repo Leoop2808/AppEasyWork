@@ -5,15 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
+import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
+import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.databinding.FragmentPerfilTecnicoBinding
+import com.proy.easywork.domain.repositories.PrincipalRepository
 import com.proy.easywork.presentation.principal.view.adapter.ComentarioAdapter
 import com.proy.easywork.presentation.principal.view.adapter.TecnicoAdapter
+import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
+import com.proy.easywork.presentation.splash.SplashActivity
 
 
 class PerfilTecnicoFragment : Fragment() {
+    val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
 
+    private val viewModel by viewModels<PrincipalViewModel> {
+        PrincipalViewModel.PrincipalModelFactory(PrincipalRepository(activity?.application!!))
+    }
     private lateinit var binding: FragmentPerfilTecnicoBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,20 +37,76 @@ class PerfilTecnicoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpUI()
+        setUpEvents()
+    }
 
-        val lista = mutableListOf<String>()
-        lista.add("Por Juan Vladez el 25/03/2022")
-        lista.add("Por Juan Vladez el 25/03/2022")
-        lista.add("Por Juan Vladez el 25/03/2022")
-        lista.add("Por Juan Vladez el 25/03/2022")
-        lista.add("Por Juan Vladez el 25/03/2022")
-        lista.add("Por Juan Vladez el 25/03/2022")
+    private fun setUpUI() {
+        viewModel.onMessageError.observe(viewLifecycleOwner){
+            it?.let {
+                showMessage(it)
+            }
+        }
 
-        binding.rcvComentario.layoutManager= LinearLayoutManager(context)
-        binding.rcvComentario.adapter = ComentarioAdapter(lista){
+        //viewModel.buscarTecnicos(RQBusqueda())
+        viewModel.perfilTecnico.observe(viewLifecycleOwner){
+            it?.let {
 
+                binding.tvNombre.text=it.nombreTecnico
+                binding.tvProfesion.text=it.categoria
+                binding.tvCantClientes.text=it.cantidadClientes
+                binding.tvEstrella.text= it.datosValoracion.promedioEstrellas.toString()
+                binding.tvResenas.text=it.cantidadReseñas+"  reseñas"
+
+                binding.tvCant1.text= it.datosValoracion.cantidad1Estrellas.toString()
+                binding.tvCant2.text= it.datosValoracion.cantidad2Estrellas.toString()
+                binding.tvCant3.text= it.datosValoracion.cantidad3Estrellas.toString()
+                binding.tvCant4.text= it.datosValoracion.cantidad4Estrellas.toString()
+                binding.tvCant5.text= it.datosValoracion.cantidad5Estrellas.toString()
+
+                binding.progbar1.max=5
+                binding.progbar2.max=5
+                binding.progbar3.max=5
+                binding.progbar4.max=5
+                binding.progbar5.max=5
+
+                binding.progbar1.progress=it.datosValoracion.cantidad1Estrellas
+                binding.progbar2.progress=it.datosValoracion.cantidad2Estrellas
+                binding.progbar3.progress=it.datosValoracion.cantidad3Estrellas
+                binding.progbar4.progress=it.datosValoracion.cantidad4Estrellas
+                binding.progbar5.progress=it.datosValoracion.cantidad5Estrellas
+
+
+                binding.rcvComentario.layoutManager= LinearLayoutManager(context)
+                binding.rcvComentario.adapter = ComentarioAdapter(it.listaComentarios){
+
+
+                }
+                binding.rcvComentario.isNestedScrollingEnabled=false
+            }
 
         }
-        binding.rcvComentario.isNestedScrollingEnabled=false
+
+        viewModel.isViewLoading.observe(viewLifecycleOwner) {
+            it.let {
+                if (it) {
+                    binding.pb.visibility = View.VISIBLE
+                } else {
+                    binding.pb.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun setUpEvents() {
+
+    }
+
+    private fun showMessage(message: String) {
+        mShowMessageSnackBar(message, binding.clContainer)
+    }
+
+    private fun mShowMessageSnackBar(error: String, snackContainer: View) {
+        Snackbar.make(snackContainer, error, Snackbar.LENGTH_SHORT).show()
     }
 }

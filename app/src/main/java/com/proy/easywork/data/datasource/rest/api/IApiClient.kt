@@ -5,7 +5,7 @@ import com.proy.easywork.data.model.request.*
 import com.proy.easywork.data.model.response.RSBusquedaTecnico
 import com.proy.easywork.data.model.response.RSMaestros
 import com.proy.easywork.data.model.response.RSMessage
-import com.proy.easywork.data.model.response.RSPerfil
+import com.proy.easywork.data.model.response.RSPerfilTecnico
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -91,10 +91,10 @@ interface IApiClient {
 
     @GET("api/cliente/busqueda-tecnicos")
     suspend fun buscarTecnicos(@Header("Authorization") auth:String,
-                               @Body registro: RQBusqueda): Response<RSBusquedaTecnico>
+                               @Body request: RQBusqueda): Response<RSBusquedaTecnico>
 
     @GET("api/cliente/perfil-tecnico")
     suspend fun getPerfil(@Header("Authorization") auth:String,
-                          @Body registro: RQPerfil): Response<RSPerfil>
+                          @Body request: RQPerfil): Response<RSPerfilTecnico>
 
 }

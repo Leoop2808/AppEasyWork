@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -52,7 +53,8 @@ class SelectCategoriesFragment : Fragment() {
             it?.let {
                 binding.rcvCateg.layoutManager=GridLayoutManager(context, 2)
                 binding.rcvCateg.adapter = CategoriaAdapter(it){
-                    Navigation.findNavController(requireView()).navigate(R.id.action_fragmentSelectCategories2_to_mapsFragment)
+                    val b = bundleOf(Pair("codCategoria",it.codCategoriaServicio))
+                    Navigation.findNavController(requireView()).navigate(R.id.action_fragmentSelectCategories2_to_mapsFragment,b)
                 }
                 binding.rcvCateg.isNestedScrollingEnabled=false
             }

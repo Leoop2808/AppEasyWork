@@ -7,18 +7,25 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proy.easywork.R
+import com.proy.easywork.data.model.response.VMcomentario
 
-class ComentarioAdapter(val lista:List<String>, val onClick: (String)->Unit) : RecyclerView.Adapter<ComentarioAdapter.ComentarioHolder>(){
+class ComentarioAdapter(val lista:List<VMcomentario>, val onClick: (VMcomentario)->Unit) : RecyclerView.Adapter<ComentarioAdapter.ComentarioHolder>(){
 
     class ComentarioHolder(v: View) : RecyclerView.ViewHolder(v) {
         val tvNombre: TextView = v.findViewById(R.id.tvNombre)
         val tvComentario: TextView = v.findViewById(R.id.tvComentario)
-
+        val tvServicio: TextView = v.findViewById(R.id.tvServicio)
         val rb : RatingBar = v.findViewById(R.id.rb)
-        fun bind(tecnico:  String, onClick: (String) -> Unit) {
-            tvNombre.text=tecnico
-            tvComentario.text="Excelente servicio, lo recomiento"
-            rb.rating= 3.5F
+        fun bind(tecnico:  VMcomentario, onClick: (VMcomentario) -> Unit) {
+            tvNombre.text="Por ${tecnico.nombreUsuario} el ${tecnico.fechaComentario}"
+            tvComentario.text=tecnico.comentario
+            rb.rating= tecnico.cantEstrellas *1.0F
+
+            if(tecnico.flgServicioVerificado){
+                tvServicio.visibility=View.VISIBLE
+            }else{
+                tvServicio.visibility=View.GONE
+            }
         }
     }
 

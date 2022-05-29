@@ -5,15 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
+import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
+import com.proy.easywork.data.datasource.storage.MDataInjection
+import com.proy.easywork.data.model.request.RQBusqueda
 import com.proy.easywork.databinding.FragmentElegirTecnicoBinding
+import com.proy.easywork.domain.repositories.PrincipalRepository
+import com.proy.easywork.presentation.principal.view.adapter.CategoriaAdapter
 import com.proy.easywork.presentation.principal.view.adapter.TecnicoAdapter
+import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
+import com.proy.easywork.presentation.splash.SplashActivity
 
 class ElegirTecnicoFragment : Fragment() {
 
     private lateinit var binding: FragmentElegirTecnicoBinding
+    val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
+
+    private val viewModel by viewModels<PrincipalViewModel> {
+        PrincipalViewModel.PrincipalModelFactory(PrincipalRepository(activity?.application!!))
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,23 +39,58 @@ class ElegirTecnicoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpEvents()
+        setUpUI()
 
-        val lista = mutableListOf<String>()
-        lista.add("Nombre 1")
-        lista.add("Nombre 2")
-        lista.add("Nombre 3")
-        lista.add("Nombre 4")
-        lista.add("Nombre 5")
-        lista.add("Nombre 6")
-        lista.add("Nombre 7")
-        binding.rcvTecnicos.layoutManager= LinearLayoutManager(context)
-        binding.rcvTecnicos.adapter = TecnicoAdapter(lista){
+    }
 
-            view?.let{view->
-                Navigation.findNavController(view).navigate(R.id.action_elegirTecnicoFragment_to_perfilTecnicoFragment)
+    private fun setUpUI() {
+        viewModel.onMessageError.observe(viewLifecycleOwner){
+            it?.let {
+                showMessage(it)
+            }
+        }
+
+        //viewModel.buscarTecnicos(RQBusqueda())
+        viewModel.listaTecnicos.observe(viewLifecycleOwner){
+            it?.let{
+                binding.rcvTecnicos.layoutManager= LinearLayoutManager(context)
+                binding.rcvTecnicos.adapter = TecnicoAdapter(it){
+                    view?.let{view->
+                        Navigation.findNavController(view).navigate(R.id.action_elegirTecnicoFragment_to_perfilTecnicoFragment)
+                    }
+
+                }
+                binding.rcvTecnicos.isNestedScrollingEnabled=false
             }
 
         }
-        binding.rcvTecnicos.isNestedScrollingEnabled=false
+
+        viewModel.isViewLoading.observe(viewLifecycleOwner) {
+            it.let {
+                if (it) {
+                    binding.pb.visibility = View.VISIBLE
+                } else {
+                    binding.pb.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun setUpEvents() {
+
+        binding.imgCerrarSesion.setOnClickListener {
+            sp.clearSession()
+            startActivity(SplashActivity().newIntent(requireContext()))
+        }
+
+    }
+
+    private fun showMessage(message: String) {
+        mShowMessageSnackBar(message, binding.clContainer)
+    }
+
+    private fun mShowMessageSnackBar(error: String, snackContainer: View) {
+        Snackbar.make(snackContainer, error, Snackbar.LENGTH_SHORT).show()
     }
 }

@@ -8,8 +8,10 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proy.easywork.R
+import com.proy.easywork.data.model.response.VMBusqTecnico
+import com.squareup.picasso.Picasso
 
-class TecnicoAdapter (val lista:List<String>, val onClick: (String)->Unit): RecyclerView.Adapter<TecnicoAdapter.TecnicoHolder>() {
+class TecnicoAdapter (val lista:List<VMBusqTecnico>, val onClick: (VMBusqTecnico)->Unit): RecyclerView.Adapter<TecnicoAdapter.TecnicoHolder>() {
 
     class TecnicoHolder(v: View) : RecyclerView.ViewHolder(v) {
         val tvNombre: TextView = v.findViewById(R.id.tvNombre)
@@ -20,12 +22,13 @@ class TecnicoAdapter (val lista:List<String>, val onClick: (String)->Unit): Recy
         val tvPerfil: TextView = v.findViewById(R.id.btPerfil)
 
         val rb : RatingBar = v.findViewById(R.id.rb)
-        fun bind(tecnico:  String, onClick: (String) -> Unit) {
-            tvNombre.text=tecnico
-            tvCantCliente.text="4"
-            tvRating.text="3"
-            rb.rating= 3.5F
-            tvProfesion.text="Gasfitero"
+        fun bind(tecnico:  VMBusqTecnico, onClick: (VMBusqTecnico) -> Unit) {
+            tvNombre.text=tecnico.nombreTecnico
+            tvCantCliente.text=tecnico.cantidadClientes
+            tvRating.text=tecnico.valoracion
+            rb.rating= tecnico.valoracion.toFloat()
+            tvProfesion.text=tecnico.categoria
+            Picasso.get().load(tecnico.urlImgTecnico).into(imgTecnico)
             tvPerfil.setOnClickListener { onClick(tecnico) }
         }
     }
