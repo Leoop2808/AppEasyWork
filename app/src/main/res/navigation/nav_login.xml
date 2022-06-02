@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
-    app:startDestination="@id/principalTecnicoFragment">
+    app:startDestination="@id/completeProfileTecnicoFragment">
 
      <fragment
         android:id="@+id/loginFragment"
@@ -207,4 +207,9 @@
         android:name="com.proy.easywork.presentation.PrincipalTecnicoFragment"
         android:label="fragment_principal_tecnico"
         tools:layout="@layout/fragment_principal_tecnico" />
+    <fragment
+        android:id="@+id/completeProfileTecnicoFragment"
+        android:name="com.proy.easywork.presentation.CompleteProfileTecnicoFragment"
+        android:label="fragment_complete_profile_tecnico"
+        tools:layout="@layout/fragment_complete_profile_tecnico" />
 </navigation>

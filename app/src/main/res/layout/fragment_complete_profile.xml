@@ -156,16 +156,16 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout30" />
 
     <LinearLayout
-        android:id="@+id/linearLayout27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23">
+    android:id="@+id/linearLayout27"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="8dp"
+    android:orientation="vertical"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView23">
 
     <TextView
         android:id="@+id/textView26"
@@ -181,7 +181,7 @@
         android:layout_height="45dp"
         android:ems="10"
         android:inputType="textEmailAddress" />
-    </LinearLayout>
+</LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout28"

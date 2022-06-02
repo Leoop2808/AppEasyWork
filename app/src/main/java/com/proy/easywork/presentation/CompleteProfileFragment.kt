@@ -28,30 +28,30 @@ class CompleteProfileFragment : Fragment() {
     }
 
     private fun spinnerAdaptador(list: List<String>): ArrayAdapter<String>? {
-        val adapterP: ArrayAdapter<String> =
-            object : ArrayAdapter<String>(
-                requireActivity(),
-                android.R.layout.simple_spinner_dropdown_item,
-                list
-            ) {
-                @SuppressLint("ResourceAsColor")
-                override fun getDropDownView(
-                    position: Int,
-                    convertView: View?,
-                    parent: ViewGroup
-                ): View {
-                    val view = super.getDropDownView(position, convertView, parent) as TextView
-                    view.setTextColor(Color.parseColor("#8C8C8C"))
-                    //view.setTypeface(view.typeface, Typeface.BOLD)
-                    return view
-                }
+            val adapterP: ArrayAdapter<String> =
+                object : ArrayAdapter<String>(
+                    requireActivity(),
+                    android.R.layout.simple_spinner_dropdown_item,
+                    list
+                ) {
+                    @SuppressLint("ResourceAsColor")
+                    override fun getDropDownView(
+                        position: Int,
+                        convertView: View?,
+                        parent: ViewGroup
+                    ): View {
+                        val view = super.getDropDownView(position, convertView, parent) as TextView
+                        view.setTextColor(Color.parseColor("#8C8C8C"))
+                        //view.setTypeface(view.typeface, Typeface.BOLD)
+                        return view
+                    }
 
-                override fun isEnabled(position: Int): Boolean {
-                    return position != 0
+                    override fun isEnabled(position: Int): Boolean {
+                        return position != 0
+                    }
                 }
-            }
-        adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        return adapterP
+            adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            return adapterP
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

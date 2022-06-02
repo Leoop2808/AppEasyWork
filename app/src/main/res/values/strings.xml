@@ -92,4 +92,7 @@
     <string name="numSolicitudesGenerales">0</string>
     <string name="responderSolicitudesGenerales">Responder</string>
 
+    <string name="completatuperfil">Completa tu perfil</string>
+
+    <string name="filtrocategorias">Filtro de categorias</string>
 </resources>
