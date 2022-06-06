@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/tecnicoFragment"
-        android:name="com.proy.easywork.presentation.principal.view.fragments.TecnicoFragment"
+        android:name="com.proy.easywork.presentation.tecnico.view.fragments.TecnicoFragment"
         android:label="fragment_tecnico"
         tools:layout="@layout/fragment_tecnico" />
 </navigation>

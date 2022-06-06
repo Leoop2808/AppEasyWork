@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.principal.view.fragments.TecnicoFragment"
-    android:background="#E6E7E8">
+    android:background="#E6E7E8"
+    tools:context=".presentation.tecnico.view.fragments.TecnicoFragment">
 
     <LinearLayout
         android:id="@+id/llytBarraNav"
@@ -58,11 +59,11 @@
             android:id="@+id/llytSolicitudesDirectas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="5dp"
-            android:padding="16dp"
+            android:background="@drawable/bg_rectangular"
             android:gravity="center"
-            android:background="@drawable/bg_rectangular">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/txtSolicitudesDirectas"
@@ -78,40 +79,40 @@
                 android:id="@+id/txtNumSolicitudesDirectas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/numSolicitudesDirectas"
-                android:gravity="center"
-                android:textSize="70dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
+                android:gravity="center"
                 android:padding="10dp"
+                android:text="@string/numSolicitudesDirectas"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="70dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtResponderSolicitudesDirectas"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_rounded"
-                android:gravity="center"
                 android:backgroundTint="@color/azul"
+                android:gravity="center"
                 android:text="@string/responderSolicitudesDirectas"
                 android:textColor="@color/tipografia_boton_login"
                 android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/llytSolicitudesGenerales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="5dp"
-            android:padding="16dp"
+            android:background="@drawable/bg_rectangular"
             android:gravity="center"
-            android:background="@drawable/bg_rectangular">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/txtSolicitudesGenerales"
@@ -127,30 +128,51 @@
                 android:id="@+id/txtNumSolicitudesGenerales"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/numSolicitudesDirectas"
-                android:gravity="center"
-                android:textSize="70sp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
+                android:gravity="center"
                 android:padding="10dp"
+                android:text="@string/numSolicitudesDirectas"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="70sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtResponderSolicitudesGenerales"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_rounded"
-                android:gravity="center"
                 android:backgroundTint="@color/azul"
+                android:gravity="center"
                 android:text="@string/responderSolicitudesDirectas"
                 android:textColor="@color/tipografia_boton_login"
                 android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B2FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:cardBackgroundColor="#B2FFFFFF"
+        app:cardElevation="10dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

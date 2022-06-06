@@ -95,18 +95,19 @@ class LoginRepository(aplication: Application): BaseRepository() {
         }
     }
 
-    suspend fun authenticate(user:String,password:String): MADataResult<VMAuthentication> {
+    suspend fun authenticate(user:String,password:String, rol: String): MADataResult<VMAuthentication> {
         return try {
 
             val gson = Gson()
             val type = object : TypeToken<RSErrorMessage>() {}.type
-            val result = mRemoteClient?.authentication(basicAuthentication,user,password)
+            val result = mRemoteClient?.authentication(basicAuthentication,rol,user,password)
             when (result?.code()) {
                 HttpURLConnection.HTTP_OK ->{
                     result.body()?.let {
                         val authentication = it.toAuthentication()
                         preferences.clearSession()
                         preferences.saveToken(authentication.getAuthenticationToken())
+                        preferences.saveRol("3")
                         preferences.saveSession(authentication.toUser())
                     }
                     MADataResult.Success(result.body()?.toAuthentication())
@@ -149,6 +150,7 @@ class LoginRepository(aplication: Application): BaseRepository() {
                         val authentication = it.toAuthentication()
                         preferences.clearSession()
                         preferences.saveToken(authentication.getAuthenticationToken())
+                        preferences.saveRol("3")
                         preferences.saveSession(authentication.toUser())
                     }
                     MADataResult.Success(result.body()?.toAuthentication())
@@ -193,6 +195,7 @@ class LoginRepository(aplication: Application): BaseRepository() {
                         val authentication = it.toAuthentication()
                         preferences.clearSession()
                         preferences.saveToken(authentication.getAuthenticationToken())
+                        preferences.saveRol("3")
                         preferences.saveSession(authentication.toUser())
                     }
                     MADataResult.Success(result.body()?.toAuthentication())
@@ -506,6 +509,7 @@ class LoginRepository(aplication: Application): BaseRepository() {
                         val authentication = it.toAuthentication()
                         preferences.clearSession()
                         preferences.saveToken(authentication.getAuthenticationToken())
+                        preferences.saveRol("3")
                         preferences.saveSession(authentication.toUser())
                     }
                     MADataResult.Success(result.body()?.toAuthentication())

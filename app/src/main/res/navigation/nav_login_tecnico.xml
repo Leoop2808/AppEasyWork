@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_login_tecnico"
+    app:startDestination="@id/loginTecnicoFragment">
+    <fragment
+        android:id="@+id/loginTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.LoginTecnicoFragment"
+        android:label="fragment_login_tecnico"
+        tools:layout="@layout/fragment_login_tecnico" >
+        <action
+            android:id="@+id/action_loginTecnicoFragment_to_loginCodePhoneAuthTecnicoFragment"
+            app:destination="@id/loginCodePhoneAuthTecnicoFragment" />
+        <action
+            android:id="@+id/action_loginTecnicoFragment_to_logInEmailPasswordTecnicoFragment"
+            app:destination="@id/logInEmailPasswordTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginCodePhoneAuthTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.LoginCodePhoneAuthTecnicoFragment"
+        android:label="fragment_login_code_phone_auth_tecnico"
+        tools:layout="@layout/fragment_login_code_phone_auth_tecnico" >
+        <action
+            android:id="@+id/action_loginCodePhoneAuthTecnicoFragment_to_phoneVerificationCodeAuthTecnicoFragment"
+            app:destination="@id/phoneVerificationCodeAuthTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneVerificationCodeAuthTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.PhoneVerificationCodeAuthTecnicoFragment"
+        android:label="fragment_phone_verification_code_auth_tecnico"
+        tools:layout="@layout/fragment_phone_verification_code_auth_tecnico" />
+    <fragment
+        android:id="@+id/logInEmailPasswordTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.LogInEmailPasswordTecnicoFragment"
+        android:label="fragment_log_in_email_password_tecnico"
+        tools:layout="@layout/fragment_log_in_email_password_tecnico" />
+</navigation>

@@ -15,7 +15,7 @@ interface MSharedPreferences {
     fun saveTokenFCM(tokenFCM: String)
     fun getTokenFCM():String
 
-    fun saveRol(rol: Int)
-    fun getRol():Int
+    fun saveRol(rol: String)
+    fun getRol():String
 
 }

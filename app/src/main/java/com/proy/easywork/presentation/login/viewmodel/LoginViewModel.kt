@@ -33,7 +33,7 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
     fun login(correo: String, password: String){
         _isViewLoading.value=true
         viewModelScope.launch {
-            when (val result = repository.authenticate(correo, password)) {
+            when (val result = repository.authenticate(correo, password, "3")) {
                 is MADataResult.Success -> {
                     _login.value = true
                 }

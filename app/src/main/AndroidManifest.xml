@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyWork">
         <activity
-            android:name=".presentation.principal.view.activities.TecnicoActivity"
+            android:name=".presentation.tecnico.view.activities.TecnicoActivity"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -37,6 +37,11 @@
             android:value="AIzaSyDQyDg72Q170XTM76H-T5sFdof4-141Z9I" />
         <activity
             android:name=".presentation.principal.view.activities.PrincipalActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".presentation.loginTecnico.view.activities.LoginTecnicoActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />

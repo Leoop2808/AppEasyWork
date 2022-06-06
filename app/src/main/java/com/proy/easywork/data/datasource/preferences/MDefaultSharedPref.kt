@@ -97,11 +97,11 @@ class MDefaultSharedPref(context: Context): MSharedPreferences {
         return preferences.getString(keyTokenFCM(), "") ?: ""
     }
 
-    override fun saveRol(rol: Int) {
-        editor.putInt(keyRol(), rol).apply()
+    override fun saveRol(rol: String) {
+        editor.putString(keyRol(), rol).apply()
     }
 
-    override fun getRol(): Int {
-        return preferences.getInt(keyRol(), 0)
+    override fun getRol(): String {
+        return preferences.getString(keyRol(), "") ?: ""
     }
 }

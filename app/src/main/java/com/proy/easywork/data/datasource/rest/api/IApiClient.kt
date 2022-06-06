@@ -14,6 +14,7 @@ interface IApiClient {
     @FormUrlEncoded
     @POST("Token")
     suspend fun authentication(@Header("Authorization") auth:String,
+                               @Header("rol") rol:String,
                                @Field("username") user: String,
                                @Field("password") password:String,
                                @Field("grant_type") grant_type:String="password"): Response<VMAuthenticationDTO>
@@ -97,4 +98,56 @@ interface IApiClient {
     suspend fun getPerfil(@Header("Authorization") auth:String,
                           @Body request: RQPerfil): Response<RSPerfilTecnico>
 
+    @POST("api/usuario/autenticacion/tecnico/google")
+    suspend fun authenticationGoogleTecnico(@Header("Authorization") auth:String,
+                                     @Body registro: RQAuthenticationGoogle):  Response<VMAuthenticationDTO>
+
+    @POST("api/usuario/autenticacion/tecnico/facebook")
+    suspend fun authenticationFacebookTecnico(@Header("Authorization") auth:String,
+                                       @Body registro: RQAuthenticationFacebook):  Response<VMAuthenticationDTO>
+
+    @POST("api/usuario/autenticacion/tecnico/envio-verificacion-celular")
+    suspend fun enviarCodigoCelularTecnico(
+        @Header("Authorization") token: String,
+        @Body request: RQCodigoCelular
+    ): Response<RSMessage>
+
+    @POST("api/usuario/autenticacion/tecnico/envio-verificacion-correo")
+    suspend fun enviarCodigoCorreoTecnico(
+        @Header("Authorization") token: String,
+        @Body request: RQCodigoCorreo
+    ): Response<RSMessage>
+
+    @POST("api/usuario/autenticacion/tecnico/verificar-codigo-verificacion-correo")
+    suspend fun verificarCodigoCorreoTecnico(
+        @Header("Authorization") token: String,
+        @Body request: RQVerificarCodigo): Response<RSMessage>
+
+    @POST("api/usuario/autenticacion/tecnico/verificar-codigo-verificacion-celular")
+    suspend fun verificarCodigoCelularTecnico(
+        @Header("Authorization") token: String,
+        @Body request: RQVerificarCodigoCelular): Response<RSMessage>
+
+
+    @POST("api/usuario/tecnico/envio-correo-codigo-recuperacion-clave")
+    suspend fun enviarCorreoContrasenaTecnico(
+        @Header("Authorization") token: String,
+        @Body request: RQCorreo
+    ): Response<RSMessage>
+
+    @PUT("api/usuario/tecnico/actualizar-clave")
+    suspend fun actualizarClaveTecnico(
+        @Header("Authorization") token: String,
+        @Body request: RQClave
+    ): Response<RSMessage>
+
+    @POST("api/usuario/tecnico/autenticacion/envio-autenticacion-celular")
+    suspend fun enviarCodigoAutenticacionCelularTecnico(
+        @Header("Authorization") token: String,
+        @Body request: RQCodigoCelular
+    ): Response<RSMessage>
+
+    @POST("api/usuario/tecnico/autenticacion/celular")
+    suspend fun authenticationPhoneTecnico(@Header("Authorization") auth:String,
+                                    @Body registro: RQAuthenticationPhone):  Response<VMAuthenticationDTO>
 }

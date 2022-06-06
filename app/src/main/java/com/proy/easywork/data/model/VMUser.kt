@@ -8,7 +8,7 @@ data class VMUser (val nombres:String,
               val mostrarRegistroUsuario:String,
               val mostrarVerificacionCelular:String,
               val mostrarVerificiacionCorreo:String,
-                val rol:String): Serializable {
+                   val rol:String): Serializable {
     fun isShowRegister()  = mostrarRegistroUsuario.equals("true",true)
     fun isShowVerifyPhone()  = mostrarVerificacionCelular.equals("true",false)
     fun isShowVerifyEmail()  = mostrarVerificiacionCorreo.equals("true",false)

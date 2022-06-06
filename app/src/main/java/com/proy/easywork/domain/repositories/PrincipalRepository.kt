@@ -26,7 +26,6 @@ class PrincipalRepository(aplication: Application) : BaseRepository(){
 
     suspend fun buscarTecnico(request: RQBusqueda): MADataResult<RSBusquedaTecnico> {
         return try {
-
             val gson = Gson()
             val type = object : TypeToken<RSErrorMessage>() {}.type
             val result = mRemoteClient?.buscarTecnicos(sp.getToken(), request)

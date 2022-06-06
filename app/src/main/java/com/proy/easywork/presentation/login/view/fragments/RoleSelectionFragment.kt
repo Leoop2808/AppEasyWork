@@ -11,7 +11,9 @@ import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.databinding.FragmentRoleSelectionBinding
-import com.proy.easywork.presentation.principal.view.activities.TecnicoActivity
+import com.proy.easywork.presentation.loginTecnico.view.activities.LoginTecnicoActivity
+import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
+import com.proy.easywork.presentation.tecnico.view.activities.TecnicoActivity
 
 class RoleSelectionFragment : Fragment() {
     val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
@@ -28,15 +30,13 @@ class RoleSelectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnCliente.setOnClickListener {
-            sp.saveTok("1")
+            sp.saveTok("3")
             Navigation.findNavController(it).navigate(R.id.action_roleSelectionFragment_to_loginFragment)
         }
 
         binding.btnTecnico.setOnClickListener {
             sp.saveTok("2")
-            val intent = Intent(activity, TecnicoActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            context?.let { it1 -> startActivity(LoginTecnicoActivity().newIntent(it1)) }
         }
     }
 
