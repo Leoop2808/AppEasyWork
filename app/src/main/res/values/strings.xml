@@ -106,4 +106,7 @@
     <string name="busca_tecnico_por">Busca a tu técnico por:</string>
     <string name="tu_zona">Tu Zona</string>
     <string name="tus_favoritos">Tus favoritos</string>
+    <string name="solicitudes_diarias">Solicitudes diarias:</string>
+    <string name="filtro_categorias">Filtro de categorías</string>
+    <string name="filtro_zonas">Filtro de zonas</string>
 </resources>

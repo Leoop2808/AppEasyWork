@@ -43,6 +43,39 @@
             android:src="@drawable/cerrar_sesion" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txtSolicDiarias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        android:text="@string/solicitudes_diarias"
+        android:textColor="@color/tipografia"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytBarraNav" />
+
+    <TextView
+        android:id="@+id/txtNumSolicDiarias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        android:text="X"
+        android:textColor="@color/tipografia"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSolicDiarias" />
+
     <LinearLayout
         android:id="@+id/llytSolicitudes"
         android:layout_width="wrap_content"
@@ -53,7 +86,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llytBarraNav">
+        app:layout_constraintTop_toBottomOf="@+id/txtNumSolicDiarias">
 
         <LinearLayout
             android:id="@+id/llytSolicitudesDirectas"
@@ -153,6 +186,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
+
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/pb"
         android:layout_width="match_parent"
@@ -175,4 +211,38 @@
                 android:indeterminate="true" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
+    <CheckBox
+        android:id="@+id/cbFiltroCategorias"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/filtro_categorias"
+        android:layoutDirection="rtl"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:background="@drawable/bg_rounded_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytSolicitudes" />
+
+    <CheckBox
+        android:id="@+id/cbFiltroZonas"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/filtro_zonas"
+        android:layoutDirection="rtl"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:background="@drawable/bg_rounded_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cbFiltroCategorias" />
 </androidx.constraintlayout.widget.ConstraintLayout>
