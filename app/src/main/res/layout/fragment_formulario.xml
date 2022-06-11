@@ -188,31 +188,92 @@
             android:textSize="15dp" />
 
         <LinearLayout
-            android:id="@+id/llytCheckBoxPago"
+            android:id="@+id/llytRadioBPago"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
-            <CheckBox
-                android:id="@+id/cbYape"
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/yape" />
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/cbPlin"
+                <RadioButton
+                    android:id="@+id/rbYape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="30dp"
+                    android:text="@string/yape"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/rbPlin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="30dp"
+                    android:text="@string/plin"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/rbEfectivo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="30dp"
+                    android:text="@string/efectivo"
+                    android:textSize="15dp" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llytBuscaTecnico"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytPrefPago">
+
+        <TextView
+            android:id="@+id/txtBuscaTecnico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/busca_tecnico_por"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp" />
+
+        <LinearLayout
+            android:id="@+id/llytBuscaTecnico2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/plin" />
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/cbEfectivo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/efectivo" />
+                <RadioButton
+                    android:id="@+id/rbTuZona"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="30dp"
+                    android:text="@string/tu_zona"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/rbTuFavorito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="30dp"
+                    android:text="@string/tus_favoritos"
+                    android:textSize="15dp" />
+            </RadioGroup>
         </LinearLayout>
     </LinearLayout>
 
@@ -232,6 +293,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llytPrefPago" />
+        app:layout_constraintTop_toBottomOf="@+id/llytBuscaTecnico" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
