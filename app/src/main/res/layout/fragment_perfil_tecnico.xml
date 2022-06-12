@@ -7,7 +7,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.principal.view.fragments.PerfilTecnicoFragment">
 
+    <LinearLayout
+        android:id="@+id/llytBarraNav"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#373b4d"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/imgLogoEasyWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/logo_cabecera" />
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvTecnico"
@@ -17,7 +35,7 @@
         app:cardCornerRadius="200dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout17">
+        app:layout_constraintTop_toBottomOf="@+id/llytBarraNav">
 
         <ImageView
             android:id="@+id/imgTecnico"
@@ -33,13 +51,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cvTecnico"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/llytBarraNav">
 
         <TextView
             android:id="@+id/tvNombre"
@@ -117,10 +134,10 @@
             android:background="@drawable/bg_rounded"
             android:backgroundTint="@color/azul"
             android:gravity="center"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
             android:paddingStart="24dp"
+            android:paddingTop="8dp"
             android:paddingEnd="24dp"
+            android:paddingBottom="8dp"
             android:text="@string/solicitar_servicio"
             android:textColor="@color/white"
             android:textSize="12sp"
