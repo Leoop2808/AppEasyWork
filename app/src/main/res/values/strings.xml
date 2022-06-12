@@ -111,4 +111,7 @@
     <string name="filtro_zonas">Filtro de zonas</string>
     <string name="descripcion_problema">Descripción del problema</string>
     <string name="cancelar">Cancelar</string>
+    <string name="nombre_usuario_cliente">Cliente</string>
+    <string name="medio_pago">Medio pago</string>
+    <string name="finalizar">Finalizar</string>
 </resources>
