@@ -36,7 +36,11 @@
         android:id="@+id/perfilTecnicoFragment"
         android:name="com.proy.easywork.presentation.principal.view.fragments.PerfilTecnicoFragment"
         android:label="fragment_perfil_tecnico"
-        tools:layout="@layout/fragment_perfil_tecnico" />
+        tools:layout="@layout/fragment_perfil_tecnico" >
+        <action
+            android:id="@+id/action_perfilTecnicoFragment_to_fragmentSelectCategories2"
+            app:destination="@id/fragmentSelectCategories2" />
+    </fragment>
     <fragment
         android:id="@+id/elegirTecnicoFragment"
         android:name="com.proy.easywork.presentation.principal.view.fragments.ElegirTecnicoFragment"

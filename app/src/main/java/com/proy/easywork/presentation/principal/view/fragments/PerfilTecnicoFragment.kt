@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -14,8 +16,10 @@ import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.data.model.request.RQBuscarTecnicosGeneral
 import com.proy.easywork.data.model.request.RQObtenerPerfilTecnico
+import com.proy.easywork.data.model.request.RQSolicitarServicio
 import com.proy.easywork.databinding.FragmentPerfilTecnicoBinding
 import com.proy.easywork.domain.repositories.PrincipalRepository
+import com.proy.easywork.presentation.principal.view.activities.PrincipalActivity
 import com.proy.easywork.presentation.principal.view.adapter.ComentarioAdapter
 import com.proy.easywork.presentation.principal.view.adapter.TecnicoAdapter
 import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
@@ -48,6 +52,13 @@ class PerfilTecnicoFragment : Fragment() {
     }
 
     private fun setUpUI() {
+        viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
+            showMessage("Solicitud generada")
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_perfilTecnicoFragment_to_fragmentSelectCategories2)
+            }
+        }
+
         viewModel.onMessageError.observe(viewLifecycleOwner){
             it?.let {
                 showMessage(it)
@@ -106,7 +117,21 @@ class PerfilTecnicoFragment : Fragment() {
     }
 
     private fun setUpEvents() {
-
+        binding.btSolicitar.setOnClickListener {
+            viewModel.solicitarServicio(
+                RQSolicitarServicio(
+                    (arguments?.getInt("idTecnicoCategoriaServicio")?:0),
+                    (arguments?.getString("codDistrito")?:""),
+                    (arguments?.getString("codMedioPago")?:""),
+                    (arguments?.getString("codCategoria")?:""),
+                    (arguments?.getString("codTipoBusqueda")?:""),
+                    (arguments?.getString("direccion")?:""),
+                    (arguments?.getString("problema")?:""),
+                    (arguments?.getDouble("latitud")?:0.0),
+                    (arguments?.getDouble("longitud")?:0.0)
+                )
+            )
+        }
     }
 
     private fun showMessage(message: String) {

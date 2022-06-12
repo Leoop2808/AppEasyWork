@@ -52,8 +52,7 @@ class ElegirTecnicoFragment : Fragment() {
                     (arguments?.getString("direccion")?:""),
                     (arguments?.getDouble("latitud")?:0.0),
                     (arguments?.getDouble("longitud")?:0.0),
-                    "10",
-//                    (arguments?.getString("codDistrito")?:""),
+                    (arguments?.getString("codDistrito")?:""),
                     (arguments?.getString("problema")?:""),
                     (arguments?.getString("codMedioPago")?:"")
                 )
@@ -65,8 +64,7 @@ class ElegirTecnicoFragment : Fragment() {
                     (arguments?.getString("direccion")?:""),
                     (arguments?.getDouble("latitud")?:0.0),
                     (arguments?.getDouble("longitud")?:0.0),
-                    "10",
-//                    (arguments?.getString("codDistrito")?:""),
+                    (arguments?.getString("codDistrito")?:""),
                     (arguments?.getString("problema")?:""),
                     (arguments?.getString("codMedioPago")?:"")
                 )
@@ -86,7 +84,17 @@ class ElegirTecnicoFragment : Fragment() {
             it?.let{
                 binding.rcvTecnicos.layoutManager= LinearLayoutManager(context)
                 binding.rcvTecnicos.adapter = TecnicoAdapter(it){
-                    val b = bundleOf(Pair("idTecnicoCategoriaServicio", it.datosTecnico.idTecnicoCategoriaServicio?:""))
+                    val b = bundleOf(Pair(
+                        "idTecnicoCategoriaServicio", it.datosTecnico.idTecnicoCategoriaServicio?:""),
+                        Pair("codMedioPago", (arguments?.getString("codMedioPago")?:"")),
+                        Pair("codDistrito", (arguments?.getString("codDistrito")?:"")),
+                        Pair("codCategoria", (arguments?.getString("codCategoria")?:"")),
+                        Pair("codTipoBusqueda", (arguments?.getString("codTipoBusqueda")?:"")),
+                        Pair("direccion", (arguments?.getString("direccion")?:"")),
+                        Pair("problema", (arguments?.getString("problema")?:"")),
+                        Pair("latitud", (arguments?.getDouble("latitud")?:0.0)),
+                        Pair("longitud", (arguments?.getDouble("longitud")?:0.0))
+                    )
 
                     view?.let{view->
                         Navigation.findNavController(view).navigate(R.id.action_elegirTecnicoFragment_to_perfilTecnicoFragment, b)

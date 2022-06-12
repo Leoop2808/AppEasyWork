@@ -129,8 +129,6 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
     }
 
     fun buscarTecnicosFavoritos(request: RQBuscarTecnicosGeneral){
-        Log.e("latitud", request.latitud.toString())
-        Log.e("longitud", request.longitud.toString())
         _isViewLoading.value = true
         viewModelScope.launch {
             when (val result = repository.buscarTecnicoFavoritos(request)) {
@@ -160,6 +158,29 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
             when (val result = repository.getPerfilTecnico(request)) {
                 is MADataResult.Success -> {
                     _perfilTecnico.value = result.data?.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+    fun solicitarServicio(request: RQSolicitarServicio){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.solicitarServicio(request)) {
+                is MADataResult.Success -> {
+                    _onMessageSuccesful.value = "true"
                 }
                 is MADataResult.Failure -> {
                     _onMessageError.value = result.e.message.toString()

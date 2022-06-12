@@ -163,10 +163,6 @@ class MapsFragment : Fragment(){
             val b = bundleOf(Pair("direccion",mDireccion), Pair("latitud",mLatLng?.latitude), Pair("longitud",mLatLng?.longitude), Pair("codCategoria", arguments?.getString("codCategoria")))
             Navigation.findNavController(it).navigate(R.id.action_mapsFragment_to_formularioFragment,b)
         }
-
-        binding.tvAtras.setOnClickListener {
-            Navigation.findNavController(it).popBackStack()
-        }
     }
 
 
