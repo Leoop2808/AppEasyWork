@@ -109,4 +109,6 @@
     <string name="solicitudes_diarias">Solicitudes diarias:</string>
     <string name="filtro_categorias">Filtro de categorías</string>
     <string name="filtro_zonas">Filtro de zonas</string>
+    <string name="descripcion_problema">Descripción del problema</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
