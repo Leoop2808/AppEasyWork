@@ -42,7 +42,6 @@
             android:src="@drawable/cerrar_sesion" />
     </LinearLayout>
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -51,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout24">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout24"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
