@@ -191,7 +191,7 @@ interface IApiClient {
     ): Response<RSMessage>
 
     @GET("api/tecnico/validar-servicio-en-proceso")
-    suspend fun tecnicovalidarServicioEnProceso(
+    suspend fun tecnicoValidarServicioEnProceso(
         @Header("Authorization") token: String): Response<RSValidarServicioEnProceso>
 
     @POST("api/tecnico/cancelar-servicio")

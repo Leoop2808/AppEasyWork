@@ -32,7 +32,7 @@ class LoginTecnicoViewModel (val repository: LoginTecnicoRepository): MAViewMode
     fun login(correo: String, password: String){
         _isViewLoading.value=true
         viewModelScope.launch {
-            when (val result = repository.authenticate(correo, password, "3")) {
+            when (val result = repository.authenticate(correo, password, "2")) {
                 is MADataResult.Success -> {
                     _login.value = true
                 }

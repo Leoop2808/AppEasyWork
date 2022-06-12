@@ -34,5 +34,45 @@
         android:id="@+id/logInEmailPasswordTecnicoFragment"
         android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.LogInEmailPasswordTecnicoFragment"
         android:label="fragment_log_in_email_password_tecnico"
-        tools:layout="@layout/fragment_log_in_email_password_tecnico" />
+        tools:layout="@layout/fragment_log_in_email_password_tecnico" >
+        <action
+            android:id="@+id/action_logInEmailPasswordTecnicoFragment_to_passwordRecoveryEmailTecnicoFragment"
+            app:destination="@id/passwordRecoveryEmailTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginNewPasswordRecoveryTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.LoginNewPasswordRecoveryTecnicoFragment"
+        android:label="fragment_login_new_password_recovery_tecnico"
+        tools:layout="@layout/fragment_login_new_password_recovery_tecnico" >
+        <action
+            android:id="@+id/action_loginNewPasswordRecoveryTecnicoFragment_to_successfulPasswordRecoveryTecnicoFragment"
+            app:destination="@id/successfulPasswordRecoveryTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRecoveryEmailTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.PasswordRecoveryEmailTecnicoFragment"
+        android:label="fragment_password_recovery_email_tecnico"
+        tools:layout="@layout/fragment_password_recovery_email_tecnico" >
+        <action
+            android:id="@+id/action_passwordRecoveryEmailTecnicoFragment_to_passwordRecoveryTecnicoFragment"
+            app:destination="@id/passwordRecoveryTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRecoveryTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.PasswordRecoveryTecnicoFragment"
+        android:label="fragment_password_recovery_tecnico"
+        tools:layout="@layout/fragment_password_recovery_tecnico" >
+        <action
+            android:id="@+id/action_passwordRecoveryTecnicoFragment_to_loginNewPasswordRecoveryTecnicoFragment"
+            app:destination="@id/loginNewPasswordRecoveryTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successfulPasswordRecoveryTecnicoFragment"
+        android:name="com.proy.easywork.presentation.loginTecnico.view.fragments.SuccessfulPasswordRecoveryTecnicoFragment"
+        android:label="fragment_successful_password_recovery_tecnico"
+        tools:layout="@layout/fragment_successful_password_recovery_tecnico" >
+        <action
+            android:id="@+id/action_successfulPasswordRecoveryTecnicoFragment_to_logInEmailPasswordTecnicoFragment"
+            app:destination="@id/logInEmailPasswordTecnicoFragment" />
+    </fragment>
 </navigation>

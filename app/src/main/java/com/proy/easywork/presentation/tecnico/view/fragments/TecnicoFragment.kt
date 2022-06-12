@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
@@ -19,9 +20,11 @@ import com.proy.easywork.databinding.FragmentTecnicoBinding
 import com.proy.easywork.domain.repositories.PrincipalRepository
 import com.proy.easywork.domain.repositories.TecnicoRepository
 import com.proy.easywork.presentation.principal.view.adapter.CategoriaAdapter
+import com.proy.easywork.presentation.principal.view.adapter.ComentarioAdapter
 import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
 import com.proy.easywork.presentation.splash.SplashActivity
 import com.proy.easywork.presentation.tecnico.viewmodel.TecnicoViewModel
+import com.squareup.picasso.Picasso
 
 
 class TecnicoFragment : Fragment() {
@@ -30,6 +33,11 @@ class TecnicoFragment : Fragment() {
     private val viewModel by viewModels<TecnicoViewModel> {
         TecnicoViewModel.TecnicoModelFactory(TecnicoRepository(activity?.application!!))
     }
+
+    private var flgServicioEnProceso = false
+    private var idServicioEnProceso = 0
+    private var flgOrderByCategorias = false
+    private var flgOrderByZonas = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,29 +49,51 @@ class TecnicoFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.tecnicoValidarServicioEnProceso()
+        viewModel.validServicioEnProceso.observe(viewLifecycleOwner){
+            it?.let {
+                flgServicioEnProceso = it.flgServicioEnProceso
+                idServicioEnProceso = it.idServicioEnProceso
+            }
+        }
 
-        capturarCheckBox()
+        if(flgServicioEnProceso){
+            binding.ntServEnProceso.visibility = View.GONE
+        }else{
+            binding.ntServEnProceso.visibility = View.VISIBLE
+        }
+
+        viewModel.obtenerSolicitudes()
         setUpUI()
         setUpEvents()
     }
 
     private fun capturarCheckBox() {
         if (binding.cbFiltroCategorias.isChecked()==true){
-            Toast.makeText(context,"Filtro de categorías activado",Toast.LENGTH_SHORT).show()
+            flgOrderByCategorias = true
         }
 
         if (binding.cbFiltroZonas.isChecked()==true){
-            Toast.makeText(context,"Filtro de zonas activado",Toast.LENGTH_SHORT).show()
+            flgOrderByZonas = true
         }
     }
 
     private fun setUpUI() {
+
+        viewModel.initSolicitudes.observe(viewLifecycleOwner){
+            it?.let {
+                binding.txtNumSolicDiarias.text=it.cantidadSolicitudesDia.toString()
+                binding.txtNumSolicitudesDirectas.text=it.cantidadSolicitudesDirectas.toString()
+                binding.txtNumSolicitudesGenerales.text=it.cantidadSolicitudesGenerales.toString()
+            }
+        }
+
         viewModel.onMessageError.observe(viewLifecycleOwner){
             it?.let {
                 showMessage(it)
             }
         }
-        
+
         viewModel.isViewLoading.observe(viewLifecycleOwner) {
             it.let {
                 if (it) {

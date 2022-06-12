@@ -23,7 +23,8 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/ic_users" />
+            android:src="@drawable/ic_users"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/imageView23"
@@ -41,16 +42,6 @@
             android:layout_weight="1"
             android:src="@drawable/cerrar_sesion" />
     </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout24"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -93,7 +84,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/ntServEnProceso"
                     android:layout_width="50dp"
                     android:layout_height="66dp"
                     android:layout_gravity="center"
