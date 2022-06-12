@@ -56,7 +56,7 @@ class PerfilTecnicoFragment : Fragment() {
         viewModel.idServicioSolicitado.observe(viewLifecycleOwner){
             showMessage("Solicitud generada")
             view?.let {
-                val b = bundleOf(Pair("idServicioEnProceso",it))
+                val b = bundleOf(Pair("idServicioEnProceso",viewModel.idServicioSolicitado.value))
                 Navigation.findNavController(it).navigate(R.id.action_perfilTecnicoFragment_to_visualizarSolicitudFragment, b)
             }
         }
@@ -120,8 +120,7 @@ class PerfilTecnicoFragment : Fragment() {
 
     private fun setUpEvents() {
         binding.btSolicitar.setOnClickListener {
-            AlertDialog().showMessage(requireContext(),"¿Está seguro de solicitar el técnico?","Si, Solicitar")
-            {
+            AlertDialog().showMessage(requireContext(),"¿Está seguro de solicitar el técnico?","Si", "No",{
                 viewModel.solicitarServicio(
                     RQSolicitarServicio(
                         (arguments?.getInt("idTecnicoCategoriaServicio")?:0),
@@ -135,7 +134,7 @@ class PerfilTecnicoFragment : Fragment() {
                         (arguments?.getDouble("longitud")?:0.0)
                     )
                 )
-            }
+            },{})
         }
     }
 

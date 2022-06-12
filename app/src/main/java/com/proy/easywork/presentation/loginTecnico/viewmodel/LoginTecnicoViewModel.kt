@@ -60,7 +60,8 @@ class LoginTecnicoViewModel (val repository: LoginTecnicoRepository): MAViewMode
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
                         "true" -> {
-                            _completeProfile.value = true
+//                            _completeProfile.value = true
+                            _login.value = true
                         }
                         "false" ->{
                             when (result.data?.flgCelularValidado){
@@ -68,7 +69,8 @@ class LoginTecnicoViewModel (val repository: LoginTecnicoRepository): MAViewMode
                                     _login.value = true
                                 }
                                 "false" -> {
-                                    _validatePhone.value = true
+//                                    _validatePhone.value = true
+                                    _login.value = true
                                 }
                             }
                         }
@@ -98,7 +100,8 @@ class LoginTecnicoViewModel (val repository: LoginTecnicoRepository): MAViewMode
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
                         "true" -> {
-                            _completeProfile.value = true
+//                            _completeProfile.value = true
+                            _login.value = true
                         }
                         "false" ->{
                             when (result.data?.flgCelularValidado){
@@ -106,7 +109,8 @@ class LoginTecnicoViewModel (val repository: LoginTecnicoRepository): MAViewMode
                                     _login.value = true
                                 }
                                 "false" -> {
-                                    _validatePhone.value = true
+//                                    _validatePhone.value = true
+                                    _login.value = true
                                 }
                             }
                         }

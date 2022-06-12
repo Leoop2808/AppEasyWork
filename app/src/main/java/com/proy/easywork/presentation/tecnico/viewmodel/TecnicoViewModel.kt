@@ -2,7 +2,9 @@ package com.proy.easywork.presentation.tecnico.viewmodel
 
 import androidx.lifecycle.*
 import com.proy.easywork.data.model.request.RQBuscarTecnicosGeneral
+import com.proy.easywork.data.model.request.RQClienteCancelarServicio
 import com.proy.easywork.data.model.request.RQObtenerSolicitudesGenerales
+import com.proy.easywork.data.model.request.RQTecnicoCancelarServicio
 import com.proy.easywork.data.model.response.*
 import com.proy.easywork.data.viewmodel.MAViewModel
 import com.proy.easywork.domain.MADataResult
@@ -21,6 +23,12 @@ class TecnicoViewModel (val repository: TecnicoRepository): MAViewModel(){
 
     private val _listaSolicitudes = MutableLiveData<MutableList<VMSolicitudGeneral>?>()
     val listaSolicitudes : LiveData<MutableList<VMSolicitudGeneral>?> = _listaSolicitudes
+
+    private val _servicioCancelado  = MutableLiveData<String>()
+    val servicioCancelado : LiveData<String> = _servicioCancelado
+
+    private val _servicioFinalizado  = MutableLiveData<String>()
+    val servicioFinalizado : LiveData<String> = _servicioFinalizado
 
     fun tecnicoValidarServicioEnProceso(){
         _isViewLoading.value = true
@@ -148,6 +156,54 @@ class TecnicoViewModel (val repository: TecnicoRepository): MAViewModel(){
             when (val result = repository.aceptarSolicitudServicio(idSolicitud)) {
                 is MADataResult.Success -> {
                     _onMessageSuccesful.value = "1"
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun cancelarSolicitudServicio(request: RQTecnicoCancelarServicio){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.cancelarSolicitudServicio(request)) {
+                is MADataResult.Success -> {
+                    _servicioCancelado.value = "1"
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun finalizarSolicitudServicio(request: RQTecnicoCancelarServicio){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.finalizarSolicitudServicio(request)) {
+                is MADataResult.Success -> {
+                    _servicioFinalizado.value = "1"
                 }
                 is MADataResult.Failure -> {
                     _onMessageError.value = result.e.message.toString()

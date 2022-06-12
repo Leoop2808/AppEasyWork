@@ -39,17 +39,18 @@ class SelectCategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.ntServEnProceso.visibility = View.GONE
         viewModel.clienteValidarServicioEnProceso()
         viewModel.validServicioEnProceso.observe(viewLifecycleOwner){
             flgServicioEnProceso = it.flgServicioEnProceso
             idServicioEnProceso = it.idServicioEnProceso
+            if(flgServicioEnProceso){
+                binding.ntServEnProceso.visibility = View.VISIBLE
+            }else{
+                binding.ntServEnProceso.visibility = View.GONE
+            }
         }
 
-        if(flgServicioEnProceso){
-            binding.ntServEnProceso.visibility = View.GONE
-        }else{
-            binding.ntServEnProceso.visibility = View.VISIBLE
-        }
         setUpUI()
         setUpEvents()
     }

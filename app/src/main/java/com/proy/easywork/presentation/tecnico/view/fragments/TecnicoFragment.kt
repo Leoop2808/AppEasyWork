@@ -49,16 +49,16 @@ class TecnicoFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.ntServEnProceso.visibility = View.GONE
         viewModel.tecnicoValidarServicioEnProceso()
         viewModel.validServicioEnProceso.observe(viewLifecycleOwner){
             flgServicioEnProceso = it.flgServicioEnProceso
             idServicioEnProceso = it.idServicioEnProceso
-        }
-
-        if(flgServicioEnProceso){
-            binding.ntServEnProceso.visibility = View.GONE
-        }else{
-            binding.ntServEnProceso.visibility = View.VISIBLE
+            if(flgServicioEnProceso){
+                binding.ntServEnProceso.visibility = View.VISIBLE
+            }else{
+                binding.ntServEnProceso.visibility = View.GONE
+            }
         }
 
         viewModel.obtenerSolicitudes()

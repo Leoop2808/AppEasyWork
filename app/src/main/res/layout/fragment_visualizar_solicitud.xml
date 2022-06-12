@@ -118,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/categoria"
+            android:textStyle="bold"
             android:textColor="@color/tipografia"
             android:textSize="15dp" />
 
@@ -127,6 +128,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:gravity="center_vertical"
             android:lineSpacingMultiplier="1.5"
             android:text="TextoCategoría"
             android:textSize="17dp" />
@@ -149,6 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/descripcion_problema"
+            android:textStyle="bold"
             android:textColor="@color/tipografia"
             android:textSize="15dp" />
 
@@ -158,6 +161,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:gravity="center_vertical"
             android:lineSpacingMultiplier="1.5"
             android:text="TextoProblema"
             android:textSize="17dp" />
@@ -179,6 +183,7 @@
             android:id="@+id/labelNombreDistrito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/distrito"
             android:textColor="@color/tipografia"
             android:textSize="15dp" />
@@ -189,6 +194,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:gravity="center_vertical"
             android:lineSpacingMultiplier="1.5"
             android:text="TextoNombreDistrito"
             android:textSize="17dp" />
@@ -210,6 +216,7 @@
             android:id="@+id/labelnombreMedioPago"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/medio_pago"
             android:textColor="@color/tipografia"
             android:textSize="15dp" />
@@ -220,6 +227,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:gravity="center_vertical"
             android:lineSpacingMultiplier="1.5"
             android:text="TextonombreMedioPago"
             android:textSize="17dp" />
@@ -241,6 +249,7 @@
             android:id="@+id/labelnDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/direccion"
             android:textColor="@color/tipografia"
             android:textSize="15dp" />
@@ -251,6 +260,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:gravity="center_vertical"
             android:lineSpacingMultiplier="1.5"
             android:text="TextoDireccion"
             android:textSize="17dp" />

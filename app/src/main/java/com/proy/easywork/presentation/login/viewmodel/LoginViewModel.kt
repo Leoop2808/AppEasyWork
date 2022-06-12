@@ -61,7 +61,8 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
                         "true" -> {
-                            _completeProfile.value = true
+//                            _completeProfile.value = true
+                            _login.value = true
                         }
                         "false" ->{
                             when (result.data?.flgCelularValidado){
@@ -69,7 +70,8 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                                     _login.value = true
                                 }
                                 "false" -> {
-                                    _validatePhone.value = true
+                                    _login.value = true
+//                                    _validatePhone.value = true
                                 }
                             }
                         }
@@ -99,7 +101,8 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                 is MADataResult.Success -> {
                     when (result.data?.flgMostrarRegistroUsuario) {
                         "true" -> {
-                            _completeProfile.value = true
+//                            _completeProfile.value = true
+                            _login.value = true
                         }
                         "false" ->{
                             when (result.data?.flgCelularValidado){
@@ -107,7 +110,8 @@ class LoginViewModel (val repository: LoginRepository): MAViewModel () {
                                     _login.value = true
                                 }
                                 "false" -> {
-                                    _validatePhone.value = true
+//                                    _validatePhone.value = true
+                                    _login.value = true
                                 }
                             }
                         }

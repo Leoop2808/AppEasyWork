@@ -82,11 +82,10 @@ class VisualizarSolicitudesFragment : Fragment() {
                 binding.rcvTecnicos.layoutManager= LinearLayoutManager(context)
                 binding.rcvTecnicos.adapter = SolicitudAdapter(it){
                     view?.let{view->
-                        AlertDialog().showMessage(requireContext(),"¿Está seguro de ACEPTAR la solicitud de servicio?","Si, Aceptar")
-                        {
+                        AlertDialog().showMessage(requireContext(),"¿Está seguro de ACEPTAR la solicitud de servicio?","Si","No", {
                             idServicio = it.idServicio
                             viewModel.aceptarSolicitudServicio(it.idServicio)
-                        }
+                        },{})
                     }
 
                 }

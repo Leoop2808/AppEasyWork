@@ -11,6 +11,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
+import com.proy.easywork.data.model.request.RQClienteCancelarServicio
+import com.proy.easywork.data.model.request.RQTecnicoCancelarServicio
 import com.proy.easywork.databinding.FragmentVisualizarSolicitudBinding
 import com.proy.easywork.databinding.FragmentVisualizarSolicitudTecnicoBinding
 import com.proy.easywork.domain.repositories.PrincipalRepository
@@ -60,6 +62,20 @@ class VisualizarSolicitudTecnicoFragment : Fragment() {
         }
     }
     private fun setUpUI() {
+        viewModel.servicioCancelado.observe(viewLifecycleOwner){
+            showMessage("Solicitud de servicio cancelada")
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_visualizarSolicitudTecnicoFragment_to_tecnicoFragment)
+            }
+        }
+
+        viewModel.servicioFinalizado.observe(viewLifecycleOwner){
+            showMessage("Servicio finalizado correctamente")
+            view?.let {
+                Navigation.findNavController(it).navigate(R.id.action_visualizarSolicitudTecnicoFragment_to_tecnicoFragment)
+            }
+        }
+
         viewModel.onMessageError.observe(viewLifecycleOwner){
             it?.let {
                 showMessage(it)
@@ -82,10 +98,14 @@ class VisualizarSolicitudTecnicoFragment : Fragment() {
 
     private fun setUpEvents() {
         binding.btnCancelar.setOnClickListener {
-            AlertDialog().showMessage(requireContext(),"¿Está seguro de CANCELAR la solicitud de servicio?","Si, Cancelar"){}
+            AlertDialog().showMessage(requireContext(),"¿Está seguro de CANCELAR la solicitud de servicio?","Si","No",{
+                viewModel.cancelarSolicitudServicio(RQTecnicoCancelarServicio(arguments?.getInt("idServicioEnProceso")?:0,""));
+            },{})
         }
         binding.btnFinalizar.setOnClickListener {
-            AlertDialog().showMessage(requireContext(),"¿Está seguro de FINALIZAR la solicitud de servicio?","Si, Finalizar"){}
+            AlertDialog().showMessage(requireContext(),"¿Está seguro de FINALIZAR la solicitud de servicio?","Si","No",{
+                viewModel.finalizarSolicitudServicio(RQTecnicoCancelarServicio(arguments?.getInt("idServicioEnProceso")?:0,""));
+            },{})
         }
     }
 

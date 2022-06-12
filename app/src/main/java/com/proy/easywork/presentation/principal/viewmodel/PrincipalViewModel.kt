@@ -38,6 +38,8 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
     private val _idServicioSolicitado = MutableLiveData<Int>()
     val idServicioSolicitado : LiveData<Int> = _idServicioSolicitado
 
+    private val _servicioCancelado  = MutableLiveData<String>()
+    val servicioCancelado : LiveData<String> = _servicioCancelado
 
     fun getCategoria(codCategoria : String){
         _isViewLoading.value = true
@@ -254,6 +256,31 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
             _isViewLoading.value = false
         }
     }
+
+    fun cancelarSolicitudServicio(request: RQClienteCancelarServicio){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.cancelarSolicitudServicio(request)) {
+                is MADataResult.Success -> {
+                    _servicioCancelado.value = "1"
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
 
     class PrincipalModelFactory(private val repository: PrincipalRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

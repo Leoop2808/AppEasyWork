@@ -130,6 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/categoria"
+            android:textStyle="bold"
             android:textColor="@color/tipografia"
             android:textSize="15dp" />
 
@@ -139,6 +140,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:gravity="center_vertical"
             android:lineSpacingMultiplier="1.5"
             android:text="TextoCategoria"
             android:textSize="17dp" />
@@ -161,6 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/descripcion_problema"
+            android:textStyle="bold"
             android:textColor="@color/tipografia"
             android:textSize="15dp" />
 
@@ -170,6 +173,7 @@
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:gravity="center_vertical"
             android:lineSpacingMultiplier="1.5"
             android:text="TextoProblema"
             android:textSize="17dp" />
@@ -193,6 +197,7 @@
             android:layout_height="wrap_content"
             android:text="@string/distrito"
             android:textColor="@color/tipografia"
+            android:textStyle="bold"
             android:textSize="15dp" />
 
         <TextView
@@ -203,6 +208,7 @@
             android:inputType="textPersonName"
             android:lineSpacingMultiplier="1.5"
             android:text="TextonombreDistrito"
+            android:gravity="center_vertical"
             android:textSize="17dp" />
     </LinearLayout>
 
@@ -224,6 +230,7 @@
             android:layout_height="wrap_content"
             android:text="@string/medio_pago"
             android:textColor="@color/tipografia"
+            android:textStyle="bold"
             android:textSize="15dp" />
 
         <TextView
@@ -234,6 +241,7 @@
             android:inputType="textPersonName"
             android:lineSpacingMultiplier="1.5"
             android:text="TextonombreMedioPago"
+            android:gravity="center_vertical"
             android:textSize="17dp" />
     </LinearLayout>
 
@@ -255,6 +263,7 @@
             android:layout_height="wrap_content"
             android:text="@string/direccion"
             android:textColor="@color/tipografia"
+            android:textStyle="bold"
             android:textSize="15dp" />
 
         <TextView
@@ -264,6 +273,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:lineSpacingMultiplier="1.5"
+            android:gravity="center_vertical"
             android:text="TextoDireccion"
             android:textSize="17dp" />
     </LinearLayout>
