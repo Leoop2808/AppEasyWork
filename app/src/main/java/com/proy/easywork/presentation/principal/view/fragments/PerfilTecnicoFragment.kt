@@ -12,12 +12,15 @@ import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
+import com.proy.easywork.data.model.request.RQBuscarTecnicosGeneral
+import com.proy.easywork.data.model.request.RQObtenerPerfilTecnico
 import com.proy.easywork.databinding.FragmentPerfilTecnicoBinding
 import com.proy.easywork.domain.repositories.PrincipalRepository
 import com.proy.easywork.presentation.principal.view.adapter.ComentarioAdapter
 import com.proy.easywork.presentation.principal.view.adapter.TecnicoAdapter
 import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
 import com.proy.easywork.presentation.splash.SplashActivity
+import com.squareup.picasso.Picasso
 
 
 class PerfilTecnicoFragment : Fragment() {
@@ -39,6 +42,9 @@ class PerfilTecnicoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpUI()
         setUpEvents()
+        viewModel.getPerfilTecnico(
+            RQObtenerPerfilTecnico(arguments?.getInt("idTecnicoCategoriaServicio")?:0)
+        )
     }
 
     private fun setUpUI() {
@@ -48,15 +54,14 @@ class PerfilTecnicoFragment : Fragment() {
             }
         }
 
-        //viewModel.buscarTecnicos(RQBusqueda())
         viewModel.perfilTecnico.observe(viewLifecycleOwner){
             it?.let {
-
+                Picasso.get().load(it.urlImagenTecnico).into(binding.imgTecnico)
                 binding.tvNombre.text=it.nombreTecnico
                 binding.tvProfesion.text=it.categoria
                 binding.tvCantClientes.text=it.cantidadClientes
-                binding.tvEstrella.text= it.datosValoracion.promedioEstrellas.toString()
-                binding.tvResenas.text=it.cantidadReseñas+"  reseñas"
+                binding.tvEstrellaProm.text= it.datosValoracion.promedioEstrellas.toString()
+                binding.tvResenas.text=it.cantidadResenias.toString()+"  reseñas"
 
                 binding.tvCant1.text= it.datosValoracion.cantidad1Estrellas.toString()
                 binding.tvCant2.text= it.datosValoracion.cantidad2Estrellas.toString()
@@ -69,6 +74,7 @@ class PerfilTecnicoFragment : Fragment() {
                 binding.progbar3.max=5
                 binding.progbar4.max=5
                 binding.progbar5.max=5
+                binding.promValoracion.max=5
 
                 binding.progbar1.progress=it.datosValoracion.cantidad1Estrellas
                 binding.progbar2.progress=it.datosValoracion.cantidad2Estrellas
@@ -76,6 +82,7 @@ class PerfilTecnicoFragment : Fragment() {
                 binding.progbar4.progress=it.datosValoracion.cantidad4Estrellas
                 binding.progbar5.progress=it.datosValoracion.cantidad5Estrellas
 
+                binding.promValoracion.progress=it.datosValoracion.promedioEstrellas
 
                 binding.rcvComentario.layoutManager= LinearLayoutManager(context)
                 binding.rcvComentario.adapter = ComentarioAdapter(it.listaComentarios){

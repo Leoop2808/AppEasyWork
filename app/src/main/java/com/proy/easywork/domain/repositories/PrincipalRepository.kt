@@ -8,14 +8,8 @@ import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.data.db.entity.CategoriaServicio
 import com.proy.easywork.data.db.entity.Distrito
 import com.proy.easywork.data.exception.DefaultException
-import com.proy.easywork.data.model.request.RQBuscarTecnicosGeneral
-import com.proy.easywork.data.model.request.RQBusqueda
-import com.proy.easywork.data.model.request.RQDispositivo
-import com.proy.easywork.data.model.request.RQPerfil
-import com.proy.easywork.data.model.response.RSBuscarTecnicosGeneral
-import com.proy.easywork.data.model.response.RSBusquedaTecnico
-import com.proy.easywork.data.model.response.RSErrorMessage
-import com.proy.easywork.data.model.response.RSPerfilTecnico
+import com.proy.easywork.data.model.request.*
+import com.proy.easywork.data.model.response.*
 import com.proy.easywork.domain.BaseRepository
 import com.proy.easywork.domain.MADataResult
 import java.net.HttpURLConnection
@@ -110,12 +104,12 @@ class PrincipalRepository(aplication: Application) : BaseRepository(){
         }
     }
 
-    suspend fun getPerfilTecnico(request: RQPerfil): MADataResult<RSPerfilTecnico> {
+    suspend fun getPerfilTecnico(request: RQObtenerPerfilTecnico): MADataResult<RSObtenerPerfilTecnico> {
         return try {
 
             val gson = Gson()
             val type = object : TypeToken<RSErrorMessage>() {}.type
-            val result = mRemoteClient?.getPerfil(sp.getToken(), request)
+            val result = mRemoteClient?.obtenerPerfilTecnico(sp.getToken(), request)
             when (result?.code()) {
                 HttpURLConnection.HTTP_OK ->{
                     MADataResult.Success(result.body())

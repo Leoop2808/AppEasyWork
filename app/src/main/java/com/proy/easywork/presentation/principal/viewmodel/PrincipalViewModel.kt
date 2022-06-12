@@ -4,13 +4,11 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.proy.easywork.data.db.entity.CategoriaServicio
 import com.proy.easywork.data.db.entity.Distrito
-import com.proy.easywork.data.model.request.RQBuscarTecnicosGeneral
-import com.proy.easywork.data.model.request.RQBusqueda
-import com.proy.easywork.data.model.request.RQCodigoCelular
-import com.proy.easywork.data.model.request.RQPerfil
+import com.proy.easywork.data.model.request.*
 import com.proy.easywork.data.model.response.VMBusqTecnico
 import com.proy.easywork.data.model.response.VMBusqTecnicoGeneral
 import com.proy.easywork.data.model.response.VMPerfil
+import com.proy.easywork.data.model.response.VMPerfilTecnico
 import com.proy.easywork.data.viewmodel.MAViewModel
 import com.proy.easywork.domain.MADataResult
 import com.proy.easywork.domain.repositories.LoginRepository
@@ -28,8 +26,8 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
     private val _listaTecnicos = MutableLiveData<MutableList<VMBusqTecnicoGeneral>?>()
     val listaTecnicos : LiveData<MutableList<VMBusqTecnicoGeneral>?> = _listaTecnicos
 
-    private val _perfilTecnico = MutableLiveData<VMPerfil>()
-    val perfilTecnico : LiveData<VMPerfil> = _perfilTecnico
+    private val _perfilTecnico = MutableLiveData<VMPerfilTecnico>()
+    val perfilTecnico : LiveData<VMPerfilTecnico> = _perfilTecnico
 
     private val _nombreCategoria = MutableLiveData<String>()
     val nombreCategoria : LiveData<String> = _nombreCategoria
@@ -156,7 +154,7 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
         }
     }
 
-    fun getPerfilTecnico(request: RQPerfil){
+    fun getPerfilTecnico(request: RQObtenerPerfilTecnico){
         _isViewLoading.value = true
         viewModelScope.launch {
             when (val result = repository.getPerfilTecnico(request)) {

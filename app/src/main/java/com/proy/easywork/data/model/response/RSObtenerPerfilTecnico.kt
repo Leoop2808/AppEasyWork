@@ -15,7 +15,7 @@ data class VMPerfilTecnico(
                     val cantidadClientes: String,
                     val flgCorazon: Boolean,
                     val datosValoracion: VMTecnicoValoracion,
-                    val cantidadReseñas: String,
+                    val cantidadResenias: String,
                     val listaComentarios: MutableList<VMPerfilComentario> = mutableListOf()): Serializable
 
 data class VMTecnicoValoracion(val cantidad5Estrellas: Int,

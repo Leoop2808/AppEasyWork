@@ -7,16 +7,17 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proy.easywork.R
+import com.proy.easywork.data.model.response.VMPerfilComentario
 import com.proy.easywork.data.model.response.VMcomentario
 
-class ComentarioAdapter(val lista:List<VMcomentario>, val onClick: (VMcomentario)->Unit) : RecyclerView.Adapter<ComentarioAdapter.ComentarioHolder>(){
+class ComentarioAdapter(val lista:List<VMPerfilComentario>, val onClick: (VMPerfilComentario)->Unit) : RecyclerView.Adapter<ComentarioAdapter.ComentarioHolder>(){
 
     class ComentarioHolder(v: View) : RecyclerView.ViewHolder(v) {
         val tvNombre: TextView = v.findViewById(R.id.tvNombre)
         val tvComentario: TextView = v.findViewById(R.id.tvComentario)
         val tvServicio: TextView = v.findViewById(R.id.tvServicio)
         val rb : RatingBar = v.findViewById(R.id.rb)
-        fun bind(tecnico:  VMcomentario, onClick: (VMcomentario) -> Unit) {
+        fun bind(tecnico:  VMPerfilComentario, onClick: (VMPerfilComentario) -> Unit) {
             tvNombre.text="Por ${tecnico.nombreUsuario} el ${tecnico.fechaComentario}"
             tvComentario.text=tecnico.comentario
             rb.rating= tecnico.cantEstrellas *1.0F
