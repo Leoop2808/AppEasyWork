@@ -115,4 +115,6 @@
     <string name="medio_pago">Medio pago</string>
     <string name="finalizar">Finalizar</string>
     <string name="solicitudes">Solicitudes</string>
+    <string name="seguro_cancelar">¿Está seguro que desea cancelar su solicitud?</string>
+    <string name="motivo_cancelar">Sí deseas cancelar tu servicio, cuéntanos el motivo.</string>
 </resources>

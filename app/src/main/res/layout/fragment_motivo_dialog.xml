@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.principal.view.fragments.MotivoDialogFragment"
+    android:background="#E6E7E8">
+
+    <TextView
+        android:id="@+id/txtDialogSeguroCancelar"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        android:padding="5dp"
+        android:text="@string/seguro_cancelar"
+        android:textColor="@color/tipografia"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout20"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDialogSeguroCancelar">
+
+        <TextView
+            android:id="@+id/txtllytDescProblema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.5"
+            android:text="@string/motivo_cancelar"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp" />
+
+        <EditText
+            android:id="@+id/etDescProblema"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="textMultiLine"
+            android:lineSpacingMultiplier="1.4"
+            android:lines="5"
+            android:maxLines="5" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnSi"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_rounded"
+        android:backgroundTint="@color/rojo"
+        android:gravity="center"
+        android:text="Sí"
+        android:textColor="@color/tipografia_boton_login"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout20" />
+
+    <TextView
+        android:id="@+id/btnNo"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/bg_rounded"
+        android:backgroundTint="@color/verde"
+        android:gravity="center"
+        android:text="No"
+        android:textColor="@color/tipografia_boton_login"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
