@@ -51,10 +51,8 @@ class TecnicoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.tecnicoValidarServicioEnProceso()
         viewModel.validServicioEnProceso.observe(viewLifecycleOwner){
-            it?.let {
-                flgServicioEnProceso = it.flgServicioEnProceso
-                idServicioEnProceso = it.idServicioEnProceso
-            }
+            flgServicioEnProceso = it.flgServicioEnProceso
+            idServicioEnProceso = it.idServicioEnProceso
         }
 
         if(flgServicioEnProceso){
@@ -64,6 +62,7 @@ class TecnicoFragment : Fragment() {
         }
 
         viewModel.obtenerSolicitudes()
+
         setUpUI()
         setUpEvents()
     }
@@ -114,27 +113,29 @@ class TecnicoFragment : Fragment() {
                 Navigation.findNavController(requireView()).navigate(R.id.action_tecnicoFragment_to_visualizarSolicitudTecnicoFragment,b)
             }
         }
-    }
 
-    private fun setUpEvents() {
         binding.btSolicitudDirecta.setOnClickListener {
-            if(!flgServicioEnProceso){
+            if(flgServicioEnProceso){
+                showMessage("Usted ya cuenta con una solicitud de servicio en proceso")
+            }else{
                 capturarFiltroCategoriaZona()
                 val b = bundleOf(Pair("codTipoBusqueda","1"),Pair("flgOrderByCategoria",flgOrderByCategoria),Pair("flgOrderByZona",flgOrderByZona))
                 Navigation.findNavController(requireView()).navigate(R.id.action_tecnicoFragment_to_visualizarSolicitudesFragment,b)
-            }else{
-                showMessage("Usted ya cuenta con una solicitud de servicio en proceso")
             }
         }
         binding.btSolicitudGeneral.setOnClickListener {
-            if(!flgServicioEnProceso){
+            if(flgServicioEnProceso){
+                showMessage("Usted ya cuenta con una solicitud de servicio en proceso")
+            }else{
                 capturarFiltroCategoriaZona()
                 val b = bundleOf(Pair("codTipoBusqueda","2"),Pair("flgOrderByCategoria",flgOrderByCategoria),Pair("flgOrderByZona",flgOrderByZona))
                 Navigation.findNavController(requireView()).navigate(R.id.action_tecnicoFragment_to_visualizarSolicitudesFragment,b)
-            }else{
-                showMessage("Usted ya cuenta con una solicitud de servicio en proceso")
             }
         }
+    }
+
+    private fun setUpEvents() {
+
     }
 
     private fun showMessage(message: String) {
