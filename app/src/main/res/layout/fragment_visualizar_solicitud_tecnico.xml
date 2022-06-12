@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.tecnico.view.fragments.VisualizarSolicitudTecnicoFragment"
+    android:background="#E6E7E8">
+
+    <LinearLayout
+        android:id="@+id/llytBarraNav"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#373b4d"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgUsuario"
+            android:layout_width="10dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/ic_users"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/imgLogoEasyWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/logo_cabecera" />
+
+        <ImageView
+            android:id="@+id/imgCerrarSesion"
+            android:layout_width="10dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/cerrar_sesion"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llytPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytNombreUsuarioCliente">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvTecnico"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="200dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llytBarraNav">
+
+            <ImageView
+                android:id="@+id/imgTecnico"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/limpieza" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtNombrePerfil"
+            android:layout_width="250dp"
+            android:layout_height="66dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:lineSpacingMultiplier="1.5"
+            android:text="Eddy Leonardo Ochoa Palacios Cliente"
+            android:textColor="@color/tipografia"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llytNombreUsuarioCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytBarraNav">
+
+        <TextView
+            android:id="@+id/labelNombreUsuarioCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_usuario_cliente"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp"
+            android:textStyle="bold
+"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llynombreCategoriaServicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytPerfil">
+
+        <TextView
+            android:id="@+id/labelnombreCategoriaServicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/categoria"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtnombreCategoriaServicio"
+            android:layout_width="337dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:lineSpacingMultiplier="1.5"
+            android:inputType="textPersonName"
+            android:text="TextoCategoria"
+            android:textSize="17dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llyDescripcionProblema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llynombreCategoriaServicio">
+
+        <TextView
+            android:id="@+id/labelDescripcionProblema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/descripcion_problema"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtDescripcionProblema"
+            android:layout_width="337dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:lineSpacingMultiplier="1.5"
+            android:inputType="textPersonName"
+            android:text="TextoProblema"
+            android:textSize="17dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llynombreDistrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llyDescripcionProblema">
+
+        <TextView
+            android:id="@+id/labelnombreDistrito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/distrito"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtnombreDistrito"
+            android:layout_width="337dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:lineSpacingMultiplier="1.5"
+            android:inputType="textPersonName"
+            android:text="TextonombreDistrito"
+            android:textSize="17dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llynombreMedioPago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llynombreDistrito">
+
+        <TextView
+            android:id="@+id/labelnombreMedioPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/medio_pago"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtnombreMedioPago"
+            android:layout_width="337dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:lineSpacingMultiplier="1.5"
+            android:inputType="textPersonName"
+            android:text="TextonombreMedioPago"
+            android:textSize="17dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llytDireccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llynombreMedioPago">
+
+        <TextView
+            android:id="@+id/labelnDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/direccion"
+            android:textColor="@color/tipografia"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/txtDireccion"
+            android:layout_width="337dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:lineSpacingMultiplier="1.5"
+            android:inputType="textPersonName"
+            android:text="TextoDireccion"
+            android:textSize="17dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnCancelar"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_rounded"
+        android:backgroundTint="@color/rojo"
+        android:gravity="center"
+        android:text="@string/cancelar"
+        android:textColor="@color/tipografia_boton_login"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytDireccion" />
+
+    <TextView
+        android:id="@+id/btnFinalizar"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/bg_rounded"
+        android:backgroundTint="@color/verde"
+        android:gravity="center"
+        android:text="@string/finalizar"
+        android:textColor="@color/tipografia_boton_login"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llytDireccion" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
