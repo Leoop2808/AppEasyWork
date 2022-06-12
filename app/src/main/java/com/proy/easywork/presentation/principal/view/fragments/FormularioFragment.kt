@@ -122,7 +122,7 @@ class FormularioFragment : Fragment() {
                     Pair("latitud",arguments?.getDouble("latitud")?:0.0),
                     Pair("longitud",arguments?.getDouble("longitud")?:0.0),
                     Pair("codCategoria", arguments?.getString("codCategoria")),
-                    Pair("codDistrito", codDistrito),
+                    Pair("codDistrito", listaDistrito[binding.spinnerDistrito.selectedItemPosition-1].codDistrito),
                     Pair("problema", binding.etDescProblema.text.toString()),
                     Pair("codMedioPago", medioPago),
                     Pair("codTipoBusqueda", tipoBusqueda))
