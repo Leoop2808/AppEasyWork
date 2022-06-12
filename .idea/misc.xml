@@ -48,9 +48,11 @@
         <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/fragment_tecnico.xml" value="0.25" />
         <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/fragment_visualizar_solicitud.xml" value="0.2984375" />
         <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/fragment_visualizar_solicitud_tecnico.xml" value="0.2984375" />
+        <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/fragment_visualizar_solicitudes.xml" value="0.2578125" />
         <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/item_categoria.xml" value="0.26510416666666664" />
         <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/item_comentario.xml" value="0.26510416666666664" />
-        <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/item_tecnico.xml" value="0.5" />
+        <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/item_solicitud.xml" value="0.33" />
+        <entry key="..\:/EasyWork/05_GitAppEasyWork/AppEasyWork/app/src/main/res/layout/item_tecnico.xml" value="0.33" />
         <entry key="..\:/Users/Joaquin Carbajal/StudioProjects/AppEasyWork/app/src/main/res/drawable/bg_rounded.xml" value="0.2" />
         <entry key="..\:/Users/Joaquin Carbajal/StudioProjects/AppEasyWork/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Joaquin Carbajal/StudioProjects/AppEasyWork/app/src/main/res/layout/fragment_complete_profile.xml" value="0.25416666666666665" />

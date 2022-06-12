@@ -24,12 +24,13 @@ import com.proy.easywork.presentation.principal.view.adapter.ComentarioAdapter
 import com.proy.easywork.presentation.principal.view.adapter.TecnicoAdapter
 import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
 import com.proy.easywork.presentation.splash.SplashActivity
+import com.proy.easywork.presentation.util.widgets.AlertDialog
 import com.squareup.picasso.Picasso
 
 
 class PerfilTecnicoFragment : Fragment() {
     val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
-
+    var idServicioSolicitado = 0
     private val viewModel by viewModels<PrincipalViewModel> {
         PrincipalViewModel.PrincipalModelFactory(PrincipalRepository(activity?.application!!))
     }
@@ -52,10 +53,11 @@ class PerfilTecnicoFragment : Fragment() {
     }
 
     private fun setUpUI() {
-        viewModel.onMessageSuccesful.observe(viewLifecycleOwner){
+        viewModel.idServicioSolicitado.observe(viewLifecycleOwner){
             showMessage("Solicitud generada")
             view?.let {
-                Navigation.findNavController(it).navigate(R.id.action_perfilTecnicoFragment_to_fragmentSelectCategories2)
+                val b = bundleOf(Pair("idServicioEnProceso",it))
+                Navigation.findNavController(it).navigate(R.id.action_perfilTecnicoFragment_to_visualizarSolicitudFragment, b)
             }
         }
 
@@ -118,19 +120,22 @@ class PerfilTecnicoFragment : Fragment() {
 
     private fun setUpEvents() {
         binding.btSolicitar.setOnClickListener {
-            viewModel.solicitarServicio(
-                RQSolicitarServicio(
-                    (arguments?.getInt("idTecnicoCategoriaServicio")?:0),
-                    (arguments?.getString("codDistrito")?:""),
-                    (arguments?.getString("codMedioPago")?:""),
-                    (arguments?.getString("codCategoria")?:""),
-                    (arguments?.getString("codTipoBusqueda")?:""),
-                    (arguments?.getString("direccion")?:""),
-                    (arguments?.getString("problema")?:""),
-                    (arguments?.getDouble("latitud")?:0.0),
-                    (arguments?.getDouble("longitud")?:0.0)
+            AlertDialog().showMessage(requireContext(),"¿Está seguro de solicitar el técnico?","Si, Solicitar")
+            {
+                viewModel.solicitarServicio(
+                    RQSolicitarServicio(
+                        (arguments?.getInt("idTecnicoCategoriaServicio")?:0),
+                        (arguments?.getString("codDistrito")?:""),
+                        (arguments?.getString("codMedioPago")?:""),
+                        (arguments?.getString("codCategoria")?:""),
+                        (arguments?.getString("codTipoBusqueda")?:""),
+                        (arguments?.getString("direccion")?:""),
+                        (arguments?.getString("problema")?:""),
+                        (arguments?.getDouble("latitud")?:0.0),
+                        (arguments?.getDouble("longitud")?:0.0)
+                    )
                 )
-            )
+            }
         }
     }
 

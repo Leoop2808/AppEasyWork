@@ -9,32 +9,17 @@
 
 
     <TextView
-        android:id="@+id/tvDistancia"
+        android:id="@+id/tvCategoria"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginStart="24dp"
-
+        android:textColor="@color/black"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="28dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="10 km"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout19"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvTecnico" />
-
-    <TextView
-        android:id="@+id/tvTiempo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="28dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="20 min"
+        android:text="Gasfiteria"
+        android:textStyle="bold"
         android:textSize="13sp"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout19"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,31 +60,44 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/tvNombre"
+            android:id="@+id/tvNombreCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="8dp"
-            android:text="CarlosSinNombre"
+            android:text="Mauricio Carbajal Romani"
             android:textColor="@color/purple_500"
             android:textSize="16dp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tvDescripcionProblema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Descripcion inicial para un texto descriptivo acerca del problema a atender mediante un tecnico al acpetar la solicitud"
+            android:textColor="@color/azul_btn"
+            android:textSize="12sp"
+
+            app:layout_constraintStart_toEndOf="@+id/tvNombreCliente" />
+
         <LinearLayout
+            android:id="@+id/llyInfoDistritoMedioPago"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvProfesion"
+                android:id="@+id/tvDistrito"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="25dp"
                 android:layout_weight="1"
-
-                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:gravity="center"
                 android:paddingStart="0dp"
                 android:paddingEnd="5dp"
-                android:text="Gasfitero"
+                android:text="En Santa Anita"
+                android:textStyle="bold"
                 android:textSize="12sp" />
 
             <LinearLayout
@@ -111,53 +109,28 @@
                 android:paddingEnd="5dp">
 
                 <TextView
-                    android:id="@+id/tvCantClientes"
+                    android:id="@+id/tvMedioPago"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
+                    android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="19"
-                    android:textSize="12sp"/>
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-
-                    android:text="clientes"
+                    android:textColor="@color/black"
+                    android:text="Paga con Yape"
+                    android:textStyle="bold"
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingStart="5dp"
-                android:paddingEnd="0dp">
-
-                <TextView
-                    android:id="@+id/tvRating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="4"
-                    android:textSize="12sp"/>
-
-                <RatingBar
-                    android:id="@+id/rb"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:numStars="5" />
-            </LinearLayout>
-
         </LinearLayout>
-
         <TextView
-            android:id="@+id/btPerfil"
+            android:id="@+id/tvDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="En Juan Guillermo Moore 560, Santa Anita"
+            android:textColor="@color/azul_btn"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/llyInfoDistritoMedioPago" />
+        <TextView
+            android:id="@+id/btAceptarSolicitud"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -166,7 +139,7 @@
             android:backgroundTint="@color/azul"
             android:gravity="center"
             android:padding="8dp"
-            android:text="@string/ver_perfil"
+            android:text="Aceptar Solicitud"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />

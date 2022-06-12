@@ -36,8 +36,8 @@ class TecnicoFragment : Fragment() {
 
     private var flgServicioEnProceso = false
     private var idServicioEnProceso = 0
-    private var flgOrderByCategorias = false
-    private var flgOrderByZonas = false
+    private var flgOrderByCategoria = false
+    private var flgOrderByZona = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,13 +68,13 @@ class TecnicoFragment : Fragment() {
         setUpEvents()
     }
 
-    private fun capturarCheckBox() {
+    private fun capturarFiltroCategoriaZona() {
         if (binding.cbFiltroCategorias.isChecked()==true){
-            flgOrderByCategorias = true
+            flgOrderByCategoria = true
         }
 
         if (binding.cbFiltroZonas.isChecked()==true){
-            flgOrderByZonas = true
+            flgOrderByZona = true
         }
     }
 
@@ -117,7 +117,24 @@ class TecnicoFragment : Fragment() {
     }
 
     private fun setUpEvents() {
-
+        binding.btSolicitudDirecta.setOnClickListener {
+            if(!flgServicioEnProceso){
+                capturarFiltroCategoriaZona()
+                val b = bundleOf(Pair("codTipoBusqueda","1"),Pair("flgOrderByCategoria",flgOrderByCategoria),Pair("flgOrderByZona",flgOrderByZona))
+                Navigation.findNavController(requireView()).navigate(R.id.action_tecnicoFragment_to_visualizarSolicitudesFragment,b)
+            }else{
+                showMessage("Usted ya cuenta con una solicitud de servicio en proceso")
+            }
+        }
+        binding.btSolicitudGeneral.setOnClickListener {
+            if(!flgServicioEnProceso){
+                capturarFiltroCategoriaZona()
+                val b = bundleOf(Pair("codTipoBusqueda","2"),Pair("flgOrderByCategoria",flgOrderByCategoria),Pair("flgOrderByZona",flgOrderByZona))
+                Navigation.findNavController(requireView()).navigate(R.id.action_tecnicoFragment_to_visualizarSolicitudesFragment,b)
+            }else{
+                showMessage("Usted ya cuenta con una solicitud de servicio en proceso")
+            }
+        }
     }
 
     private fun showMessage(message: String) {

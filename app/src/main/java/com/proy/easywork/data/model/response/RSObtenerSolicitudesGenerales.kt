@@ -2,8 +2,7 @@ package com.proy.easywork.data.model.response
 
 import java.io.Serializable
 
-data class RSObtenerSolicitudesGenerales (val Message: String, val data: MutableList<VMSolicitudGeneral> = mutableListOf()) :
-    Serializable
+data class RSObtenerSolicitudesGenerales (val Message: String, val data: MutableList<VMSolicitudGeneral> = mutableListOf()) : Serializable
 
 
 data class VMSolicitudGeneral(
@@ -14,4 +13,6 @@ data class VMSolicitudGeneral(
                             val nombreCategoriaServicio: String,
                             val descripcionProblema: String,
                             val codDistrito: String,
-                            val nombreDistrito: String,): Serializable
+                            val nombreDistrito: String,
+                            val nombreMedioPago: String,
+                            val direccion: String): Serializable

@@ -44,6 +44,7 @@ class SelectCategoriesFragment : Fragment() {
             flgServicioEnProceso = it.flgServicioEnProceso
             idServicioEnProceso = it.idServicioEnProceso
         }
+
         if(flgServicioEnProceso){
             binding.ntServEnProceso.visibility = View.GONE
         }else{

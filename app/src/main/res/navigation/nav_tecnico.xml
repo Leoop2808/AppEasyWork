@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_tecnicoFragment_to_visualizarSolicitudTecnicoFragment"
             app:destination="@id/visualizarSolicitudTecnicoFragment" />
+        <action
+            android:id="@+id/action_tecnicoFragment_to_visualizarSolicitudesFragment"
+            app:destination="@id/visualizarSolicitudesFragment" />
     </fragment>
     <fragment
         android:id="@+id/visualizarSolicitudTecnicoFragment"
@@ -22,5 +25,14 @@
         <action
             android:id="@+id/action_visualizarSolicitudTecnicoFragment_to_tecnicoFragment"
             app:destination="@id/tecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visualizarSolicitudesFragment"
+        android:name="com.proy.easywork.presentation.tecnico.view.fragments.VisualizarSolicitudesFragment"
+        android:label="fragment_visualizar_solicitudes"
+        tools:layout="@layout/fragment_visualizar_solicitudes" >
+        <action
+            android:id="@+id/action_visualizarSolicitudesFragment_to_visualizarSolicitudTecnicoFragment"
+            app:destination="@id/visualizarSolicitudTecnicoFragment" />
     </fragment>
 </navigation>

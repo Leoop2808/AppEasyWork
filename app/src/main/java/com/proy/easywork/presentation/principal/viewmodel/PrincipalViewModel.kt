@@ -35,6 +35,10 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
     private val _servicioEnProceso = MutableLiveData<VMClienteServicioEnProceso>()
     val servicioEnProceso : LiveData<VMClienteServicioEnProceso> = _servicioEnProceso
 
+    private val _idServicioSolicitado = MutableLiveData<Int>()
+    val idServicioSolicitado : LiveData<Int> = _idServicioSolicitado
+
+
     fun getCategoria(codCategoria : String){
         _isViewLoading.value = true
         viewModelScope.launch {
@@ -184,7 +188,7 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
         viewModelScope.launch {
             when (val result = repository.solicitarServicio(request)) {
                 is MADataResult.Success -> {
-                    _onMessageSuccesful.value = "true"
+                    _idServicioSolicitado.value = result.data?.idServicio
                 }
                 is MADataResult.Failure -> {
                     _onMessageError.value = result.e.message.toString()

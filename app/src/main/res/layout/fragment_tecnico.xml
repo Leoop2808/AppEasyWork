@@ -16,8 +16,8 @@
         android:layout_weight="1"
         android:padding="5dp"
         android:src="@drawable/icon_campana_amarilla"
-        tools:layout_editor_absoluteX="313dp"
-        tools:layout_editor_absoluteY="98dp" />
+        tools:layout_editor_absoluteX="317dp"
+        tools:layout_editor_absoluteY="95dp" />
 
     <LinearLayout
         android:id="@+id/llytBarraNav"
@@ -26,6 +26,7 @@
         android:background="#373b4d"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -134,7 +135,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtResponderSolicitudesDirectas"
+                android:id="@+id/btSolicitudDirecta"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -183,7 +184,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtResponderSolicitudesGenerales"
+                android:id="@+id/btSolicitudGeneral"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
