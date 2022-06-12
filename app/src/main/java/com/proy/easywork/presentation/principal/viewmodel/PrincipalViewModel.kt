@@ -32,6 +32,9 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
     private val _validServicioEnProceso = MutableLiveData<VMValidarServicioEnProceso>()
     val validServicioEnProceso : LiveData<VMValidarServicioEnProceso> = _validServicioEnProceso
 
+    private val _servicioEnProceso = MutableLiveData<VMClienteServicioEnProceso>()
+    val servicioEnProceso : LiveData<VMClienteServicioEnProceso> = _servicioEnProceso
+
     fun getCategoria(codCategoria : String){
         _isViewLoading.value = true
         viewModelScope.launch {
@@ -175,6 +178,7 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
             _isViewLoading.value = false
         }
     }
+
     fun solicitarServicio(request: RQSolicitarServicio){
         _isViewLoading.value = true
         viewModelScope.launch {
@@ -205,6 +209,30 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
             when (val result = repository.clienteValidarServicioEnProceso()) {
                 is MADataResult.Success -> {
                     _validServicioEnProceso.value = result.data?.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
+    fun getServicioEnProceso(idServicioEnProceso: Int){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.getServicioEnProceso(idServicioEnProceso)) {
+                is MADataResult.Success -> {
+                    _servicioEnProceso.value = result.data?.data
                 }
                 is MADataResult.Failure -> {
                     _onMessageError.value = result.e.message.toString()

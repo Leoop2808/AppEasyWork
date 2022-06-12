@@ -9,5 +9,18 @@
         android:id="@+id/tecnicoFragment"
         android:name="com.proy.easywork.presentation.tecnico.view.fragments.TecnicoFragment"
         android:label="fragment_tecnico"
-        tools:layout="@layout/fragment_tecnico" />
+        tools:layout="@layout/fragment_tecnico" >
+        <action
+            android:id="@+id/action_tecnicoFragment_to_visualizarSolicitudTecnicoFragment"
+            app:destination="@id/visualizarSolicitudTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visualizarSolicitudTecnicoFragment"
+        android:name="com.proy.easywork.presentation.tecnico.view.fragments.VisualizarSolicitudTecnicoFragment"
+        android:label="fragment_visualizar_solicitud_tecnico"
+        tools:layout="@layout/fragment_visualizar_solicitud_tecnico" >
+        <action
+            android:id="@+id/action_visualizarSolicitudTecnicoFragment_to_tecnicoFragment"
+            app:destination="@id/tecnicoFragment" />
+    </fragment>
 </navigation>

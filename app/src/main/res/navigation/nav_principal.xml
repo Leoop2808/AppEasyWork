@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_fragmentSelectCategories2_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_fragmentSelectCategories2_to_visualizarSolicitudFragment"
+            app:destination="@id/visualizarSolicitudFragment" />
+        <action
+            android:id="@+id/action_fragmentSelectCategories2_to_visualizarSolicitudFragment2"
+            app:destination="@id/visualizarSolicitudFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -40,6 +46,9 @@
         <action
             android:id="@+id/action_perfilTecnicoFragment_to_fragmentSelectCategories2"
             app:destination="@id/fragmentSelectCategories2" />
+        <action
+            android:id="@+id/action_perfilTecnicoFragment_to_visualizarSolicitudFragment"
+            app:destination="@id/visualizarSolicitudFragment" />
     </fragment>
     <fragment
         android:id="@+id/elegirTecnicoFragment"
@@ -49,5 +58,14 @@
         <action
             android:id="@+id/action_elegirTecnicoFragment_to_perfilTecnicoFragment"
             app:destination="@id/perfilTecnicoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visualizarSolicitudFragment"
+        android:name="com.proy.easywork.presentation.principal.view.fragments.VisualizarSolicitudFragment"
+        android:label="fragment_visualizar_solicitud"
+        tools:layout="@layout/fragment_visualizar_solicitud" >
+        <action
+            android:id="@+id/action_visualizarSolicitudFragment_to_fragmentSelectCategories2"
+            app:destination="@id/fragmentSelectCategories2" />
     </fragment>
 </navigation>

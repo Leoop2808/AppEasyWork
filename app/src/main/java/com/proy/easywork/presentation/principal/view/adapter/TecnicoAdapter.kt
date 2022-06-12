@@ -8,7 +8,6 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proy.easywork.R
-import com.proy.easywork.data.model.response.VMBusqTecnico
 import com.proy.easywork.data.model.response.VMBusqTecnicoGeneral
 import com.squareup.picasso.Picasso
 
@@ -16,7 +15,7 @@ class TecnicoAdapter (val lista:List<VMBusqTecnicoGeneral>, val onClick: (VMBusq
 
     class TecnicoHolder(v: View) : RecyclerView.ViewHolder(v) {
         val tvNombre: TextView = v.findViewById(R.id.tvNombre)
-        val imgTecnico: ImageView = v.findViewById(R.id.imgTecnico)
+        val imgTecnico: ImageView = v.findViewById(R.id.imgCategoria)
         val tvProfesion: TextView = v.findViewById(R.id.tvProfesion)
         val tvCantCliente: TextView = v.findViewById(R.id.tvCantClientes)
         val tvRating: TextView = v.findViewById(R.id.tvRating)

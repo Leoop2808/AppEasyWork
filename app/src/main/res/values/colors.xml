@@ -12,6 +12,7 @@
     <color name="tipografia_boton_login">#FFFFFF</color>
     <color name="azul_btn">#373b4d</color>
     <color name="azul">#2E3BB7</color>
+    <color name="cancelar">#CB4335</color>
     <color name="verde">#6ac668</color>
     <color name="rojo">#ff4255</color>
 </resources>

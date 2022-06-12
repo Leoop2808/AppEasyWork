@@ -75,7 +75,6 @@ class SelectCategoriesFragment : Fragment() {
                 }
                 binding.rcvCateg.isNestedScrollingEnabled=false
             }
-
         }
 
         viewModel.isViewLoading.observe(viewLifecycleOwner) {
@@ -87,11 +86,18 @@ class SelectCategoriesFragment : Fragment() {
                 }
             }
         }
+
+        binding.ntServEnProceso.setOnClickListener {
+            if (flgServicioEnProceso){
+                val b = bundleOf(Pair("idServicioEnProceso",idServicioEnProceso))
+                Navigation.findNavController(requireView()).navigate(R.id.action_fragmentSelectCategories2_to_visualizarSolicitudFragment2,b)
+            }
+        }
+
         binding.imgCerrarSesion.setOnClickListener {
             sp.clearSession()
             startActivity(SplashActivity().newIntent(requireContext()))
         }
-
     }
 
     private fun setUpEvents() {

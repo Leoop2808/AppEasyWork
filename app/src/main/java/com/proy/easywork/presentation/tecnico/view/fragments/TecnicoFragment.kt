@@ -108,6 +108,12 @@ class TecnicoFragment : Fragment() {
             startActivity(SplashActivity().newIntent(requireContext()))
         }
 
+        binding.ntServEnProceso.setOnClickListener {
+            if (flgServicioEnProceso){
+                val b = bundleOf(Pair("idServicioEnProceso",idServicioEnProceso))
+                Navigation.findNavController(requireView()).navigate(R.id.action_tecnicoFragment_to_visualizarSolicitudTecnicoFragment,b)
+            }
+        }
     }
 
     private fun setUpEvents() {
