@@ -9,18 +9,32 @@
 
 
     <TextView
-        android:id="@+id/tvTiempoViaje"
-        android:layout_width="99dp"
-        android:layout_height="18dp"
+        android:id="@+id/tvDistancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
 
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="28dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:paddingStart="0dp"
-        android:paddingEnd="5dp"
-        android:text="10 km - 20 min"
+        android:text="10 km"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvTecnico" />
+
+    <TextView
+        android:id="@+id/tvTiempo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="28dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="20 min"
         android:textSize="13sp"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout19"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +42,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvTecnico"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="200dp"
@@ -86,7 +100,7 @@
                 android:paddingStart="0dp"
                 android:paddingEnd="5dp"
                 android:text="Gasfitero"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -103,7 +117,7 @@
 
                     android:gravity="center"
                     android:text="19"
-                    android:textSize="15sp"/>
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/textView15"
@@ -112,7 +126,7 @@
                     android:gravity="center"
 
                     android:text="clientes"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -129,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="4"
-                    android:textSize="15sp"/>
+                    android:textSize="12sp"/>
 
                 <RatingBar
                     android:id="@+id/rb"

@@ -111,7 +111,6 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
         viewModelScope.launch {
             when (val result = repository.buscarTecnicoGeneral(request)) {
                 is MADataResult.Success -> {
-                    Log.e("prueba",result.data?.data.toString());
                     _listaTecnicos.value = result.data?.data
                 }
                 is MADataResult.Failure -> {

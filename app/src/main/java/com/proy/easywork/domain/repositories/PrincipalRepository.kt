@@ -39,7 +39,6 @@ class PrincipalRepository(aplication: Application) : BaseRepository(){
         return try {
             val gson = Gson()
             val type = object : TypeToken<RSErrorMessage>() {}.type
-            val prueba = sp.getToken()
             val result = mRemoteClient?.buscarTecnicosGeneral(sp.getToken(), request)
             when (result?.code()) {
                 HttpURLConnection.HTTP_OK ->{

@@ -21,7 +21,8 @@ class TecnicoAdapter (val lista:List<VMBusqTecnicoGeneral>, val onClick: (VMBusq
         val tvCantCliente: TextView = v.findViewById(R.id.tvCantClientes)
         val tvRating: TextView = v.findViewById(R.id.tvRating)
         val tvPerfil: TextView = v.findViewById(R.id.btPerfil)
-        val tvTiempoViaje: TextView = v.findViewById(R.id.tvTiempoViaje)
+        val tvDistancia: TextView = v.findViewById(R.id.tvDistancia)
+        val tvTiempo: TextView = v.findViewById(R.id.tvTiempo)
 
         val rb : RatingBar = v.findViewById(R.id.rb)
         fun bind(tecnico:  VMBusqTecnicoGeneral, onClick: (VMBusqTecnicoGeneral) -> Unit) {
@@ -31,7 +32,8 @@ class TecnicoAdapter (val lista:List<VMBusqTecnicoGeneral>, val onClick: (VMBusq
             tvRating.text=data.valoracion
             rb.rating= data.valoracion.toFloat()
             tvProfesion.text=data.categoria
-            tvTiempoViaje.text=tecnico.strDistancia + " - " + tecnico.strTiempoViaje
+            tvTiempo.text=tecnico.strTiempoViaje
+            tvDistancia.text=tecnico.strDistancia
             Picasso.get().load(data.urlImagenTecnico).into(imgTecnico)
             tvPerfil.setOnClickListener { onClick(tecnico) }
         }
