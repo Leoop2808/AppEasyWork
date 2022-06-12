@@ -69,10 +69,12 @@ class FormularioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpEvents()
         viewModel.getCategoria(arguments?.getString("codCategoria")?:"")
+
         viewModel.nombreCategoria.observe(viewLifecycleOwner){
             binding.etCategoria.setText(it)
             viewModel.listarDistritos()
         }
+
         binding.etDireccion.setText(arguments?.getString("direccion")?:"")
         viewModel.listaDistrito.observe(viewLifecycleOwner){
            it?.let {

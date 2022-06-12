@@ -18,8 +18,11 @@ import com.proy.easywork.domain.repositories.PrincipalRepository
 import com.proy.easywork.presentation.principal.view.adapter.CategoriaAdapter
 import com.proy.easywork.presentation.principal.viewmodel.PrincipalViewModel
 import com.proy.easywork.presentation.splash.SplashActivity
+import okhttp3.internal.wait
 
 class SelectCategoriesFragment : Fragment() {
+    private var flgServicioEnProceso = false
+    private var idServicioEnProceso = 0
     private lateinit var binding: FragmentSelectCategoriesBinding
     val sp: MDefaultSharedPref = MDataInjection.instance.providePreferences() as MDefaultSharedPref
     private val viewModel by viewModels<PrincipalViewModel> {
@@ -36,6 +39,11 @@ class SelectCategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clienteValidarServicioEnProceso()
+        viewModel.validServicioEnProceso.observe(viewLifecycleOwner){
+            flgServicioEnProceso = it.flgServicioEnProceso
+            idServicioEnProceso = it.idServicioEnProceso
+        }
 
         setUpUI()
         setUpEvents()
@@ -53,8 +61,13 @@ class SelectCategoriesFragment : Fragment() {
             it?.let {
                 binding.rcvCateg.layoutManager=GridLayoutManager(context, 2)
                 binding.rcvCateg.adapter = CategoriaAdapter(it){
-                    val b = bundleOf(Pair("codCategoria",it.codCategoriaServicio))
-                    Navigation.findNavController(requireView()).navigate(R.id.action_fragmentSelectCategories2_to_mapsFragment,b)
+                    if (flgServicioEnProceso){
+                        showMessage("Usted ya cuenta con una solicitud de servicio en proceso")
+                    }else{
+                        val b = bundleOf(Pair("codCategoria",it.codCategoriaServicio))
+                        Navigation.findNavController(requireView()).navigate(R.id.action_fragmentSelectCategories2_to_mapsFragment,b)
+                    }
+
                 }
                 binding.rcvCateg.isNestedScrollingEnabled=false
             }

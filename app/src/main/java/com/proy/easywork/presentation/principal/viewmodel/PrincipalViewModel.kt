@@ -5,10 +5,7 @@ import androidx.lifecycle.*
 import com.proy.easywork.data.db.entity.CategoriaServicio
 import com.proy.easywork.data.db.entity.Distrito
 import com.proy.easywork.data.model.request.*
-import com.proy.easywork.data.model.response.VMBusqTecnico
-import com.proy.easywork.data.model.response.VMBusqTecnicoGeneral
-import com.proy.easywork.data.model.response.VMPerfil
-import com.proy.easywork.data.model.response.VMPerfilTecnico
+import com.proy.easywork.data.model.response.*
 import com.proy.easywork.data.viewmodel.MAViewModel
 import com.proy.easywork.domain.MADataResult
 import com.proy.easywork.domain.repositories.LoginRepository
@@ -31,6 +28,9 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
 
     private val _nombreCategoria = MutableLiveData<String>()
     val nombreCategoria : LiveData<String> = _nombreCategoria
+
+    private val _validServicioEnProceso = MutableLiveData<VMValidarServicioEnProceso>()
+    val validServicioEnProceso : LiveData<VMValidarServicioEnProceso> = _validServicioEnProceso
 
     fun getCategoria(codCategoria : String){
         _isViewLoading.value = true
@@ -198,6 +198,31 @@ class PrincipalViewModel (val repository: PrincipalRepository): MAViewModel(){
             _isViewLoading.value = false
         }
     }
+
+    fun clienteValidarServicioEnProceso(){
+        _isViewLoading.value = true
+        viewModelScope.launch {
+            when (val result = repository.clienteValidarServicioEnProceso()) {
+                is MADataResult.Success -> {
+                    _validServicioEnProceso.value = result.data?.data
+                }
+                is MADataResult.Failure -> {
+                    _onMessageError.value = result.e.message.toString()
+                }
+                is MADataResult.AccountFailure->{
+                    _accountFailure.value = true
+                }
+                is MADataResult.AuthentificateFailure->{
+                    _authFailure.value = true
+                }
+                is MADataResult.ServerFailure->{
+                    _serverFailure.value = true
+                }
+            }
+            _isViewLoading.value = false
+        }
+    }
+
     class PrincipalModelFactory(private val repository: PrincipalRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PrincipalViewModel::class.java)) {

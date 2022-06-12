@@ -164,7 +164,7 @@ interface IApiClient {
         @Body request: RQObtenerPerfilTecnico):  Response<RSObtenerPerfilTecnico>
 
     @GET("api/cliente/validar-servicio-en-proceso")
-    suspend fun clientevalidarServicioEnProceso(
+    suspend fun clienteValidarServicioEnProceso(
         @Header("Authorization") token: String): Response<RSValidarServicioEnProceso>
 
     @POST("api/cliente/solicitar-servicio")
