@@ -114,4 +114,5 @@
     <string name="nombre_usuario_cliente">Cliente</string>
     <string name="medio_pago">Medio pago</string>
     <string name="finalizar">Finalizar</string>
+    <string name="solicitudes">Solicitudes</string>
 </resources>
