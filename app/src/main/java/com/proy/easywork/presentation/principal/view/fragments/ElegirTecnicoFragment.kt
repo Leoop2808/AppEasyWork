@@ -1,6 +1,7 @@
 package com.proy.easywork.presentation.principal.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.proy.easywork.R
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
+import com.proy.easywork.data.model.request.RQBuscarTecnicosGeneral
 import com.proy.easywork.data.model.request.RQBusqueda
 import com.proy.easywork.databinding.FragmentElegirTecnicoBinding
 import com.proy.easywork.domain.repositories.PrincipalRepository
@@ -42,16 +44,43 @@ class ElegirTecnicoFragment : Fragment() {
         setUpEvents()
         setUpUI()
 
+        if (arguments?.getString("codTipoBusqueda")?:"" == "1"){
+            viewModel.buscarTecnicosFavoritos(
+                RQBuscarTecnicosGeneral(
+                    (arguments?.getString("codCategoria")?:""),
+                    (arguments?.getString("direccion")?:""),
+                    (arguments?.getDouble("latitud")?:0.0),
+                    (arguments?.getDouble("longitud")?:0.0),
+                    "10",
+//                    (arguments?.getString("codDistrito")?:""),
+                    (arguments?.getString("problema")?:""),
+                    (arguments?.getString("codMedioPago")?:"")
+                )
+            )
+        }else{
+            viewModel.buscarTecnicosGeneral(
+                RQBuscarTecnicosGeneral(
+                    (arguments?.getString("codCategoria")?:""),
+                    (arguments?.getString("direccion")?:""),
+                    (arguments?.getDouble("latitud")?:0.0),
+                    (arguments?.getDouble("longitud")?:0.0),
+                    "10",
+//                    (arguments?.getString("codDistrito")?:""),
+                    (arguments?.getString("problema")?:""),
+                    (arguments?.getString("codMedioPago")?:"")
+                )
+            )
+        }
     }
 
     private fun setUpUI() {
+
         viewModel.onMessageError.observe(viewLifecycleOwner){
             it?.let {
                 showMessage(it)
             }
         }
 
-        //viewModel.buscarTecnicos(RQBusqueda())
         viewModel.listaTecnicos.observe(viewLifecycleOwner){
             it?.let{
                 binding.rcvTecnicos.layoutManager= LinearLayoutManager(context)

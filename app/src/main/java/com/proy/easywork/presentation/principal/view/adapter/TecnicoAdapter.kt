@@ -9,9 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.proy.easywork.R
 import com.proy.easywork.data.model.response.VMBusqTecnico
+import com.proy.easywork.data.model.response.VMBusqTecnicoGeneral
 import com.squareup.picasso.Picasso
 
-class TecnicoAdapter (val lista:List<VMBusqTecnico>, val onClick: (VMBusqTecnico)->Unit): RecyclerView.Adapter<TecnicoAdapter.TecnicoHolder>() {
+class TecnicoAdapter (val lista:List<VMBusqTecnicoGeneral>, val onClick: (VMBusqTecnicoGeneral)->Unit): RecyclerView.Adapter<TecnicoAdapter.TecnicoHolder>() {
 
     class TecnicoHolder(v: View) : RecyclerView.ViewHolder(v) {
         val tvNombre: TextView = v.findViewById(R.id.tvNombre)
@@ -20,15 +21,18 @@ class TecnicoAdapter (val lista:List<VMBusqTecnico>, val onClick: (VMBusqTecnico
         val tvCantCliente: TextView = v.findViewById(R.id.tvCantClientes)
         val tvRating: TextView = v.findViewById(R.id.tvRating)
         val tvPerfil: TextView = v.findViewById(R.id.btPerfil)
+        val tvTiempoViaje: TextView = v.findViewById(R.id.tvTiempoViaje)
 
         val rb : RatingBar = v.findViewById(R.id.rb)
-        fun bind(tecnico:  VMBusqTecnico, onClick: (VMBusqTecnico) -> Unit) {
-            tvNombre.text=tecnico.nombreTecnico
-            tvCantCliente.text=tecnico.cantidadClientes
-            tvRating.text=tecnico.valoracion
-            rb.rating= tecnico.valoracion.toFloat()
-            tvProfesion.text=tecnico.categoria
-            Picasso.get().load(tecnico.urlImgTecnico).into(imgTecnico)
+        fun bind(tecnico:  VMBusqTecnicoGeneral, onClick: (VMBusqTecnicoGeneral) -> Unit) {
+            var data = tecnico.datosTecnico
+            tvNombre.text=data.nombreTecnico
+            tvCantCliente.text=data.cantidadClientes
+            tvRating.text=data.valoracion
+            rb.rating= data.valoracion.toFloat()
+            tvProfesion.text=data.categoria
+            tvTiempoViaje.text=tecnico.strDistancia + " - " + tecnico.strTiempoViaje
+            Picasso.get().load(data.urlImagenTecnico).into(imgTecnico)
             tvPerfil.setOnClickListener { onClick(tecnico) }
         }
     }

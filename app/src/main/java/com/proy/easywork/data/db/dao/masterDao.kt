@@ -15,13 +15,15 @@ interface masterDao {
     fun deleteCategoria()
     @Query("SELECT * FROM categoria_servicio_table order by codCategoriaServicio")
     fun listCategoria(): List<CategoriaServicio>?
+    @Query("SELECT siglaCategoriaServicio FROM categoria_servicio_table WHERE codCategoriaServicio = :codCategoria")
+    fun getCategoria(codCategoria : String): String?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addDistrito(distrito: Distrito): Long
     @Query("DELETE FROM distrito_table")
     fun deleteDistrito()
     @Query("SELECT * FROM distrito_table")
-    fun listDistrito(): List<Distrito?>?
+    fun listDistrito(): List<Distrito>?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addMedioPago(medioPago: MedioPago): Long

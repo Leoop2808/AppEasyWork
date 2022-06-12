@@ -6,10 +6,13 @@ import com.google.gson.reflect.TypeToken
 import com.proy.easywork.data.datasource.preferences.MDefaultSharedPref
 import com.proy.easywork.data.datasource.storage.MDataInjection
 import com.proy.easywork.data.db.entity.CategoriaServicio
+import com.proy.easywork.data.db.entity.Distrito
 import com.proy.easywork.data.exception.DefaultException
+import com.proy.easywork.data.model.request.RQBuscarTecnicosGeneral
 import com.proy.easywork.data.model.request.RQBusqueda
 import com.proy.easywork.data.model.request.RQDispositivo
 import com.proy.easywork.data.model.request.RQPerfil
+import com.proy.easywork.data.model.response.RSBuscarTecnicosGeneral
 import com.proy.easywork.data.model.response.RSBusquedaTecnico
 import com.proy.easywork.data.model.response.RSErrorMessage
 import com.proy.easywork.data.model.response.RSPerfilTecnico
@@ -24,11 +27,19 @@ class PrincipalRepository(aplication: Application) : BaseRepository(){
         return MADataResult.Success(database.masterDao().listCategoria())
     }
 
-    suspend fun buscarTecnico(request: RQBusqueda): MADataResult<RSBusquedaTecnico> {
+    suspend fun getDistritos(): MADataResult<List<Distrito>?>{
+        return MADataResult.Success(database.masterDao().listDistrito())
+    }
+
+    suspend fun getCategoria(codCategoria:String): MADataResult<String?>{
+        return MADataResult.Success(database.masterDao().getCategoria(codCategoria))
+    }
+
+    suspend fun buscarTecnicoGeneral(request: RQBuscarTecnicosGeneral): MADataResult<RSBuscarTecnicosGeneral> {
         return try {
             val gson = Gson()
             val type = object : TypeToken<RSErrorMessage>() {}.type
-            val result = mRemoteClient?.buscarTecnicos(sp.getToken(), request)
+            val result = mRemoteClient?.buscarTecnicosGeneral(sp.getToken(), request)
             when (result?.code()) {
                 HttpURLConnection.HTTP_OK ->{
                     MADataResult.Success(result.body())
@@ -61,6 +72,42 @@ class PrincipalRepository(aplication: Application) : BaseRepository(){
         }
     }
 
+    suspend fun buscarTecnicoFavoritos(request: RQBuscarTecnicosGeneral): MADataResult<RSBuscarTecnicosGeneral> {
+        return try {
+            val gson = Gson()
+            val type = object : TypeToken<RSErrorMessage>() {}.type
+            val result = mRemoteClient?.buscarTecnicosFavoritos(sp.getToken(), request)
+            when (result?.code()) {
+                HttpURLConnection.HTTP_OK ->{
+                    MADataResult.Success(result.body())
+                }
+                HttpURLConnection.HTTP_NO_CONTENT -> MADataResult.Failure(
+                    Exception(DefaultException.MESSAGE_NO_CONTENT)
+                )
+                HttpURLConnection.HTTP_BAD_REQUEST -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_UNAUTHORIZED -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.UnAuthorized(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DefaultException.UNAUTHORIZED_ERROR else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_NOT_FOUND -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty())DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                HttpURLConnection.HTTP_INTERNAL_ERROR -> {
+                    val errorResponse: RSErrorMessage? = gson.fromJson(result.errorBody()!!.charStream(), type)
+                    MADataResult.Failure(Exception(if (errorResponse?.error_description.isNullOrEmpty()) DEFAULT_ERROR_MESSAGE else errorResponse?.error_description))
+                }
+                else -> MADataResult.Failure(
+                    Exception(DefaultException.DEFAULT_MESSAGE)
+                )
+            }
+        } catch (e: Exception) {
+            MADataResult.ServerFailure(Exception(DEFAULT_ERROR_MESSAGE))
+        }
+    }
 
     suspend fun getPerfilTecnico(request: RQPerfil): MADataResult<RSPerfilTecnico> {
         return try {

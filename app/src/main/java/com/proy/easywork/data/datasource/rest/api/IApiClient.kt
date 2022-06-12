@@ -2,10 +2,7 @@ package com.proy.easywork.data.datasource.rest.api
 
 import com.proy.easywork.data.model.VMAuthenticationDTO
 import com.proy.easywork.data.model.request.*
-import com.proy.easywork.data.model.response.RSBusquedaTecnico
-import com.proy.easywork.data.model.response.RSMaestros
-import com.proy.easywork.data.model.response.RSMessage
-import com.proy.easywork.data.model.response.RSPerfilTecnico
+import com.proy.easywork.data.model.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -150,4 +147,89 @@ interface IApiClient {
     @POST("api/usuario/tecnico/autenticacion/celular")
     suspend fun authenticationPhoneTecnico(@Header("Authorization") auth:String,
                                     @Body registro: RQAuthenticationPhone):  Response<VMAuthenticationDTO>
+
+    @GET("api/cliente/busqueda-tecnicos-general")
+    suspend fun buscarTecnicosGeneral(
+        @Header("Authorization") token: String,
+        @Body registro: RQBuscarTecnicosGeneral):  Response<RSBuscarTecnicosGeneral>
+
+    @GET("api/cliente/busqueda-tecnicos-favoritos")
+    suspend fun buscarTecnicosFavoritos(
+        @Header("Authorization") token: String,
+        @Body registro: RQBuscarTecnicosGeneral):  Response<RSBuscarTecnicosGeneral>
+
+    @GET("api/cliente/perfil-tecnico")
+    suspend fun obtenerPerfilTecnico(
+        @Header("Authorization") token: String,
+        @Body registro: RQObtenerPerfilTecnico):  Response<RSObtenerPerfilTecnico>
+
+    @GET("api/cliente/validar-servicio-en-proceso")
+    suspend fun clientevalidarServicioEnProceso(
+        @Header("Authorization") token: String): Response<RSValidarServicioEnProceso>
+
+    @POST("api/cliente/solicitar-servicio")
+    suspend fun solicitarServicio(
+        @Header("Authorization") token: String,
+        @Body request: RQSolicitarServicio
+    ): Response<RSSolicitarServicio>
+
+    @POST("api/cliente/cancelar-servicio")
+    suspend fun clienteCancelarServicio(
+        @Header("Authorization") token: String,
+        @Body request: RQClienteCancelarServicio
+    ): Response<RSMessage>
+
+    @GET("api/cliente/servicio-en-proceso/{idServicioEnProceso}")
+    suspend fun clienteObtenerServicioEnProceso(
+        @Header("Authorization") token: String,
+        @Path("idServicioEnProceso") idServicioEnProces: Int): Response<RSClienteObtenerServicioEnProceso>
+
+    @POST("api/cliente/registrar-resenia")
+    suspend fun registrarResenia(
+        @Header("Authorization") token: String,
+        @Body request: RQRegistrarResenia
+    ): Response<RSMessage>
+
+    @GET("api/tecnico/validar-servicio-en-proceso")
+    suspend fun tecnicovalidarServicioEnProceso(
+        @Header("Authorization") token: String): Response<RSValidarServicioEnProceso>
+
+    @POST("api/tecnico/cancelar-servicio")
+    suspend fun tecnicoCancelarServicio(
+        @Header("Authorization") token: String,
+        @Body request: RQTecnicoCancelarServicio
+    ): Response<RSMessage>
+
+    @POST("api/tecnico/finalizar-servicio")
+    suspend fun tecnicoFinalizarServicio(
+        @Header("Authorization") token: String,
+        @Body request: RQTecnicoCancelarServicio
+    ): Response<RSMessage>
+
+    @GET("api/tecnico/servicio-en-proceso/{idServicioEnProceso}")
+    suspend fun tecnicoObtenerServicioEnProceso(
+        @Header("Authorization") token: String,
+        @Path("idServicioEnProceso") idServicioEnProces: Int): Response<RSTecnicoObtenerServicioEnProceso>
+
+    @GET("api/tecnico/solicitudes")
+    suspend fun obtenerSolicitudes(
+        @Header("Authorization") token: String): Response<RSObtenerSolicitudes>
+
+    @GET("api/tecnico/solicitudes-generales")
+    suspend fun obtenerSolicitudesGenerales(
+        @Header("Authorization") token: String,
+        @Body request: RQObtenerSolicitudesGenerales
+    ): Response<RSObtenerSolicitudesGenerales>
+
+    @GET("api/tecnico/solicitudes-directas")
+    suspend fun obtenerSolicitudesDirectas(
+        @Header("Authorization") token: String,
+        @Body request: RQObtenerSolicitudesGenerales
+    ): Response<RSObtenerSolicitudesGenerales>
+
+    @POST("api/tecnico/aceptar-solicitud/{idServicio}")
+    suspend fun tecnicoAceptarSolicitud(
+        @Header("Authorization") token: String,
+        @Path("idServicio") idServicio: Int
+    ): Response<RSMessage>
 }

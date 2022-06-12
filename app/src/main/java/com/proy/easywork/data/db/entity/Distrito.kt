@@ -6,5 +6,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "distrito_table")
 data class Distrito(@PrimaryKey(autoGenerate = true)
                     val id: Int,
-                    val codDistrito:String,
+                    var codDistrito:String,
                     val siglaDistrito:String)
