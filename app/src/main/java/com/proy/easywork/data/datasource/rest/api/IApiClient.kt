@@ -148,20 +148,20 @@ interface IApiClient {
     suspend fun authenticationPhoneTecnico(@Header("Authorization") auth:String,
                                     @Body registro: RQAuthenticationPhone):  Response<VMAuthenticationDTO>
 
-    @GET("api/cliente/busqueda-tecnicos-general")
+    @POST("api/cliente/busqueda-tecnicos-general")
     suspend fun buscarTecnicosGeneral(
         @Header("Authorization") token: String,
-        @Body registro: RQBuscarTecnicosGeneral):  Response<RSBuscarTecnicosGeneral>
+        @Body request: RQBuscarTecnicosGeneral):  Response<RSBuscarTecnicosGeneral>
 
-    @GET("api/cliente/busqueda-tecnicos-favoritos")
+    @POST("api/cliente/busqueda-tecnicos-favoritos")
     suspend fun buscarTecnicosFavoritos(
         @Header("Authorization") token: String,
-        @Body registro: RQBuscarTecnicosGeneral):  Response<RSBuscarTecnicosGeneral>
+        @Body request: RQBuscarTecnicosGeneral):  Response<RSBuscarTecnicosGeneral>
 
-    @GET("api/cliente/perfil-tecnico")
+    @POST("api/cliente/perfil-tecnico")
     suspend fun obtenerPerfilTecnico(
         @Header("Authorization") token: String,
-        @Body registro: RQObtenerPerfilTecnico):  Response<RSObtenerPerfilTecnico>
+        @Body request: RQObtenerPerfilTecnico):  Response<RSObtenerPerfilTecnico>
 
     @GET("api/cliente/validar-servicio-en-proceso")
     suspend fun clientevalidarServicioEnProceso(
@@ -215,13 +215,13 @@ interface IApiClient {
     suspend fun obtenerSolicitudes(
         @Header("Authorization") token: String): Response<RSObtenerSolicitudes>
 
-    @GET("api/tecnico/solicitudes-generales")
+    @POST("api/tecnico/solicitudes-generales")
     suspend fun obtenerSolicitudesGenerales(
         @Header("Authorization") token: String,
         @Body request: RQObtenerSolicitudesGenerales
     ): Response<RSObtenerSolicitudesGenerales>
 
-    @GET("api/tecnico/solicitudes-directas")
+    @POST("api/tecnico/solicitudes-directas")
     suspend fun obtenerSolicitudesDirectas(
         @Header("Authorization") token: String,
         @Body request: RQObtenerSolicitudesGenerales

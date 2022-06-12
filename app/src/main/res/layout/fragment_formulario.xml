@@ -160,9 +160,9 @@
             android:textSize="15dp" />
 
         <EditText
-            android:id="@+id/etllytDescProblema"
+            android:id="@+id/etDescProblema"
             android:layout_width="337dp"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textMultiLine"

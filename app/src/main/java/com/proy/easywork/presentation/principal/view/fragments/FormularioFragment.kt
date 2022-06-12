@@ -110,11 +110,11 @@ class FormularioFragment : Fragment() {
                 }
 
                 val b = bundleOf(Pair("direccion", arguments?.getString("direccion")?:""),
-                    Pair("latitud",arguments?.getString("latitud")?:""),
-                    Pair("longitud",arguments?.getString("longitud")?:""),
+                    Pair("latitud",arguments?.getDouble("latitud")?:0.0),
+                    Pair("longitud",arguments?.getDouble("longitud")?:0.0),
                     Pair("codCategoria", arguments?.getString("codCategoria")),
                     Pair("codDistrito", binding.spinnerDistrito.getSelectedItem().toString()),
-                    Pair("problema", binding.etllytDescProblema.text),
+                    Pair("problema", binding.etDescProblema.text.toString()),
                     Pair("codMedioPago", medioPago),
                     Pair("codTipoBusqueda", tipoBusqueda))
 

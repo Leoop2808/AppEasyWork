@@ -125,7 +125,6 @@ class MapsFragment : Fragment(){
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
         setUpEvents()
-
     }
 
     private fun setUpEvents() {
@@ -144,7 +143,7 @@ class MapsFragment : Fragment(){
                         binding.btnContinuar.visibility=View.VISIBLE
 
                         val markerOptions = MarkerOptions()
-                        markerOptions.position(mLatLng)
+                        markerOptions.position(mLatLng!!)
                         markerOptions.title("Actual")
                         markerActual= maps!!.addMarker(markerOptions)
                         maps!!.moveCamera(CameraUpdateFactory.newLatLng(mLatLng))
